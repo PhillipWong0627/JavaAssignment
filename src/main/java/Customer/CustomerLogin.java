@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.oodj_foodordersystemassign;
+package Customer;
 
+import com.mycompany.oodj_foodordersystemassign.BlankJFrame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,13 +12,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import javax.swing.JOptionPane;
+import java.util.Scanner;
 /**
  *
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
     File filename = new File ("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerinfo");
-
+    int ln;
+    String Username,Password;
+    
     /**
      * Creates new form CustomerLogin
      */
@@ -25,16 +31,16 @@ public class CustomerLogin extends javax.swing.JFrame {
         initComponents();
     }
     
-    void CreateFolder(){
+    public void CreateFolder(){
         if (!filename.exists()){
             filename.mkdirs();
         }
     }
     
-    void CreateFile(){
+    public void CreateFile(){
         try {
             FileReader fr = new FileReader(filename+"\\customerlogin.txt");
-            System.err.println("file exists");
+            System.out.println("file exists");
         } catch (FileNotFoundException ex) {
             try {
                 FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
@@ -45,7 +51,60 @@ public class CustomerLogin extends javax.swing.JFrame {
         }
     }
     
-
+    public void AddData(String username, String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
+            for(int i=0; i<ln;i++){
+                raf.readLine();
+            }
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
+            raf.writeBytes("Username:"+username+"\r\n");
+            raf.writeBytes("Password:"+password+"\r\n");         
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void CheckData(String username, String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
+            try {
+                String line = raf.readLine();
+                Username = line.substring(9);
+                Password = raf.readLine().substring(9);
+                if(username.equals(Username)&password.equals(Password)){
+                    JOptionPane.showMessageDialog(null,"Welcome back to P&K Food Center, "+username);
+                }else{
+                        JOptionPane.showMessageDialog(null,"Wrong username or password");
+                            }
+                
+            } catch (IOException ex) {
+                Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void CountLines(){
+        try {
+            ln=1;
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
+            for(int i=0;raf.readLine() !=null;i++){
+                ln++;
+            }
+            System.out.println("Number of Lines:"+ln);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -261,7 +320,7 @@ public class CustomerLogin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -276,16 +335,14 @@ public class CustomerLogin extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,6 +399,10 @@ public class CustomerLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CreateFolder();
         CreateFile();
+        CountLines();
+        AddData("Kenny","1234");
+        CheckData("Kenny","1234");
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
