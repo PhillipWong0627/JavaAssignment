@@ -8,25 +8,24 @@ import com.mycompany.oodj_foodordersystemassign.BlankJFrame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Kenny
  */
-public class CustomerLogin extends javax.swing.JFrame {
+public class CustomerLoginTesting extends javax.swing.JFrame {
     File filename = new File ("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerinfo");
     int ln;
     String Username,Password;
-    
     /**
      * Creates new form CustomerLogin
      */
-    public CustomerLogin() {
+    public CustomerLoginTesting() {
         initComponents();
     }
     
@@ -45,79 +44,79 @@ public class CustomerLogin extends javax.swing.JFrame {
                 FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
                 System.out.println("File created successfully");
             } catch (IOException ex1) {
-                Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
     }
-    
     public void AddData(String username, String password){
         try {
-            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
-//            for(int i=0; i<ln;i++){
-//                raf.readLine();
-//            }
-//            raf.writeBytes("\r\n");
-//            raf.writeBytes("\r\n");
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+            for(int i=0;i<ln;i++){
+                raf.readLine();
+            }
+            raf.writeBytes("\r\n");
+            raf.writeBytes("\r\n");
             raf.writeBytes("Username:"+username+"\r\n");
-            raf.writeBytes("Password:"+password+"\r\n");         
+            raf.writeBytes("Password:"+password+"\r\n");
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
     public void CheckData(String username, String password){
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
-//            try {
-//                String line = raf.readLine();
-//                Username = line.substring(9);
-//                Password = raf.readLine().substring(9);
-//                if(username.equals(Username)&password.equals(Password)){
-//                    JOptionPane.showMessageDialog(null,"Welcome back to P&K Food Center, "+username);
-//                }else{
-//                        JOptionPane.showMessageDialog(null,"Wrong username or password");
-//                            }
-//                
-//            } catch (IOException ex) {
-//                Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
         try {
-            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
             String line = raf.readLine();
-                Username = line.substring(9);
-                Password = raf.readLine().substring(9);
-                if(username.equals(Username)&password.equals(Password)){
-                    JOptionPane.showMessageDialog(null,"Welcome back to P&K Food Center, "+username);
-                }else{
-                        JOptionPane.showMessageDialog(null,"Wrong username or password");
+            Username = line.substring(9);
+            Password = raf.readLine().substring(9);
+            if(username.equals(Username)& password.equals(Password)){
+                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
+            }else{
+                JOptionPane.showMessageDialog(null, "Wrong username or password");
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void logic(String username, String password){
+        try {
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+            for(int i=0; i<ln;i+=3){
+                String forusername = raf.readLine().substring(9);
+                String forpassword = raf.readLine().substring(9);
+                if(username.equals(Username)& password.equals(Password)){
+                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
+            }else if(i==ln-8){
+                JOptionPane.showMessageDialog(null, "Wrong username or password");
+            }
+                for(int k=1;k<=2;k++){
+                    raf.readLine();
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void CountLines(){
         try {
             ln=1;
-            RandomAccessFile raf = new RandomAccessFile(filename+"\\login.txt","rw");
-            for(int i=0;raf.readLine() !=null;i++){
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+            for(int i=0;raf.readLine()!=null;i++){
                 ln++;
             }
             System.out.println("Number of Lines:"+ln);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -412,11 +411,11 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_back2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CreateFolder();
-        CreateFile();
-        CountLines();
-        AddData("Kenny","1234");
-        CheckData("Kenny","1234");
+//        CreateFolder();
+//        CreateFile();
+//        CountLines();
+//        AddData(username.getText(),password.getText());
+        logic(username.getText(),password.getText());
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -437,21 +436,23 @@ public class CustomerLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerLogin().setVisible(true);
+                new CustomerLoginTesting().setVisible(true);
             }
         });
     }
