@@ -5,15 +5,13 @@
 package Customer;
 
 import Entity.Customer;
-
-
+import Main.WelcomePage;
 /**
  *
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
-    
-    
+
     /**
      * Creates new form CustomerLogin
      */
@@ -21,7 +19,7 @@ public class CustomerLogin extends javax.swing.JFrame {
         initComponents();
     }
     
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,10 +40,9 @@ public class CustomerLogin extends javax.swing.JFrame {
         passwordlabel = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
         login = new javax.swing.JButton();
-        status = new javax.swing.JLabel();
         clearall = new javax.swing.JButton();
-        register = new javax.swing.JButton();
-        backtomainmenu = new javax.swing.JButton();
+        back1 = new javax.swing.JButton();
+        back2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,13 +135,6 @@ public class CustomerLogin extends javax.swing.JFrame {
             }
         });
 
-        status.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        status.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                statusFocusGained(evt);
-            }
-        });
-
         clearall.setBackground(new java.awt.Color(204, 204, 204));
         clearall.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         clearall.setText("Clear All");
@@ -154,21 +144,21 @@ public class CustomerLogin extends javax.swing.JFrame {
             }
         });
 
-        register.setBackground(new java.awt.Color(204, 204, 204));
-        register.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        register.setText("Click Here to Register");
-        register.addActionListener(new java.awt.event.ActionListener() {
+        back1.setBackground(new java.awt.Color(204, 204, 204));
+        back1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        back1.setText("Click Here to Register");
+        back1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerActionPerformed(evt);
+                back1ActionPerformed(evt);
             }
         });
 
-        backtomainmenu.setBackground(new java.awt.Color(204, 204, 204));
-        backtomainmenu.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        backtomainmenu.setText("Back to MainMenu");
-        backtomainmenu.addActionListener(new java.awt.event.ActionListener() {
+        back2.setBackground(new java.awt.Color(204, 204, 204));
+        back2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        back2.setText("Back to MainMenu");
+        back2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backtomainmenuActionPerformed(evt);
+                back2ActionPerformed(evt);
             }
         });
 
@@ -185,16 +175,14 @@ public class CustomerLogin extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(backtomainmenu)
-                            .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(back2)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(login)
                                 .addGap(18, 18, 18)
                                 .addComponent(clearall))
-                            .addComponent(register))
+                            .addComponent(back1))
                         .addGap(30, 30, 30))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -205,15 +193,13 @@ public class CustomerLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(clearall)
-                        .addComponent(login)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clearall)
+                    .addComponent(login))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backtomainmenu)
-                    .addComponent(register))
+                    .addComponent(back2)
+                    .addComponent(back1))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -268,25 +254,9 @@ public class CustomerLogin extends javax.swing.JFrame {
     cus.CreateFolder();
     cus.CreateFile();
     cus.CountLines();
-//    cus.CheckData(username.getText(), password.getText());
     cus.logic(username.getText(), password.getText());
-    
 
-//        String Uid; String Upassword;
-//        Uid = username.getText();
-//        Upassword = password.getText();
-//        if ((Uid.equals("APU"))&&(Upassword.equals("123")))
-//        {
-//            BlankJFrame BlankJFrame = new BlankJFrame();
-//            BlankJFrame.setVisible(true);
-//            this.setVisible(false);
-//        }
-//        else {
-//            username.setText("");
-//            password.setText("");
-//            status.setVisible(true);
-//            status.setText("Invalid Credetials");
-//        }
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void clearallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearallActionPerformed
@@ -295,19 +265,18 @@ public class CustomerLogin extends javax.swing.JFrame {
         password.setText("");
     }//GEN-LAST:event_clearallActionPerformed
 
-    private void statusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_statusFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusFocusGained
-
-    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+    private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
         CustomerRegister cr = new CustomerRegister();
         cr.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_registerActionPerformed
+    }//GEN-LAST:event_back1ActionPerformed
 
-    private void backtomainmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtomainmenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backtomainmenuActionPerformed
+    private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
+        WelcomePage wp = new WelcomePage();
+        wp.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_back2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,6 +305,36 @@ public class CustomerLogin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -346,7 +345,8 @@ public class CustomerLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backtomainmenu;
+    private javax.swing.JButton back1;
+    private javax.swing.JButton back2;
     private javax.swing.JButton clearall;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -357,8 +357,6 @@ public class CustomerLogin extends javax.swing.JFrame {
     private javax.swing.JButton login;
     private javax.swing.JTextField password;
     private javax.swing.JLabel passwordlabel;
-    private javax.swing.JButton register;
-    private javax.swing.JLabel status;
     private javax.swing.JTextField username;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables

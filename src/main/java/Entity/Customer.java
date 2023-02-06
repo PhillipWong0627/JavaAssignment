@@ -4,7 +4,7 @@
  */
 package Entity;
 
-import Customer.CustomerLoginTesting;
+import Customer.CustomerLogin;
 import Customer.CustomerRegister;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,7 +55,7 @@ public class Customer{
                 FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
                 System.out.println("File created successfully");
             } catch (IOException ex1) {
-                Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
     }
@@ -80,9 +80,9 @@ public class Customer{
             
         
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -101,9 +101,9 @@ public class Customer{
                 JOptionPane.showMessageDialog(null, "Wrong username or password");
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -112,15 +112,16 @@ public class Customer{
         try {
             RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
             for(int i=0; i<ln;i+=9){
+                System.out.println("count "+i);
                 String forusername = raf.readLine().substring(9);
                 String forpassword = raf.readLine().substring(9);
                 System.out.println(forusername);
                 if(username.equals(forusername)& password.equals(forpassword)){
                 JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
                 break;
-            }else if(i==ln-8){
-                JOptionPane.showMessageDialog(null, "Wrong username or password");
-                break;
+                    }else if(i==(ln-8)){
+                    System.out.println("Wrong passcode");
+                    break;
             }
                 for(int k=1;k<=7;k++){
                     raf.readLine();
@@ -141,9 +142,9 @@ public class Customer{
             }
             System.out.println("Number of Lines:"+ln);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
