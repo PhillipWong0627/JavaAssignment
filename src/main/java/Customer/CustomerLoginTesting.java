@@ -415,7 +415,7 @@ public class CustomerLoginTesting extends javax.swing.JFrame {
 //        CreateFile();
 //        CountLines();
 //        AddData(username.getText(),password.getText());
-        logic(username.getText(),password.getText());
+//        logic(username.getText(),password.getText());
             
     }//GEN-LAST:event_jButton1ActionPerformed
 

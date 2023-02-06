@@ -4,12 +4,8 @@
  */
 package Entity;
 
-import Customer.CustomerLogin;
-import Customer.CustomerLoginTesting;
 import Customer.CustomerLoginTesting;
 import Customer.CustomerRegister;
-import Customer.CustomerRegister;
-import Entity.Cart;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -114,14 +110,20 @@ public class Customer{
     //check multiple set
     public void logic(String username, String password){
         try {
-            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "wr");
-            for(int i=0; i<ln;i++){
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+            for(int i=0; i<ln;i+=9){
                 String forusername = raf.readLine().substring(9);
                 String forpassword = raf.readLine().substring(9);
-                if(username.equals(forusername)&password.equals(forpassword)){
-                    System.out.println("Password Correct");
-                }else{
-                    System.out.println("Passwsord/Username incorrect");
+                System.out.println(forusername);
+                if(username.equals(forusername)& password.equals(forpassword)){
+                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
+                break;
+            }else if(i==ln-8){
+                JOptionPane.showMessageDialog(null, "Wrong username or password");
+                break;
+            }
+                for(int k=1;k<=7;k++){
+                    raf.readLine();
                 }
             }
         } catch (FileNotFoundException ex) {
