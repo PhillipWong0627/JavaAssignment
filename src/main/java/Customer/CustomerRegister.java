@@ -5,6 +5,8 @@
 package Customer;
 
 import Customer.*;
+import Entity.Customer;
+import Main.WelcomePage;;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,10 +22,6 @@ import javax.swing.JOptionPane;
  * @author Kenny
  */
 public class CustomerRegister extends javax.swing.JFrame {
-    File filename = new File ("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerinfo");
-    int ln,PhoneNumber,CreditCardNumber;
-    String Username,Password, Email,DateOfBirth,Address,NameOfCreditCard;
-   
 
     /**
      * Creates new form RegisterPage
@@ -31,8 +29,107 @@ public class CustomerRegister extends javax.swing.JFrame {
     public CustomerRegister() {
         initComponents();
     }
-    
 
+//    public void CreateFolder(){
+//        if (!filename.exists()){
+//            filename.mkdirs();
+//        }
+//    }
+//    
+//    public void CreateFile(){
+//        try {
+//            FileReader fr = new FileReader(filename+"\\customerlogin.txt");
+//            System.out.println("file exists");
+//        } catch (FileNotFoundException ex) {
+//            try {
+//                FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
+//                System.out.println("File created successfully");
+//            } catch (IOException ex1) {
+//                Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex1);
+//            }
+//        }
+//    }
+//    public void AddData(String username, String password, String email,String dateofbirth, String phonenumber, String address, String creditcardnumber, String nameofcreditcard){
+//        try {
+//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+//            for(int i=0;i<ln;i++){
+//                raf.readLine();
+//            }
+//            raf.writeBytes("\r\n");
+//            raf.writeBytes("\r\n");
+//            raf.writeBytes("Username:"+username+"\r\n");
+//            raf.writeBytes("Password:"+password+"\r\n");
+//            raf.writeBytes("Email:"+email+"\r\n");
+//            raf.writeBytes("Date Of Birth:"+dateofbirth+"\r\n");
+//            raf.writeBytes("Phone Number:"+phonenumber+"\r\n");
+//            raf.writeBytes("Address:"+address+"\r\n");
+//            raf.writeBytes("Credit Card Number:"+creditcardnumber+"\r\n");
+//            raf.writeBytes("Name Of Credit Card:"+nameofcreditcard+"\r\n");
+//            
+////            CustomerLogin cslogin = new CustomerLogin();
+////            cslogin.setVisible(true);
+////            this.setVisible(false);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
+//    
+//    //check single set only
+//    public void CheckData(String username, String password){
+//        try {
+//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+//            String line = raf.readLine();
+//            Username = line.substring(9);
+//            Password = raf.readLine().substring(9);
+//            
+//            if(username.equals(Username)& password.equals(Password)){
+//                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
+//            }else{
+//                JOptionPane.showMessageDialog(null, "Wrong username or password");
+//            }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    
+//    //check multiple set
+//    public void logic(String username, String password){
+//        try {
+//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "wr");
+//            for(int i=0; i<ln;i++){
+//                String forusername = raf.readLine().substring(9);
+//                String forpassword = raf.readLine().substring(9);
+//                if(username.equals(forusername)&password.equals(forpassword)){
+//                    System.out.println("Password Correct");
+//                }else{
+//                    System.out.println("Passwsord/Username incorrect");
+//                }
+//            }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    public void CountLines(){
+//        try {
+//            ln=1;
+//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+//            for(int i=0;raf.readLine()!=null;i++){
+//                ln++;
+//            }
+//            System.out.println("Number of Lines:"+ln);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +170,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         register = new javax.swing.JButton();
         backtomainmenu = new javax.swing.JButton();
         clear = new javax.swing.JButton();
+        login = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,6 +287,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         usernamelabel36.setText("Date of Birth:");
 
         dateofbirth.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        dateofbirth.setText("DD/MM/YYYY");
         dateofbirth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateofbirthActionPerformed(evt);
@@ -398,6 +497,14 @@ public class CustomerRegister extends javax.swing.JFrame {
             }
         });
 
+        login.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        login.setText("Already a user? Press here proceed login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -408,19 +515,21 @@ public class CustomerRegister extends javax.swing.JFrame {
                 .addGap(183, 183, 183))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(114, 114, 114)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(275, 275, 275)
-                            .addComponent(register)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(backtomainmenu)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(register)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(clear)))
                 .addContainerGap(100, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(backtomainmenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(login)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,11 +539,13 @@ public class CustomerRegister extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(register)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register)
+                    .addComponent(clear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clear)
-                    .addComponent(backtomainmenu))
+                    .addComponent(backtomainmenu)
+                    .addComponent(login))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -486,13 +597,23 @@ public class CustomerRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameofcreditcardActionPerformed
 
+    
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-//CreateFolder();
-//AddData(username.getText(),password.getText(),email.getText(),dateofbirth.getText(),phonenumber.getText(),address.getText(),creditcardnumber.getText(),nameofcreditcard.getText());  
+        Customer cus = new Customer();
+        cus.CreateFolder();
+        cus.CreateFile();
+        cus.CountLines();
+        cus.AddData(username.getText(), password.getText(), email.getText(), dateofbirth.getText(), phonenumber.getText(), address.getText(), creditcardnumber.getText(), nameofcreditcard.getText());
+        CustomerLogin cslogin = new CustomerLogin();
+        cslogin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_registerActionPerformed
 
     private void backtomainmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtomainmenuActionPerformed
-        // TODO add your handling code here:
+        WelcomePage wp = new WelcomePage();
+        wp.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_backtomainmenuActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -505,6 +626,12 @@ public class CustomerRegister extends javax.swing.JFrame {
         creditcardnumber.setText("");
         nameofcreditcard.setText("");
     }//GEN-LAST:event_clearActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        CustomerLogin cslogin = new CustomerLogin();
+        cslogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,6 +718,7 @@ public class CustomerRegister extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JButton login;
     private javax.swing.JTextField nameofcreditcard;
     private javax.swing.JTextField password;
     private javax.swing.JTextField phonenumber;

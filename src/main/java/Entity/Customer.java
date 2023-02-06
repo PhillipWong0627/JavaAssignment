@@ -43,6 +43,7 @@ public class Customer{
         this.creditCardNo = creditCardNo;
         this.carList = cartList;
     }
+    
     public void CreateFolder(){
         if (!filename.exists()){
             filename.mkdirs();
@@ -78,10 +79,10 @@ public class Customer{
             raf.writeBytes("Address:"+address+"\r\n");
             raf.writeBytes("Credit Card Number:"+creditcardnumber+"\r\n");
             raf.writeBytes("Name Of Credit Card:"+nameofcreditcard+"\r\n");
+            JOptionPane.showMessageDialog(null, "Successfully Register, "+ username +". Proceed to login page now >.<");
             
-//            CustomerLogin cslogin = new CustomerLogin();
-//            cslogin.setVisible(true);
-//            this.setVisible(false);
+            
+        
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -143,7 +144,6 @@ public class Customer{
             Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     
 }
 
