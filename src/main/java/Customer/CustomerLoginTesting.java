@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Main;
+package Customer;
 
 import Customer.*;
 import com.mycompany.oodj_foodordersystemassign.BlankJFrame;
@@ -19,14 +19,14 @@ import javax.swing.JOptionPane;
  *
  * @author Kenny
  */
-public class CustomerLoginTestingDup extends javax.swing.JFrame {
+public class CustomerLoginTesting extends javax.swing.JFrame {
     File filename = new File ("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerinfo");
     int ln;
     String Username,Password;
     /**
      * Creates new form CustomerLogin
      */
-    public CustomerLoginTestingDup() {
+    public CustomerLoginTesting() {
         initComponents();
     }
     
@@ -45,7 +45,7 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
                 FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
                 System.out.println("File created successfully");
             } catch (IOException ex1) {
-                Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
     }
@@ -60,9 +60,9 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
             raf.writeBytes("Username:"+username+"\r\n");
             raf.writeBytes("Password:"+password+"\r\n");
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -79,9 +79,9 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Wrong username or password");
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void logic(String username, String password){
@@ -115,9 +115,9 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
             }
             System.out.println("Number of Lines:"+ln);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerLoginTesting.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -437,14 +437,22 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerLoginTestingDup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerLoginTesting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -457,7 +465,7 @@ public class CustomerLoginTestingDup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerLoginTestingDup().setVisible(true);
+                new CustomerLoginTesting().setVisible(true);
             }
         });
     }
