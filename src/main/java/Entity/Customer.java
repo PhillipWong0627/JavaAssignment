@@ -4,7 +4,6 @@
  */
 package Entity;
 
-import Customer.CustomerLoginTesting;
 import Customer.CustomerRegister;
 import java.io.File;
 import java.io.FileNotFoundException;
