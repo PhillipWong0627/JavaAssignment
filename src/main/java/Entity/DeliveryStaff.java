@@ -10,17 +10,20 @@ import java.util.ArrayList;
  *
  * @author user
  */
-public class DeliveryStaff {
+public class DeliveryStaff extends User {
     private String DeliveryStaffName;
     private ArrayList<Order> DeliveryOrderList;
     
-    public void DeliveryStaff(String deliveryStaffName, ArrayList<Order> deliveryOrderList ){
-        
-        this.DeliveryStaffName = deliveryStaffName;
-        this.DeliveryOrderList = deliveryOrderList;
-        
-        
-        
+   
+
+    public DeliveryStaff(String DeliveryStaffName, ArrayList<Order> DeliveryOrderList, String userID, String password, String dateOfBirth, Integer phoneNumber) {
+        super(userID, password, dateOfBirth, phoneNumber);
+        this.DeliveryStaffName = DeliveryStaffName;
+        this.DeliveryOrderList = DeliveryOrderList;
     }
+    
+    
+    
+    
     
 }

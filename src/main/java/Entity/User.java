@@ -13,6 +13,16 @@ public class User {
     private String password;
     private String dateOfBirth;
     private Integer phoneNumber;
+
+    public User(String userID, String password, String dateOfBirth, Integer phoneNumber) {
+        this.userID = userID;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+    }
+    
+    
+    
     
     
 }
