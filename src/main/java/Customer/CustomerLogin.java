@@ -6,19 +6,27 @@ package Customer;
 
 import Entity.Customer;
 import Main.WelcomePage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form CustomerLogin
      */
     public CustomerLogin() {
         initComponents();
     }
-    
+     
 
     /**
      * This method is called from within the constructor to initialize the form.

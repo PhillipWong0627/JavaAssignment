@@ -6,7 +6,12 @@ package Customer;
 
 
 import Entity.Customer;
-import Main.WelcomePage;;
+import Main.WelcomePage;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -15,13 +20,15 @@ import Main.WelcomePage;;
  */
 public class CustomerRegister extends javax.swing.JFrame {
 
+    int ln;
+    private String filename;   
+    
     /**
      * Creates new form RegisterPage
      */
     public CustomerRegister() {
         initComponents();
-    }
-
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.

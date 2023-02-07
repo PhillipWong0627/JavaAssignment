@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class Customer{
+public class Customer1{
     private String customerName;
     private String customerAddress;
     private String Email;
@@ -62,11 +62,13 @@ public class Customer{
     public void AddData(String username, String password, String email,String dateofbirth, String phonenumber, String address, String creditcardnumber, String nameofcreditcard){
         try {
             RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-            
             for(int i=0;i<ln;i++){
-                raf.readLine(); 
-            }
+                raf.readLine();
+                String forusername = raf.readLine().substring(9);
+                if(username.equals(forusername)){
+                JOptionPane.showMessageDialog(null, "username exist");
                 
+                } else{
                 raf.writeBytes("\r\n");
                 raf.writeBytes("\r\n");
                 raf.writeBytes("Username:"+username+"\r\n");
@@ -78,12 +80,8 @@ public class Customer{
                 raf.writeBytes("Credit Card Number:"+creditcardnumber+"\r\n");
                 raf.writeBytes("Name Of Credit Card:"+nameofcreditcard+"\r\n");
                 JOptionPane.showMessageDialog(null, "Successfully Register, "+ username +". Proceed to login page now >.<");  
-                
-                
-            
-            
-            
-        
+                }
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -121,16 +119,16 @@ public class Customer{
                 String forusername = raf.readLine().substring(9);
                 String forpassword = raf.readLine().substring(9);
                 System.out.println(forusername);
-                if(username.equals(forusername)& password.equals(forpassword)){
-                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
-                break;
-                    }else if(i==(ln-8)){
-                    JOptionPane.showMessageDialog(null, "Wrong username or password");
-                    break;  
-            }
-                for(int k=1;k<=7;k++){
-                    raf.readLine();
-                }
+//                if(username.equals(forusername)& password.equals(forpassword)){
+//                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
+//                break;
+//                    }else if(i==(ln-8)){
+//                    JOptionPane.showMessageDialog(null, "Wrong username or password");
+//                    break;  
+//            }
+//                for(int k=1;k<=7;k++){
+//                    raf.readLine();
+//                }
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,23 +151,23 @@ public class Customer{
         }
     }
     
-//    public void checkduplicate(String username){
-//        ln=1;
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-//            for(int i=0; i<ln;i+=9){
-//                System.out.println("count "+i);
-//                String forusername = raf.readLine().substring(9);
-//                if(username.equals(forusername)){
-//                    System.out.println("Username exist");
-//                }
-//            }
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }    
+    public void checkduplicate(String username){
+        ln=1;
+        try {
+            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
+            for(int i=0; i<ln;i+=9){
+                System.out.println("count "+i);
+                String forusername = raf.readLine().substring(9);
+                if(username.equals(forusername)){
+                    System.out.println("Username exist");
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Customer1.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Customer1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }    
 }
 
 
