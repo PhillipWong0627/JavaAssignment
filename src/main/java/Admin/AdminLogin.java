@@ -5,18 +5,16 @@
 package Admin;
 
 import Entity.Administrator;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author user
  */
 public class AdminLogin extends javax.swing.JFrame {
+    
+
 
     /**
      * Creates new form AdminLogin
@@ -24,6 +22,7 @@ public class AdminLogin extends javax.swing.JFrame {
     public AdminLogin() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -258,15 +257,16 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
+
+    
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // Login Validation
         Administrator administrator = new Administrator();
         
         administrator.login(adminName.getText(), password.getText());
         
-
         
-
+        
     }//GEN-LAST:event_loginActionPerformed
 
     private void clearallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearallActionPerformed

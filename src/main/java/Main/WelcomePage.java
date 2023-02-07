@@ -4,6 +4,8 @@
  */
 package Main;
 
+import Admin.AdminHomePage;
+import Admin.AdminLogin;
 import Customer.CustomerLogin;
 
 /**
@@ -180,9 +182,11 @@ public class WelcomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_customerActionPerformed
 
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
-        // TODO add your handling code here:
-        //Admin Login Process
+        //Admin Login Page
         
+        AdminLogin adminLogin = new AdminLogin();
+        adminLogin.show();
+        dispose();
         
     }//GEN-LAST:event_adminActionPerformed
 
