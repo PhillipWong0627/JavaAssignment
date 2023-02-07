@@ -1,0 +1,3 @@
+adminId:adminName:password:phoneNo:Email
+A001:Kenny:123:012-2504088:kenny020603@gmail.com
+A002:Phillip:123:0172871122:phillipwong0627@gmail.com
