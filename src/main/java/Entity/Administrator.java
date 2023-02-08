@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class Administrator {
     private String adminName;
     private String Email;
+    public static boolean checkLogin;
 
     
 
@@ -40,14 +41,11 @@ public class Administrator {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-
     
-    public void login(String adminName, String password){
-        
-        AdminLogin adminLogin = new AdminLogin();
 
-        
-              
+
+    public boolean login(String adminName, String password){
+      
         File adFile = new File("adminFile.txt");
         
         try {
@@ -70,38 +68,24 @@ public class Administrator {
                     CurrentUserSource.currenctUserName = adminName;
                     CurrentUserSource.currenctUserRole = "ADMIN";
                     
-                    flag = true;
-                    adminLogin.dispose();
-                    break;
-                }else{
-                    flag = false;
+                    AdminLogin adlogin = new AdminLogin();
+                    adlogin.dispose();
                     
-                    
+                    return true;
                 }
             }           
-            if(flag == true){
-                System.out.println("==== Welcome On Board Mr/Ms " + adminName + " ====" +
-                        "\nYou Have Sucessfully Login"
-                        + "\nYour AdminID is "+ CurrentUserSource.currenctUserId);
-                
-                AdminHomePage adminHomePage = new AdminHomePage();
-                
-                adminHomePage.show();
 
-
-   
-            }else{
-                System.out.println("Invalid adminname/password");
-            }
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+        
+        return false;
         
     }
     
-
     
+
     
     public void updateUser(){
         

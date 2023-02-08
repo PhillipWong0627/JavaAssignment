@@ -263,10 +263,21 @@ public class AdminLogin extends javax.swing.JFrame {
         // Login Validation
         Administrator administrator = new Administrator();
         
-        administrator.login(adminName.getText(), password.getText());
         
-        
-        
+        boolean valid = administrator.login(adminName.getText(), password.getText());
+         
+                if(valid){
+                System.out.println("==== Welcome On Board Mr/Ms " + adminName + " ====" +
+                        "\nYou Have Sucessfully Login"
+                        );
+                
+                
+                AdminHomePage adminHomePage = new AdminHomePage();
+                dispose();
+                adminHomePage.setVisible(true);
+            }else{
+                System.out.println("Invalid adminname/password");
+            }
     }//GEN-LAST:event_loginActionPerformed
 
     private void clearallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearallActionPerformed
