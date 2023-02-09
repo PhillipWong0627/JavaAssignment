@@ -18,18 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kenny
  */
-public class OrderPage extends javax.swing.JFrame {
+public class OrderPageTEsting extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form RegisterPage
      */
-    public OrderPage() {
+    public OrderPageTEsting() {
         initComponents();
-        jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-        jTable2.getColumnModel().getColumn(1).setPreferredWidth(200);
-        jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-        jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
     }
 
     /**
@@ -44,6 +39,7 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
@@ -64,10 +60,17 @@ public class OrderPage extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "FoodID", "Food Name", "Price", "Category"
+                "Food ID", "Food Name", "Price", "Category"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Click Here to see all food>.<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,12 +80,11 @@ public class OrderPage extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "FoodID", "Food Name", "Price", "Category"
+                "Food ID", "Food Name", "Price", "Category"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Click Here to Show all Food!");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +104,6 @@ public class OrderPage extends javax.swing.JFrame {
             }
         });
 
-        search.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,42 +118,47 @@ public class OrderPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(390, 390, 390)
+                                .addComponent(search))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
+                                .addGap(184, 184, 184)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(405, 405, 405)
-                                .addComponent(search))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(jButton2)))
-                .addContainerGap(1037, Short.MAX_VALUE))
+                                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(366, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(search)))
-                .addGap(18, 18, 18)
+                        .addComponent(search)
+                        .addGap(341, 341, 341))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
                 .addComponent(jButton2)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGap(97, 97, 97))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,6 +176,33 @@ public class OrderPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                FileReader tr = new FileReader(fooddata);
+                BufferedReader br = new BufferedReader(new FileReader(fooddata));
+                String firstLine = br.readLine().trim();
+                String[] columnName = firstLine.split(",");
+                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                model.setRowCount(0);
+                model.setColumnIdentifiers(columnName);
+
+                Object[] tableLines = br.lines().toArray();
+
+                for (int z = 0; z < tableLines.length; z++) {
+                    String line = tableLines[z].toString().trim();
+                    String[] dataRow = line.split(",");
+                    if (dataRow[0].charAt(0)=='W'){
+                        model.addRow(dataRow);
+                    }
+                    
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(OrderPageTEsting.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
@@ -192,7 +225,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageTEsting.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -203,7 +236,7 @@ public class OrderPage extends javax.swing.JFrame {
                 BufferedReader br = new BufferedReader(new FileReader(fooddata));
                 String firstLine = br.readLine().trim();
                 String[] columnName = firstLine.split(",");
-                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
                 model.setColumnIdentifiers(columnName);
 
@@ -212,24 +245,20 @@ public class OrderPage extends javax.swing.JFrame {
                 for (int z = 0; z < tableLines.length; z++) {
                     String line = tableLines[z].toString().trim();
                     String[] dataRow = line.split(",");
-                    if (dataRow[3].equals(category.getText())){
-                        jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-                        jTable2.getColumnModel().getColumn(1).setPreferredWidth(200);
-                        jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
+                    if (dataRow[0].charAt(0)=='W'){
                         model.addRow(dataRow);
                     }
                     
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageTEsting.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_categoryActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-                
-        try {
+        if ("Western".equals(category.getText())){
+            try {
                 File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
                 FileReader tr = new FileReader(fooddata);
                 BufferedReader br = new BufferedReader(new FileReader(fooddata));
@@ -238,26 +267,25 @@ public class OrderPage extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
                 model.setRowCount(0);
                 model.setColumnIdentifiers(columnName);
-                
 
                 Object[] tableLines = br.lines().toArray();
 
                 for (int z = 0; z < tableLines.length; z++) {
                     String line = tableLines[z].toString().trim();
                     String[] dataRow = line.split(",");
-                    if (dataRow[3].equals(category.getText())){
-                        jTable2.getColumnModel().getColumn(0).setPreferredWidth(5);
-                        jTable2.getColumnModel().getColumn(1).setPreferredWidth(200);
-                        jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        model.addRow(dataRow);
+                    if (dataRow[0].charAt(0)=='W'){                 //if first word if w
+                        model.addRow(dataRow);     
+                    }else if(dataRow[0].charAt(0)=='W'){
+                        
                     }
                     
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageTEsting.class.getName()).log(Level.SEVERE, null, ex);
             }
+        
+    }
     }//GEN-LAST:event_searchActionPerformed
 
     /**
@@ -277,14 +305,22 @@ public class OrderPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageTEsting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageTEsting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageTEsting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageTEsting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -297,13 +333,14 @@ public class OrderPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderPage().setVisible(true);
+                new OrderPageTEsting().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField category;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
