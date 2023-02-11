@@ -8,12 +8,14 @@ import Main.*;
 import Customer.*;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OrderPage extends javax.swing.JFrame {
 
+    int x =0;
     
     /**
      * Creates new form RegisterPage
@@ -61,13 +64,48 @@ public class OrderPage extends javax.swing.JFrame {
         }).start();
     }
     
-    public void PKFC(){
+    public void PKFC() throws IOException{
         receipttxt.setText("**********************Philip & Kenny Food Centre**********************\n"
         +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
-        +"**************************************************************************"
-        +"");
-    }
+        +"**************************************************************************"+"\n"
+        +"FoodID:\t"+"Item Name:\t\t"+"Price($)\n"
+        );
+        
 
+    }
+    
+    public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
+        if (addtxt.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "You are not adding anything ");
+            }else{
+                try {
+                    File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                    FileReader tr = new FileReader(fooddata);
+                    BufferedReader br = new BufferedReader(new FileReader(fooddata));
+                    String firstLine = br.readLine().trim();
+                    String[] columnName = firstLine.split(",");
+
+                    Object[] tableLines = br.lines().toArray();
+                    PKFC();
+
+                    for (int z = 0; z < tableLines.length; z++) {
+                        String line = tableLines[z].toString().trim();
+                        String[] dataRow = line.split(",");
+                        if (dataRow[0].equals(addtxt.getText())){
+                            receipttxt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
+                        }
+
+                    }
+            } catch (IOException ex) {
+                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+    }
+            
+        }
+
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,7 +133,7 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        showallfood = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -109,7 +147,7 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        category1 = new javax.swing.JTextField();
+        addtxt = new javax.swing.JTextField();
         add = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -188,15 +226,17 @@ public class OrderPage extends javax.swing.JFrame {
                             .addComponent(timetxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(214, 214, 214))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(clear))
-                                .addGap(97, 97, 97)
+                                        .addComponent(clear)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(63, 63, 63)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(subtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +244,7 @@ public class OrderPage extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(pay)
                                         .addGap(12, 12, 12))))
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -218,8 +258,8 @@ public class OrderPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(datetxt)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tax)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,11 +291,11 @@ public class OrderPage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("Click Here to Show all Food!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        showallfood.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        showallfood.setText("Click Here to Show all Food!");
+        showallfood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                showallfoodActionPerformed(evt);
             }
         });
 
@@ -278,7 +318,7 @@ public class OrderPage extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(showallfood)
                 .addGap(105, 105, 105))
         );
         jPanel3Layout.setVerticalGroup(
@@ -289,7 +329,7 @@ public class OrderPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(showallfood)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -387,10 +427,10 @@ public class OrderPage extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Please enter the food code you need:");
 
-        category1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        category1.addActionListener(new java.awt.event.ActionListener() {
+        addtxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        addtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                category1ActionPerformed(evt);
+                addtxtActionPerformed(evt);
             }
         });
 
@@ -421,7 +461,7 @@ public class OrderPage extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(category1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -445,7 +485,7 @@ public class OrderPage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(category1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(add)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -468,8 +508,8 @@ public class OrderPage extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +541,7 @@ public class OrderPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void showallfoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showallfoodActionPerformed
         try {
                 File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
                 FileReader tr = new FileReader(fooddata);
@@ -523,12 +563,13 @@ public class OrderPage extends javax.swing.JFrame {
                     jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
                     model.addRow(dataRow);
                     
+                    
                 }
 
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_showallfoodActionPerformed
 
     private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         try {
@@ -608,12 +649,17 @@ public class OrderPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_clearActionPerformed
 
-    private void category1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_category1ActionPerformed
+    private void addtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_category1ActionPerformed
+    }//GEN-LAST:event_addtxtActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        PKFC();
+        try {
+            ReadFileAndPrompt();
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_addActionPerformed
 
     /**
@@ -660,11 +706,10 @@ public class OrderPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
+    private javax.swing.JTextField addtxt;
     private javax.swing.JTextField category;
-    private javax.swing.JTextField category1;
     private javax.swing.JButton clear;
     private javax.swing.JLabel datetxt;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -692,6 +737,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTextArea receipttxt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
+    private javax.swing.JButton showallfood;
     private javax.swing.JTextField subtotal;
     private javax.swing.JTextField tax;
     private javax.swing.JLabel timetxt;
