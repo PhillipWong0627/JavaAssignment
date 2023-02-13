@@ -107,8 +107,8 @@ public class OrderPage extends javax.swing.JFrame {
                             ArrayList<String> order = new ArrayList<String>();
                             order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
                             String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
-                            raf.writeBytes("\r\n"+n+";"+stg);
-                            System.out.print(stg);
+//                            raf.writeBytes("\r\n"+n+";"+stg);
+//                            System.out.print(stg);
                             }
                         }                
             } catch (IOException ex) {
