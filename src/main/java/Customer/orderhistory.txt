@@ -1,0 +1,3 @@
+1;D004,Teh Iced,3.50;
+
+3;W001,Chicken Chop,13.50;

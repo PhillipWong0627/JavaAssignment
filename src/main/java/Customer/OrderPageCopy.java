@@ -7,15 +7,12 @@ package Customer;
 import Main.*;
 import Customer.*;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,14 +23,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kenny
  */
-public class OrderPage extends javax.swing.JFrame {
+public class OrderPageCopy extends javax.swing.JFrame {
 
     int x =0;
-    int n= 0;
+    
     /**
      * Creates new form RegisterPage
      */
-    public OrderPage() {
+    public OrderPageCopy() {
         initComponents();
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -55,7 +52,7 @@ public class OrderPage extends javax.swing.JFrame {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Date date = new Date();
                     SimpleDateFormat tf =new SimpleDateFormat("h:mm:ss aa");
@@ -69,7 +66,7 @@ public class OrderPage extends javax.swing.JFrame {
     }
     
     public void PKFC() throws IOException{
-        receipt.setText("**********************Philip & Kenny Food Centre**********************\n"
+        receipttxt.setText("**********************Philip & Kenny Food Centre**********************\n"
         +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
         +"**************************************************************************"+"\n"
         +"FoodID:\t"+"Item Name:\t\t"+"Price($)\n"
@@ -80,7 +77,6 @@ public class OrderPage extends javax.swing.JFrame {
     
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
         x++;
-        n++;
         if (addtxt.getText().equals("")){
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
             }else{
@@ -90,29 +86,23 @@ public class OrderPage extends javax.swing.JFrame {
                     BufferedReader br = new BufferedReader(new FileReader(fooddata));
                     String firstLine = br.readLine().trim();
                     String[] columnName = firstLine.split(",");
-                    
 
                     Object[] tableLines = br.lines().toArray();
                     if (x==1){
                     PKFC();
                 }
-                        for (int z = 0; z < tableLines.length; z++) {
+                    
+
+                    for (int z = 0; z < tableLines.length; z++) {
                         String line = tableLines[z].toString().trim();
-                        String[] dataRow = line.split(","); 
+                        String[] dataRow = line.split(",");
                         if (dataRow[0].equals(addtxt.getText())){
-                            receipt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
-                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
-//                            RandomAccessFile random = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
-                            raf.readLine(); 
-                            ArrayList<String> order = new ArrayList<String>();
-                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
-                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
-//                            raf.writeBytes("\r\n"+n+";"+stg);
-//                            System.out.print(stg);
-                            }
-                        }                
+                            receipttxt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
+                        }
+
+                    }
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
         
     }
@@ -141,7 +131,7 @@ public class OrderPage extends javax.swing.JFrame {
         clear = new javax.swing.JButton();
         pay = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        receipt = new javax.swing.JTextArea();
+        receipttxt = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         datetxt = new javax.swing.JLabel();
         timetxt = new javax.swing.JLabel();
@@ -215,9 +205,9 @@ public class OrderPage extends javax.swing.JFrame {
             }
         });
 
-        receipt.setColumns(20);
-        receipt.setRows(5);
-        jScrollPane4.setViewportView(receipt);
+        receipttxt.setColumns(20);
+        receipttxt.setRows(5);
+        jScrollPane4.setViewportView(receipttxt);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel10.setText("Order List");
@@ -523,7 +513,7 @@ public class OrderPage extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -531,7 +521,7 @@ public class OrderPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -582,7 +572,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_showallfoodActionPerformed
 
@@ -614,7 +604,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_categoryActionPerformed
 
@@ -648,19 +638,28 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_searchActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-
+        // TODO add your handling code here:
+        try {
+            FileWriter myWriter = new FileWriter("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt");
+            myWriter.write("Files in Java might be tricky, but it is fun enough!");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         tax.setText("0.0");
         subtotal.setText("0.0");
         total.setText("0.0");
-        receipt.setText("");
+        receipttxt.setText("");
         
     }//GEN-LAST:event_clearActionPerformed
 
@@ -672,7 +671,7 @@ public class OrderPage extends javax.swing.JFrame {
         try {
             ReadFileAndPrompt();
         } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_addActionPerformed
@@ -694,14 +693,22 @@ public class OrderPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -714,7 +721,7 @@ public class OrderPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderPage().setVisible(true);
+                new OrderPageCopy().setVisible(true);
             }
         });
     }
@@ -749,7 +756,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton pay;
-    private javax.swing.JTextArea receipt;
+    private javax.swing.JTextArea receipttxt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
     private javax.swing.JButton showallfood;
