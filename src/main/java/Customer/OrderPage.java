@@ -95,8 +95,10 @@ public class OrderPage extends javax.swing.JFrame {
                     for (int z = 0; z < tableLines.length; z++) {
                         String line = tableLines[z].toString().trim();
                         String[] dataRow = line.split(",");
+//                        String[] something = new String[];
                         if (dataRow[0].equals(addtxt.getText())){
                             receipttxt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
+                            
                         }
 
                     }
