@@ -4,27 +4,32 @@
  */
 package Entity;
 
-import Admin.AdminHomePage;
 import Admin.AdminLogin;
+import core.AdminSource;
 import core.CurrentUserSource;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
 public class Administrator {
+    private String adminId;
     private String adminName;
     private String Email;
-    public static boolean checkLogin;
 
-    
-
+    public String getAdminId() {
+        return adminId;
+    }
 
     public String getAdminName() {
         return adminName;
@@ -33,17 +38,10 @@ public class Administrator {
     public String getEmail() {
         return Email;
     }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
-    }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
+    
     
 
-
+   
     public boolean login(String adminName, String password){
       
         File adFile = new File("adminFile.txt");
@@ -84,6 +82,27 @@ public class Administrator {
         
     }
     
+    public void addAdmin(String adminName, String password, String email, String phNo) throws IOException{
+        //Take name, password, email, phone
+        
+        String adId = AdminSource.getAdminNextId();
+        
+        File file = new File("adminFile.txt");
+        FileWriter FW;
+       
+        FW = new FileWriter(file,true);
+        BufferedWriter BW = new BufferedWriter(FW);
+
+        String record = adId+":"+ password+ ":" + email + ":"+ phNo+ "\n";
+
+        BW.write(record);
+        BW.close();
+        FW.close();
+        
+        System.out.println("Success");
+
+        
+    }
     
 
     

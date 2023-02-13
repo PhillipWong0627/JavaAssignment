@@ -5,6 +5,13 @@
 package Admin;
 
 import Entity.Administrator;
+import Main.WelcomePage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -287,12 +294,23 @@ public class AdminLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_clearallActionPerformed
 
     private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-        
+       //Link to AdminRegister
+       
+       AdminRegister adminRegister = new AdminRegister();
+       dispose();
+       adminRegister.setVisible(true);
+
+       
     }//GEN-LAST:event_back1ActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         
+//        Back to Welcome Page
 
+        WelcomePage welcomePage = new WelcomePage();
+        this.dispose();
+        welcomePage.setVisible(true);
+          
     }//GEN-LAST:event_back2ActionPerformed
 
     /**
