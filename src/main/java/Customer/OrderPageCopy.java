@@ -22,14 +22,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kenny
  */
-public class OrderPage extends javax.swing.JFrame {
+public class OrderPageCopy extends javax.swing.JFrame {
 
     int x =0;
     
     /**
      * Creates new form RegisterPage
      */
-    public OrderPage() {
+    public OrderPageCopy() {
         initComponents();
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
@@ -51,7 +51,7 @@ public class OrderPage extends javax.swing.JFrame {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Date date = new Date();
                     SimpleDateFormat tf =new SimpleDateFormat("h:mm:ss aa");
@@ -101,7 +101,7 @@ public class OrderPage extends javax.swing.JFrame {
 
                     }
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
         
     }
@@ -512,7 +512,7 @@ public class OrderPage extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -520,7 +520,7 @@ public class OrderPage extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -571,7 +571,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_showallfoodActionPerformed
 
@@ -603,7 +603,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_categoryActionPerformed
 
@@ -637,7 +637,7 @@ public class OrderPage extends javax.swing.JFrame {
                 }
 
             } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_searchActionPerformed
 
@@ -661,7 +661,7 @@ public class OrderPage extends javax.swing.JFrame {
         try {
             ReadFileAndPrompt();
         } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderPageCopy.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_addActionPerformed
@@ -683,14 +683,22 @@ public class OrderPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderPageCopy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -703,7 +711,7 @@ public class OrderPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OrderPage().setVisible(true);
+                new OrderPageCopy().setVisible(true);
             }
         });
     }
