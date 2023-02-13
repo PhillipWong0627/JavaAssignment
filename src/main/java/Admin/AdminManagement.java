@@ -4,6 +4,18 @@
  */
 package Admin;
 
+import Customer.OrderPage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -13,6 +25,8 @@ public class AdminManagement extends javax.swing.JFrame {
     /**
      * Creates new form AdminManagement
      */
+    
+//    Object[] AdminData = new Object[];
     public AdminManagement() {
         initComponents();
     }
@@ -26,64 +40,315 @@ public class AdminManagement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        adminTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        btnFetch = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        btnFetch1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("DELETE ADMIN");
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("ADD ADMIN");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setText("MODIFY ADMIN");
+        adminTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton4.setText("SEARCH ADMIN");
+            },
+            new String [] {
+                "ADMIN ID", "ADMIN NAME", "PASSWORD", "PHONE NUMBER", "EMAIL"
+            }
+        ));
+        jScrollPane1.setViewportView(adminTable);
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("CLEAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnFetch.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnFetch.setText("FETCH EXISITING DATA");
+        btnFetch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFetchActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(153, 255, 153));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("ADMIN MANAGEMENT");
+
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setText("BACK");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton5.setText("DELETE");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        btnFetch1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnFetch1.setText("Update/Save Data to Text File");
+        btnFetch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFetch1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(120, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(121, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(117, 117, 117)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnFetch1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(216, 216, 216)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(61, 61, 61)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(376, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFetch1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+       AdminRegister adminRegister = new AdminRegister();
+       dispose();
+       adminRegister.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Clear ALL THE DATA IN TABLE        
+        
+        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+
+        tModel.setRowCount(0);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
+        // Click this button to Fetch All the existiing Data
+        
+        File adfile = new File("adminFile.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(adfile));
+            
+            String strHeader = br.readLine().trim();
+//            System.out.println(colHeader);
+
+            String[] columnHeader = strHeader.split(":");
+            DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+            // set the column header
+            tModel.setColumnIdentifiers(columnHeader);
+            
+            Object[] tableRow = br.lines().toArray();
+            
+            for(int i = 0; i<tableRow.length;i++){
+//                System.out.println(tableRow[i]);
+                String lines = tableRow[i].toString().trim();
+                //System.out.println(x);
+                String [] dataRows = lines.split(":");
+                
+                tModel.addRow(dataRows);
+            }
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AdminManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AdminManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        
+//        try {
+//                File adminFile = new File("adminFile.txt");
+//                FileReader fr = new FileReader(adminFile);
+//                BufferedReader br = new BufferedReader(new FileReader(fooddata));
+//                String firstLine = br.readLine().trim();
+//                String[] columnName = firstLine.split(",");
+//                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//                model.setRowCount(0);
+//                model.setColumnIdentifiers(columnName);
+//
+//                Object[] tableLines = br.lines().toArray();
+//
+//                for (int z = 0; z < tableLines.length; z++) {
+//                    String line = tableLines[z].toString().trim();
+//                    String[] dataRow = line.split(",");
+//                    jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+//                    jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+//                    jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+//                    jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+//                    model.addRow(dataRow);
+//                    
+//                    
+//                }
+//
+//            } catch (IOException ex) {
+//                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+
+        
+    }//GEN-LAST:event_btnFetchActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        AdminHomePage adminHomePage = new AdminHomePage();
+        
+        this.dispose();
+        adminHomePage.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+        
+        int SelRow = adminTable.getSelectedRow();
+        System.out.println(SelRow);
+        tModel.removeRow(SelRow);
+        
+        File itemFile = new File("adminFile.txt");
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(itemFile));
+            
+            DefaultTableModel jTable = (DefaultTableModel) adminTable.getModel();
+//            System.out.println(jTable.getColumnName(1));
+            String recHeader= "";
+            
+            for (int i = 0; i < jTable.getColumnCount();i++){
+                recHeader = recHeader+jTable.getColumnName(i)+":";
+                
+            }
+//            System.out.println(recHeader);
+            bw.write(recHeader+"\n");
+            
+            for (int i = 0; i< jTable.getRowCount();i++){
+                for(int j = 0; j < jTable.getColumnCount();j++){
+                    bw.write(adminTable.getValueAt(i,j) + ":");
+                }
+                bw.write("\n");
+            }
+            System.out.println("Inventory Update Sucessfully!!");
+            bw.close();
+            
+            tModel.setRowCount(0);
+            
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(AdminManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnFetch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetch1ActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+
+        
+        File adminFile = new File("adminFile.txt");
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(adminFile));
+            
+            DefaultTableModel jTable = (DefaultTableModel) adminTable.getModel();
+//            System.out.println(jTable.getColumnName(1));
+            String recHeader= "";
+            
+            for (int i = 0; i < jTable.getColumnCount();i++){
+                recHeader = recHeader+jTable.getColumnName(i)+":";
+                
+            }
+//            System.out.println(recHeader);
+            bw.write(recHeader+"\n");
+            
+            for (int i = 0; i< jTable.getRowCount();i++){
+                for(int j = 0; j < jTable.getColumnCount();j++){
+                    bw.write(adminTable.getValueAt(i,j) + ":");
+                }
+                bw.write("\n");
+            }
+            System.out.println("Inventory Update Sucessfully!!");
+            bw.close();
+            
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(AdminManagement.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        
+        
+    }//GEN-LAST:event_btnFetch1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,9 +386,14 @@ public class AdminManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTable adminTable;
+    private javax.swing.JButton btnFetch;
+    private javax.swing.JButton btnFetch1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

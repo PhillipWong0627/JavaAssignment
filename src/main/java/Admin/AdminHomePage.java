@@ -137,6 +137,13 @@ public class AdminHomePage extends javax.swing.JFrame {
 
     private void adminBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtn1ActionPerformed
         // TODO add your handling code here:
+        
+        AdminManagement adminManagement = new AdminManagement();
+        
+        dispose();
+        adminManagement.setVisible(true);
+        
+        
     }//GEN-LAST:event_adminBtn1ActionPerformed
 
     private void adminBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtn2ActionPerformed

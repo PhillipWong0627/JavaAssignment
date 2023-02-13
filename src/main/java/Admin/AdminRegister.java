@@ -326,6 +326,7 @@ public class AdminRegister extends javax.swing.JFrame {
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
 //        Called AddAdmin Method From Admin Entity
           Administrator administrator = new Administrator();
+          AdminLogin adLogin = new AdminLogin();
           
 //           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
         try {
@@ -333,6 +334,10 @@ public class AdminRegister extends javax.swing.JFrame {
                 System.out.println("Pls Enter Require Blank!!!");
             }else if((adminName.getText() != null) && (password.getText() !=null )){
                 administrator.addAdmin(adminName.getText(), password.getText(), email.getText(),phonenumber.getText());
+                
+                dispose();
+                adLogin.setVisible(true);
+                
                 //System.out.println(adminName.getText() != null && password.getText() !=null);
                 //System.out.println(password.getText());
 

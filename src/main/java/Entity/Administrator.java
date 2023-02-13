@@ -93,13 +93,13 @@ public class Administrator {
         FW = new FileWriter(file,true);
         BufferedWriter BW = new BufferedWriter(FW);
 
-        String record = adId+":"+ password+ ":" + email + ":"+ phNo+ "\n";
+        String record = adId + ":"+ adminName+":"+ password+ ":" + email + ":"+ phNo+ "\n";
 
         BW.write(record);
         BW.close();
         FW.close();
         
-        System.out.println("Success");
+        System.out.println("Admin Have Been Successfully Added");
 
         
     }
