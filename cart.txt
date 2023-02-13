@@ -1,0 +1,5 @@
+W003,Steak,17.00;
+D004,Teh Iced,3.50;
+W003,Steak,17.00;
+D003,Water,0.80;
+D004,Teh Iced,3.50;

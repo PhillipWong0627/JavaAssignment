@@ -7,11 +7,15 @@ package Customer;
 import Main.*;
 import Customer.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 public class OrderPage extends javax.swing.JFrame {
 
     int x =0;
-    
+    int n= 0;
     /**
      * Creates new form RegisterPage
      */
@@ -65,7 +69,7 @@ public class OrderPage extends javax.swing.JFrame {
     }
     
     public void PKFC() throws IOException{
-        receipttxt.setText("**********************Philip & Kenny Food Centre**********************\n"
+        receipt.setText("**********************Philip & Kenny Food Centre**********************\n"
         +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
         +"**************************************************************************"+"\n"
         +"FoodID:\t"+"Item Name:\t\t"+"Price($)\n"
@@ -76,6 +80,7 @@ public class OrderPage extends javax.swing.JFrame {
     
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
         x++;
+        n++;
         if (addtxt.getText().equals("")){
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
             }else{
@@ -85,23 +90,27 @@ public class OrderPage extends javax.swing.JFrame {
                     BufferedReader br = new BufferedReader(new FileReader(fooddata));
                     String firstLine = br.readLine().trim();
                     String[] columnName = firstLine.split(",");
+                    
 
                     Object[] tableLines = br.lines().toArray();
                     if (x==1){
                     PKFC();
                 }
-                    
-
-                    for (int z = 0; z < tableLines.length; z++) {
+                        for (int z = 0; z < tableLines.length; z++) {
                         String line = tableLines[z].toString().trim();
-                        String[] dataRow = line.split(",");
-//                        String[] something = new String[];
+                        String[] dataRow = line.split(","); 
                         if (dataRow[0].equals(addtxt.getText())){
-                            receipttxt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
-                            
-                        }
-
-                    }
+                            receipt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
+                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+//                            RandomAccessFile random = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+                            raf.readLine(); 
+                            ArrayList<String> order = new ArrayList<String>();
+                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
+                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
+                            raf.writeBytes("\r\n"+n+";"+stg);
+                            System.out.print(stg);
+                            }
+                        }                
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -132,7 +141,7 @@ public class OrderPage extends javax.swing.JFrame {
         clear = new javax.swing.JButton();
         pay = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        receipttxt = new javax.swing.JTextArea();
+        receipt = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         datetxt = new javax.swing.JLabel();
         timetxt = new javax.swing.JLabel();
@@ -206,9 +215,9 @@ public class OrderPage extends javax.swing.JFrame {
             }
         });
 
-        receipttxt.setColumns(20);
-        receipttxt.setRows(5);
-        jScrollPane4.setViewportView(receipttxt);
+        receipt.setColumns(20);
+        receipt.setRows(5);
+        jScrollPane4.setViewportView(receipt);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel10.setText("Order List");
@@ -644,14 +653,14 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         tax.setText("0.0");
         subtotal.setText("0.0");
         total.setText("0.0");
-        receipttxt.setText("");
+        receipt.setText("");
         
     }//GEN-LAST:event_clearActionPerformed
 
@@ -740,7 +749,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton pay;
-    private javax.swing.JTextArea receipttxt;
+    private javax.swing.JTextArea receipt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
     private javax.swing.JButton showallfood;
