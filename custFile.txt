@@ -1,3 +1,0 @@
-CustId:CustName:password:phoneNo:Email
-C001:Kenny:123:012-2504088:kenny020603@gmail.com
-C002:Phillip:123:0172871122:phillipwong0627@gmail.com
