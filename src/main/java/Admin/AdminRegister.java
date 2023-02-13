@@ -327,13 +327,17 @@ public class AdminRegister extends javax.swing.JFrame {
 //        Called AddAdmin Method From Admin Entity
           Administrator administrator = new Administrator();
           
-    
+//           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
         try {
-            if(adminName.getText().isEmpty()){
+            if(adminName.getText().isEmpty() && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()){
                 System.out.println("Pls Enter Require Blank!!!");
-            }else if(adminName.getText() != null){
+            }else if((adminName.getText() != null) && (password.getText() !=null )){
                 administrator.addAdmin(adminName.getText(), password.getText(), email.getText(),phonenumber.getText());
+                //System.out.println(adminName.getText() != null && password.getText() !=null);
+                //System.out.println(password.getText());
 
+            }else{
+                System.out.println("Blank Erorr");
             }
             
         } catch (IOException ex) {

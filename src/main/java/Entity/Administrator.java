@@ -14,9 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,6 +101,38 @@ public class Administrator {
         
         System.out.println("Success");
 
+        
+    }
+    
+    public void ModifyAdmin() throws FileNotFoundException{    
+        
+        Scanner sc = new Scanner(System.in);
+        File adminFile = new File("adminFile.txt");
+                
+            BufferedReader br = new BufferedReader(new FileReader(adminFile));
+
+            
+            Object[] fileRow = br.lines().toArray();
+//            System.out.println(fileRow);
+            String checkName = sc.nextLine();
+
+
+            for(int i=0; i < fileRow.length;i++){
+                String rows = fileRow[i].toString().trim();
+                String [] dataRows = rows.split(":");
+                
+                
+                //System.out.println(rows);
+                System.out.println(dataRows[0]);
+                
+                if(dataRows[0].equals(checkName)){
+                    System.out.println("SMTG");
+                }else{
+                    System.out.println("Failed");
+                }
+              
+            } 
+        
         
     }
     
