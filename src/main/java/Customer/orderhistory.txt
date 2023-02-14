@@ -1,3 +1,1 @@
-1;D004,Teh Iced,3.50;
-
-3;W001,Chicken Chop,13.50;
+1;002,Lamb Chop,16.50;
