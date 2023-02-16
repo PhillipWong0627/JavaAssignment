@@ -1,1 +1,1 @@
-1;002,Lamb Chop,16.50;
+W001;Chicken Chop;13.50;9.00
