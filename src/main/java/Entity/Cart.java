@@ -4,6 +4,8 @@
  */
 package Entity;
 
+import java.io.IOException;
+
 /**
  *
  * @author user
@@ -19,4 +21,13 @@ public class Cart {
         this.quantity = qty;
     }
     
+    public void PKFC() throws IOException{
+        receipt.setText("**********************Philip & Kenny Food Centre**********************\n"
+        +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
+        +"**************************************************************************"+"\n"
+        +"FoodID:\t"+"Item Name:\t\t"+"Price($)\n"
+        );
+        
+
+    }
 }

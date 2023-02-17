@@ -1,2 +1,1 @@
-1;W001,Chicken Chop,13.50;C002,Sweet and Sour Chicken Rice,11.00;D002,Coffee Iced,3.20;
-T002,Pad Thai,9.50.20
+1;W001,Chicken Chop,13.50;C002,Sweet and Sour Chicken Rice,11.00;D002,Coffee Iced,3.20;W001,Chicken Chop,13.50W001,Chicken Chop,13.50W001,Chicken Chop,13.50W003,Steak,17.00W001,Chicken Chop,13.50

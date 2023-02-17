@@ -82,6 +82,8 @@ public class OrderPageCopy extends javax.swing.JFrame {
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
         x++;
         n++;
+        totalprice=0;
+        ArrayList order = new ArrayList();
         if (addtxt.getText().equals("")){
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
             }else{
@@ -102,12 +104,14 @@ public class OrderPageCopy extends javax.swing.JFrame {
                         String[] dataRow = line.split(","); 
                         if (dataRow[0].equals(addtxt.getText())){
                             receipt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
+                            int price = Integer.parseInt(dataRow[2]);
+                            totalprice = totalprice + price;
                             RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
 //                            RandomAccessFile random = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
                             raf.readLine(); 
-                            ArrayList<String> order = new ArrayList<String>();
-                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
-                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
+                            
+//                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
+//                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
 //                            raf.writeBytes("\r\n"+n+";"+stg);
 //                            System.out.print(stg);
                             }
@@ -122,11 +126,21 @@ public class OrderPageCopy extends javax.swing.JFrame {
         }
     
     
+    @SuppressWarnings("empty-statement")
     public void Adding() {
         try {
+            x++;
             totalprice = 0;
             RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
-            raf.readLine();
+            raf.readLine(); 
+            for (totalprice =0, totalprice<=10000,totalprice++){
+                
+            }
+        
+                
+            
+            
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -206,6 +220,11 @@ public class OrderPageCopy extends javax.swing.JFrame {
         total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         total.setText("0.0");
+        total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel3.setText("Sub Total:");
@@ -540,7 +559,7 @@ public class OrderPageCopy extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -548,7 +567,7 @@ public class OrderPageCopy extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -693,6 +712,10 @@ public class OrderPageCopy extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_addActionPerformed
+
+    private void totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalActionPerformed
+        total.setText(totalprice);
+    }//GEN-LAST:event_totalActionPerformed
 
     /**
      * @param args the command line arguments
