@@ -3,35 +3,31 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
  */
-package Customer;
+package Order;
 
-import java.awt.Color;
+import Order.OrderService;
+import Order.ItemService;
+import Order.Item;
+import Order.CartItem;
+import Order.Cart;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import restaurantsystem.MainMenu;
-import restaurantsystem.model.Cart;
-import restaurantsystem.model.CartItem;
-import restaurantsystem.model.Item;
-import restaurantsystem.model.Order;
-import restaurantsystem.model.OrderLine;
-import restaurantsystem.service.ItemService;
-import restaurantsystem.service.OrderService;
+import Main.WelcomePage;
 
 /**
  *
  * @author Sourcecodester
  */
-public class OrderManagementTemplate extends javax.swing.JFrame {
+public class OrderManagement extends javax.swing.JFrame {
 
     private final ItemService itemService;
     private final OrderService orderService;
@@ -40,7 +36,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
     /**
      * Creates new form OrderManagement
      */
-    public OrderManagementTemplate() {
+    public OrderManagement() {
         this.initComponents();
         this.itemService = new ItemService();
         this.orderService = new OrderService();
@@ -92,7 +88,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
         text.setRows(5);
         jScrollPane1.setViewportView(text);
 
-        jPanel1.setBackground(new java.awt.Color(220,20,60));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         backButton.setText("Back");
@@ -102,13 +98,13 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(128, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setText("Which ID Item You want?");
-        jLabel1.setForeground(Color.WHITE);
+
         jLabel4.setText("Enter  Quantity");
-        jLabel4.setForeground(Color.WHITE);
+
         addToCartButton.setText("Add to cart");
         addToCartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,12 +169,9 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backButton)
-                        .addGap(201, 492, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                    .addComponent(backButton)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +183,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
-        reciptArea.setBackground(new java.awt.Color(144, 238, 144));
+        reciptArea.setBackground(new java.awt.Color(255, 153, 102));
         reciptArea.setColumns(20);
         reciptArea.setRows(5);
         jScrollPane2.setViewportView(reciptArea);
@@ -351,7 +344,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(OrderManagementTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // new order number
@@ -371,7 +364,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
                 pw.println(orderLine.getOrderID() + "," + orderLine.getName() + "," + orderLine.getQuantity() + "," + orderLine.getPrice());
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(OrderManagementTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // create order with the same order number as order line
@@ -384,7 +377,7 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
             pw.println((order.getOrderID() + ",") + order.getPrice() + "," + order.getDate());
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(OrderManagementTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Reduce the quantity from item file
@@ -402,8 +395,8 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
     }//GEN-LAST:event_orderButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MainMenu im = new MainMenu();
-        im.setVisible(true);
+        WelcomePage wp = new WelcomePage();
+        wp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -497,20 +490,22 @@ public class OrderManagementTemplate extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderManagementTemplate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OrderManagementTemplate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OrderManagementTemplate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OrderManagementTemplate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OrderManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new OrderManagementTemplate().setVisible(true);
+            new OrderManagement().setVisible(true);
         });
     }
 

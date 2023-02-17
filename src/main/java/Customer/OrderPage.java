@@ -6,6 +6,9 @@ package Customer;
 
 import Main.*;
 import Customer.*;
+import Order.CartItem;
+import Order.Item;
+import java.awt.TextArea;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,7 +32,8 @@ import javax.swing.table.DefaultTableModel;
 public class OrderPage extends javax.swing.JFrame {
 
     int x =0;
-    int n= 0;
+    int n= 1;
+    
     /**
      * Creates new form RegisterPage
      */
@@ -78,9 +82,13 @@ public class OrderPage extends javax.swing.JFrame {
 
     }
     
+    
+       
+        
+    
+    
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
         x++;
-        n++;
         if (addtxt.getText().equals("")){
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
             }else{
@@ -100,28 +108,33 @@ public class OrderPage extends javax.swing.JFrame {
                         String line = tableLines[z].toString().trim();
                         String[] dataRow = line.split(","); 
                         ArrayList<String> order = new ArrayList<String>();
+                        ArrayList<String> foodlist = new ArrayList<String>();
                         if (dataRow[0].equals(addtxt.getText())){
                             receipt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
-                            String[] food = {(dataRow[0]+";"+dataRow[1]+";"+dataRow[2])};
+//                            ArrayList<String> order = new ArrayList<String>();
+//                            String[] food = {(dataRow[0]+";"+dataRow[1]+";"+dataRow[2])};
+//                            System.out.println(food);
+                            
+//                            raf.writeBytes(food);
 //                            for (String i : food) {
 //                            System.out.println(i);
-////                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
-////                            RandomAccessFile random = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
-////                            raf.readLine(); 
-////                            ArrayList<String> order = new ArrayList<String>();
-////                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
-////                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
-////                            raf.writeBytes("\n"+n+";"+ stg);
-////                            System.out.print(stg);
-                            }
+//                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+//                            RandomAccessFile random = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+//                            raf.readLine(); 
+//                            ArrayList<String> order = new ArrayList<String>();
+//                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
+//                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
+//                            raf.writeBytes(n+";"+ stg);
+//                            System.out.print(stg);
+//                            }
                  
-//                        }
+                        }
                     }
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         
-    }
+            }
             
         }
 
@@ -168,6 +181,8 @@ public class OrderPage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        quantity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -467,6 +482,17 @@ public class OrderPage extends javax.swing.JFrame {
         jTextArea3.setText("Instruction to order food\n1)Enter the FoodID(Exp:W001,C003)\n2)Click Add");
         jScrollPane5.setViewportView(jTextArea3);
 
+        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setText("Please enter the quantity:");
+
+        quantity.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        quantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -474,13 +500,18 @@ public class OrderPage extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addGap(18, 18, 18)
+                            .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(add)
@@ -494,15 +525,19 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addComponent(add)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +689,8 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_searchActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-
+        System.out.println(receipt.getText());
+                    
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
@@ -670,13 +706,61 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addtxtActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        try {
-            ReadFileAndPrompt();
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        x++;
+        n++;
+        if (addtxt.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "You are not adding anything ");
+            }else{
+                try {
+                    File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                    FileReader tr = new FileReader(fooddata);
+                    BufferedReader br = new BufferedReader(new FileReader(fooddata));
+                    String firstLine = br.readLine().trim();
+                    String[] columnName = firstLine.split(",");
+                    
+
+                    Object[] tableLines = br.lines().toArray();
+                    if (x==1){
+                    PKFC();
+                }
+                        for (int z = 0; z < tableLines.length; z++) {
+                        String line = tableLines[z].toString().trim();
+                        String[] dataRow = line.split(","); 
+                        ArrayList order = new ArrayList();
+                        String fortextfield = (dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n");
+                        String fortextfile = (dataRow[0]+","+dataRow[1]+","+dataRow[2]);
+//                        ArrayList<String> foodlist = new ArrayList<String>();
+                        if (dataRow[0].equals(addtxt.getText())){
+                            receipt.append(fortextfield );
+                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+                            raf.readLine();
+                            raf.writeBytes(fortextfile);
+//                            System.out.println(food);
+//                            for (String i : food) {
+//                            System.out.println(i);
+                            
+//                            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\orderhistory.txt", "rw");
+//                            raf.readlines();
+//                            ArrayList<String> order = new ArrayList<String>();
+//                            order.add(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
+//                            String stg =dataRow[0]+","+dataRow[1]+","+dataRow[2]+";";
+//                            raf.writeBytes(n+";"+ stg);
+//                            System.out.print(stg);
+//                            }
+                 
+                        }
+                    }
+            } catch (IOException ex) {
+                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            }
         
     }//GEN-LAST:event_addActionPerformed
+
+    private void quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityActionPerformed
+        
+    }//GEN-LAST:event_quantityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -728,6 +812,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JLabel datetxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -750,6 +835,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton pay;
+    private javax.swing.JTextField quantity;
     private javax.swing.JTextArea receipt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
@@ -759,4 +845,8 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JLabel timetxt;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
+
+    private void TestCart() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
