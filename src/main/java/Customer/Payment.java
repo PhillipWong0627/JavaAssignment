@@ -190,11 +190,20 @@ public class Payment extends javax.swing.JFrame {
 
     private void paymentbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentbuttonActionPerformed
     try {
+        
         File cart = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt");
         FileReader tr = new FileReader(cart);
         BufferedReader br = new BufferedReader(new FileReader(cart));
-            String firstLine = br.readLine().trim();
-        System.out.println(cart);
+        String firstLine = br.readLine().trim();
+        Object[] tableLines = br.lines().toArray();
+        System.out.println(tableLines);
+        System.out.println(tableLines.length);
+        for (int z = 0; z <1; z++) {
+                    String line = tableLines[z].toString().trim();
+                    System.out.println(line);
+//                    String[] dataRow = line.split(";");
+//                    System.out.println(dataRow[z]);
+        }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Payment.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

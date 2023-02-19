@@ -641,6 +641,7 @@ public class OrderPage extends javax.swing.JFrame {
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
     try{
         FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
+        Writer.write("Food Cart"+"\n");
         Writer.write(backend.getText());
         Writer.close();
         }       
