@@ -88,6 +88,11 @@ public class WelcomePage extends javax.swing.JFrame {
 
         staff.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         staff.setText("Staff");
+        staff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffActionPerformed(evt);
+            }
+        });
 
         admin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         admin.setText("Admin");
@@ -189,6 +194,11 @@ public class WelcomePage extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_adminActionPerformed
+
+    private void staffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_staffActionPerformed
 
     /**
      * @param args the command line arguments

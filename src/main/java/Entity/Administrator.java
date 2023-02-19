@@ -7,6 +7,7 @@ package Entity;
 import Admin.AdminLogin;
 import core.AdminSource;
 import core.CurrentUserSource;
+import core.StaffSource;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -100,6 +101,29 @@ public class Administrator {
         FW.close();
         
         System.out.println("Admin Have Been Successfully Added");
+        
+
+        
+    }
+    
+    public void addStaff(String staffName, String password, String phNo) throws IOException{
+        
+        String staffId = StaffSource.getStaffextId();
+        
+        File file = new File("staffFile.txt");
+        FileWriter FW;
+       
+        FW = new FileWriter(file,true);
+        BufferedWriter BW = new BufferedWriter(FW);
+
+        String record = staffId + ":"+ staffName+":"+ password + ":"+ phNo+ "\n";
+
+        BW.write(record);
+        BW.close();
+        FW.close();
+        
+        System.out.println("Staff Have Been Successfully Added");
+
 
         
     }
