@@ -5,12 +5,15 @@
 package Customer;
 
 import Customer.*;
+import Entity.Order;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,9 +28,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OrderPage extends javax.swing.JFrame {
 
-    int x =0;
-    int n= 1;
-    
+    int x = 0;
+    int n = 1;
+  
+    Order o = new Order();
+
+    private static final DecimalFormat decformat =new DecimalFormat("0.00");
     /**
      * Creates new form RegisterPage
      */
@@ -41,76 +47,130 @@ public class OrderPage extends javax.swing.JFrame {
         jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
         jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
         jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
-        setTime();
-        
+        o.setTime();
+        deliveryfees.setText("0");
     }
-    
-    public void setTime(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    Date date = new Date();
-                    SimpleDateFormat tf =new SimpleDateFormat("h:mm:ss aa");
-                    SimpleDateFormat df =new SimpleDateFormat("EEEE, dd-MM-yyyy");
-                    String time = tf.format(date);
-                    timetxt.setText(time.split(" ")[0]+" "+time.split(" ")[1]);
-                    datetxt.setText(df.format(date));
-                }
-            }
-        }).start();
-    }
-    
-    public void PKFC() throws IOException{
-        receipt.setText("**********************Philip & Kenny Food Centre**********************\n"
-        +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
-        +"**************************************************************************"+"\n"
-        +"FoodID:\t"+"Item Name:\t\t"+"Price($)\n"
-        );
-        
-    }
-    
-    
-    
-    public void ReadFileAndPrompt() throws FileNotFoundException, IOException{
-        x++;
-        if (addtxt.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "You are not adding anything ");
-            }else{
-                try {
-                    File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
-                    FileReader tr = new FileReader(fooddata);
-                    BufferedReader br = new BufferedReader(new FileReader(fooddata));
-                    String firstLine = br.readLine().trim();
-                    String[] columnName = firstLine.split(",");
-                    
 
-                    Object[] tableLines = br.lines().toArray();
-                    if (x==1){
-                    PKFC();
+    public void ReadFileAndPrompt() throws FileNotFoundException, IOException {
+        x++;
+        String add = addtxt.getText();
+        if (addtxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "You are not adding anything ");
+        } else {
+            try {
+                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                FileReader tr = new FileReader(fooddata);
+                BufferedReader br = new BufferedReader(new FileReader(fooddata));
+                Object[] tableLines = br.lines().toArray();
+                if (x == 1) {
+                    o.PKFC();
                 }
-                        for (int z = 0; z < tableLines.length; z++) {
-                        String line = tableLines[z].toString().trim();
-                        String[] dataRow = line.split(","); 
-                        if (dataRow[0].equals(addtxt.getText())){
-                            receipt.append((dataRow[0]+"\t"+dataRow[1]+"\t\t"+dataRow[2]+"\n"));
-                            backend.append(dataRow[0]+","+dataRow[1]+","+dataRow[2]+";");
+                double subTotal = Double.parseDouble(subtotal.getText());
+                double tax = 0.0;
+                for (int z = 0; z < tableLines.length; z++) {
+                    String line = tableLines[z].toString().trim();
+                    String[] dataRow = line.split(",");
+                    if (dataRow[0].equals(addtxt.getText())) {
+                        receipt.append((dataRow[0] + "\t" + dataRow[1] + "\t\t" + dataRow[2] + "\n"));
+                        backend.append(dataRow[0] + "," + dataRow[1] + "," + dataRow[2] + ";");
+                        subTotal+= Double.parseDouble(dataRow[2]);
+                        if(subTotal<30){
+                            tax = subTotal*0.1;
+                        }else if(subTotal>30 &&subTotal<=50){
+                            tax = subTotal*0.05;
+                        }else{
+                            tax = 0.00;
+                            break;
                         }
+//                    }else{
+//                        JOptionPane.showMessageDialog(null, "Code not found");
+//                        break;
                     }
+                }
+                subtotal.setText(String.valueOf(subTotal));
+                deliveryfees.setText(String.valueOf(decformat.format(tax)));
+                total.setText(String.valueOf(decformat.format(subTotal+tax)));
+                
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-            }
-            
+
         }
 
+    }
+
+//    public void WriteCartIntoFile() {
+//        try {
+//            FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt");
+//
+//        } catch (IOException ex) {
+//            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    public void Payment(){
         
+    }
+    
+    public void SearchbyCategory() {
+        try {
+            File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+            FileReader tr = new FileReader(fooddata);
+            BufferedReader br = new BufferedReader(new FileReader(fooddata));
+            String firstLine = br.readLine().trim();
+            String[] columnName = firstLine.split(",");
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.setRowCount(0);
+            model.setColumnIdentifiers(columnName);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(",");
+                if (dataRow[3].equals(category.getText())) {
+                    jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
+                    jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
+                    jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
+                    jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
+                    model.addRow(dataRow);
+                    searchfood.setText(category.getText());
+                }
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void SearchAllFood() {
+        try {
+            File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+            FileReader tr = new FileReader(fooddata);
+            BufferedReader br = new BufferedReader(new FileReader(fooddata));
+            String firstLine = br.readLine().trim();
+            String[] columnName = firstLine.split(",");
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+            model.setColumnIdentifiers(columnName);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(",");
+                jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+                jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+                jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+                jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+                model.addRow(dataRow);
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,7 +179,7 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         subtotal = new javax.swing.JTextField();
-        tax = new javax.swing.JTextField();
+        deliveryfees = new javax.swing.JTextField();
         total = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -168,10 +228,10 @@ public class OrderPage extends javax.swing.JFrame {
         subtotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         subtotal.setText("0.0");
 
-        tax.setEditable(false);
-        tax.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tax.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tax.setText("0.0");
+        deliveryfees.setEditable(false);
+        deliveryfees.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        deliveryfees.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        deliveryfees.setText("0.0");
 
         total.setEditable(false);
         total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -179,10 +239,10 @@ public class OrderPage extends javax.swing.JFrame {
         total.setText("0.0");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel3.setText("Sub Total:");
+        jLabel3.setText("Delivery Fees :");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel4.setText("Tax :");
+        jLabel4.setText("SubTotal :");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel5.setText("Total :");
@@ -232,23 +292,32 @@ public class OrderPage extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(clear)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(63, 63, 63)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(pay)
-                        .addGap(12, 12, 12)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(clear)
+                        .addGap(47, 47, 47)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(pay)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deliveryfees, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,13 +332,13 @@ public class OrderPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tax)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deliveryfees))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,7 +546,7 @@ public class OrderPage extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
                                 .addComponent(addtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(16, Short.MAX_VALUE))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane6)
@@ -558,112 +627,40 @@ public class OrderPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showallfoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showallfoodActionPerformed
-        try {
-                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
-                FileReader tr = new FileReader(fooddata);
-                BufferedReader br = new BufferedReader(new FileReader(fooddata));
-                String firstLine = br.readLine().trim();
-                String[] columnName = firstLine.split(",");
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.setRowCount(0);
-                model.setColumnIdentifiers(columnName);
-
-                Object[] tableLines = br.lines().toArray();
-
-                for (int z = 0; z < tableLines.length; z++) {
-                    String line = tableLines[z].toString().trim();
-                    String[] dataRow = line.split(",");
-                    jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-                    jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-                    jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-                    jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
-                    model.addRow(dataRow);
-                    
-                    
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        SearchAllFood();
     }//GEN-LAST:event_showallfoodActionPerformed
 
     private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
-        try {
-                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
-                FileReader tr = new FileReader(fooddata);
-                BufferedReader br = new BufferedReader(new FileReader(fooddata));
-                String firstLine = br.readLine().trim();
-                String[] columnName = firstLine.split(",");
-                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-                model.setRowCount(0);
-                model.setColumnIdentifiers(columnName);
-
-                Object[] tableLines = br.lines().toArray();
-
-                for (int z = 0; z < tableLines.length; z++) {
-                    String line = tableLines[z].toString().trim();
-                    String[] dataRow = line.split(",");
-                    if (dataRow[3].equals(category.getText())){
-                        jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        model.addRow(dataRow);
-                        searchfood.setText(category.getText());
-                    }
-                    
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        SearchbyCategory();
     }//GEN-LAST:event_categoryActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-                
-        try {
-                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
-                FileReader tr = new FileReader(fooddata);
-                BufferedReader br = new BufferedReader(new FileReader(fooddata));
-                String firstLine = br.readLine().trim();
-                String[] columnName = firstLine.split(",");
-                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-                model.setRowCount(0);
-                model.setColumnIdentifiers(columnName);
-                
-
-                Object[] tableLines = br.lines().toArray();
-
-                for (int z = 0; z < tableLines.length; z++) {
-                    String line = tableLines[z].toString().trim();
-                    String[] dataRow = line.split(",");
-                    if (dataRow[3].equals(category.getText())){
-                        jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
-                        jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                        jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
-                        model.addRow(dataRow);
-                        searchfood.setText(category.getText());
-                    }
-                    
-                }
-
-            } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        SearchbyCategory();
     }//GEN-LAST:event_searchActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-        System.out.println(receipt.getText());
-                    
+    try{
+        FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
+        Writer.write(backend.getText());
+        Writer.close();
+        }       
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error");
+} 
+        Payment payment = new Payment();
+        payment.setVisible(true);
+        this.setVisible(false);
+       
+//        (n++)+","+datetxt.getText()+","+timetxt.getText()+";"+
+
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        tax.setText("0.0");
+        deliveryfees.setText("0.0");
         subtotal.setText("0.0");
         total.setText("0.0");
         receipt.setText("");
-        
+
     }//GEN-LAST:event_clearActionPerformed
 
     private void addtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtxtActionPerformed
@@ -676,7 +673,7 @@ public class OrderPage extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_addActionPerformed
 
     /**
@@ -724,10 +721,11 @@ public class OrderPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JTextField addtxt;
-    private javax.swing.JTextArea backend;
+    public static javax.swing.JTextArea backend;
     private javax.swing.JTextField category;
     private javax.swing.JButton clear;
-    private javax.swing.JLabel datetxt;
+    public static javax.swing.JLabel datetxt;
+    private javax.swing.JTextField deliveryfees;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -753,13 +751,12 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton pay;
-    private javax.swing.JTextArea receipt;
+    public static javax.swing.JTextArea receipt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
     private javax.swing.JButton showallfood;
     private javax.swing.JTextField subtotal;
-    private javax.swing.JTextField tax;
-    private javax.swing.JLabel timetxt;
+    public static javax.swing.JLabel timetxt;
     private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 
@@ -767,5 +764,4 @@ public class OrderPage extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
- 
 }
