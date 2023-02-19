@@ -129,6 +129,11 @@ public class AdminHomePage extends javax.swing.JFrame {
 
     private void staffBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffBtnActionPerformed
         // TODO add your handling code here:
+        StaffManagement staffManagement = new StaffManagement();
+        this.dispose();
+        staffManagement.setVisible(true);
+        
+        
     }//GEN-LAST:event_staffBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
