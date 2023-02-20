@@ -463,8 +463,14 @@ public class AdminManagement extends javax.swing.JFrame {
             // TODO add your handling code here:
             Administrator administrator = new Administrator();
             
-            
-            boolean valid = administrator.searchAdmin(ADMINID.getText());
+            if("".equals(ADMINID.getText())){
+                System.out.println("Empty");
+                
+                lblStatus.setVisible(true);
+                lblStatus.setText("Pls Enter Require Blank!!!!");
+            }else{
+                
+                boolean valid = administrator.searchAdmin(ADMINID.getText());
             
             if(valid){
                 System.out.println("HALLO WORLD");
@@ -498,7 +504,11 @@ public class AdminManagement extends javax.swing.JFrame {
                 lblStatus.setVisible(true);
                 lblStatus.setText("Id Not Exist!!");
             }
+                
+                
+            }
             
+             
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdminManagement.class.getName()).log(Level.SEVERE, null, ex);

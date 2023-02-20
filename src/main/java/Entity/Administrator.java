@@ -189,6 +189,35 @@ public class Administrator {
         
     }
     
+    public boolean searchStaff(String staffID) throws FileNotFoundException{
+        File staffFile = new File("staffFile.txt");
+        
+        
+        String stafftoFind = staffID;
+        Scanner scanner = new Scanner(staffFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(stafftoFind)){
+//                Status = 1;
+//                String[] myArr = Line.split(":");
+                
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+            
+        }
+        if(Status ==0){
+            System.out.println("Admin Not found");
+        }
+        return false;
+        
+        
+    }
+    
 
     
     public void updateUser(){
