@@ -5,20 +5,35 @@
 package Entity;
 
 import Customer.OrderPage;
+import Customer.PaymentPage;
+import static Customer.OrderPage.backend;
 import static Customer.OrderPage.datetxt;
+import static Customer.OrderPage.receipt;
 import static Customer.OrderPage.timetxt;
+import static Customer.OrderPage.total;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+
 
 /**
  *
  * @author user
  */
 public class Order {
+int x = 0;
+   
+private static final DecimalFormat decformat =new DecimalFormat("0.00");
 
     public void setTime() {
         new Thread(new Runnable() {
@@ -50,6 +65,93 @@ public class Order {
         
     }
     
+    public void ReadFileAndPrompt() throws FileNotFoundException, IOException {
+        x++;
+        String add = OrderPage.addtxt.getText();
+        if (OrderPage.addtxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "You are not adding anything ");
+        } else {
+            try {
+                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                FileReader tr = new FileReader(fooddata);
+                BufferedReader br = new BufferedReader(new FileReader(fooddata));
+                Object[] tableLines = br.lines().toArray();
+                if (x == 1) {
+                    PKFC();
+                }
+                double subTotal = Double.parseDouble(OrderPage.subtotal.getText());
+                double tax = 0.0;
+                for (int z = 0; z < tableLines.length; z++) {
+                    String line = tableLines[z].toString().trim();
+                    String[] dataRow = line.split(",");
+                    if (dataRow[0].equals(OrderPage.addtxt.getText())) {
+                        receipt.append((dataRow[0] + "\t" + dataRow[1] + "\t\t" + dataRow[2] + "\n"));
+                        backend.append(dataRow[0] + "," + dataRow[1] + "," + dataRow[2] + ";");
+                        subTotal+= Double.parseDouble(dataRow[2]);
+                        if(subTotal<30){
+                            tax = subTotal*0.1;
+                        }else if(subTotal>30 &&subTotal<=50){
+                            tax = subTotal*0.05;
+                        }else{
+                            tax = 0.00;
+                            break;
+                        }
+//                    }else{
+//                        JOptionPane.showMessageDialog(null, "Code not found");
+//                        break;
+                    }
+                }
+                OrderPage.subtotal.setText(String.valueOf(subTotal));
+                OrderPage.deliveryfees.setText(String.valueOf(decformat.format(tax)));
+                OrderPage.total.setText(String.valueOf(decformat.format(subTotal+tax)));
+                
+            } catch (IOException ex) {
+                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+ 
+//    public static String incrementNumberIn(String s){
+//        String result ="";
+//        String numberStr ="";
+//        int i = s.length()-1;
+//        for(;i>0;i--){
+//            char c = s.charAt(i);
+//            if(!Character.isDigit(c))
+//                break;
+//                numberStr = c + numberStr;
+//            
+//        }
+//        int number = Integer.parseInt(numberStr);
+//        number++;
+//        
+//        result += s.substring(0,i+1);
+//        result += number <10 ? "0":"";
+//        result += number;
+//        
+//        return result;
+//    }
+//    
+//    public static String[] ReadCol (int col , File file, String delimiter){
+//        String data[];
+//        String currentLine;
+//        ArrayList<String>colData = new ArrayList<String>();
+//        
+//        try{
+//            FileReader fr = new FileReader(file);
+//            BufferedReader br = new BufferedReader(fr);
+//            
+//            while((currentLine = br.readLine())!=null){
+//                data = currentLine.split(delimiter);
+//                colData.add(data[col]);
+//            }
+//        }catch(Exception e){
+//            return null;
+//        }
+//        return colData.toArray(new String[0]);
+//    }
     
 }
 

@@ -28,12 +28,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class OrderPage extends javax.swing.JFrame {
 
-    int x = 0;
+    
     int n = 1;
   
     Order o = new Order();
 
-    private static final DecimalFormat decformat =new DecimalFormat("0.00");
+    
     /**
      * Creates new form RegisterPage
      */
@@ -51,53 +51,7 @@ public class OrderPage extends javax.swing.JFrame {
         deliveryfees.setText("0");
     }
 
-    public void ReadFileAndPrompt() throws FileNotFoundException, IOException {
-        x++;
-        String add = addtxt.getText();
-        if (addtxt.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "You are not adding anything ");
-        } else {
-            try {
-                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
-                FileReader tr = new FileReader(fooddata);
-                BufferedReader br = new BufferedReader(new FileReader(fooddata));
-                Object[] tableLines = br.lines().toArray();
-                if (x == 1) {
-                    o.PKFC();
-                }
-                double subTotal = Double.parseDouble(subtotal.getText());
-                double tax = 0.0;
-                for (int z = 0; z < tableLines.length; z++) {
-                    String line = tableLines[z].toString().trim();
-                    String[] dataRow = line.split(",");
-                    if (dataRow[0].equals(addtxt.getText())) {
-                        receipt.append((dataRow[0] + "\t" + dataRow[1] + "\t\t" + dataRow[2] + "\n"));
-                        backend.append(dataRow[0] + "," + dataRow[1] + "," + dataRow[2] + ";");
-                        subTotal+= Double.parseDouble(dataRow[2]);
-                        if(subTotal<30){
-                            tax = subTotal*0.1;
-                        }else if(subTotal>30 &&subTotal<=50){
-                            tax = subTotal*0.05;
-                        }else{
-                            tax = 0.00;
-                            break;
-                        }
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Code not found");
-//                        break;
-                    }
-                }
-                subtotal.setText(String.valueOf(subTotal));
-                deliveryfees.setText(String.valueOf(decformat.format(tax)));
-                total.setText(String.valueOf(decformat.format(subTotal+tax)));
-                
-            } catch (IOException ex) {
-                Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
-    }
+    
 
 //    public void WriteCartIntoFile() {
 //        try {
@@ -107,9 +61,7 @@ public class OrderPage extends javax.swing.JFrame {
 //            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-    public void Payment(){
-        
-    }
+    
     
     public void SearchbyCategory() {
         try {
@@ -640,17 +592,21 @@ public class OrderPage extends javax.swing.JFrame {
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
     try{
-        FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
-        Writer.write("Food Cart"+"\n");
-        Writer.write(backend.getText());
-        Writer.close();
+        FileWriter Writercart = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
+        FileWriter Writerlastpayment = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\lastpayment\\lastpay.txt", false);
+        Writercart.write("Food Cart"+"\n");
+        Writercart.write(backend.getText());
+        Writercart.close();
+        Writerlastpayment.write("Lastpayment"+"\n");
+        Writerlastpayment.write(total.getText());
+        Writerlastpayment.close();
         }       
         catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error");
 } 
-        Payment payment = new Payment();
+        PaymentPage payment = new PaymentPage();
         payment.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(true);
        
 //        (n++)+","+datetxt.getText()+","+timetxt.getText()+";"+
 
@@ -670,7 +626,7 @@ public class OrderPage extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try {
-            ReadFileAndPrompt();
+            o.ReadFileAndPrompt();
         } catch (IOException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -721,12 +677,12 @@ public class OrderPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
-    private javax.swing.JTextField addtxt;
+    public static javax.swing.JTextField addtxt;
     public static javax.swing.JTextArea backend;
     private javax.swing.JTextField category;
     private javax.swing.JButton clear;
     public static javax.swing.JLabel datetxt;
-    private javax.swing.JTextField deliveryfees;
+    public static javax.swing.JTextField deliveryfees;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -756,9 +712,9 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
     private javax.swing.JButton showallfood;
-    private javax.swing.JTextField subtotal;
+    public static javax.swing.JTextField subtotal;
     public static javax.swing.JLabel timetxt;
-    private javax.swing.JTextField total;
+    public static javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 
     private void TestCart() {
