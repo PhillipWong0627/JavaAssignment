@@ -129,21 +129,21 @@ public class PaymentPage extends javax.swing.JFrame {
                     FileWriter fww;
                     fww = new FileWriter(creditcard,true);
                     BufferedWriter bww = new BufferedWriter(fww);
-                    String ccdetail = "L"+(num+1)+":"+"Pay"+(num+1)+":"+ccname.getText()+":"+ccnumber.getText()+":"+pay.getText()+":"+"\n";
+                    String ccdetail = "L"+(num+1)+":"+"Payment"+(num+1)+":"+ccname.getText()+":"+ccnumber.getText()+":"+"RM"+pay.getText()+":"+"\n";
                             
                     FileWriter fw;
                     fw = new FileWriter(deliverydetail,true);
                     BufferedWriter bw = new BufferedWriter(fw);
-                    String something = "L"+(num+1)+":"+"P"+(num+1)+":"+address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"\n";
+                    String something = "L"+(num+1)+":"+"P"+(num+1)+":"+address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"-"+"\n";
                         
                         
-                     FileWriter FW;
-                     FW = new FileWriter(orderdetail,true);
-                     BufferedWriter BW = new BufferedWriter(FW);
-                     
-                     
-                     
+                    FileWriter FW;
+                    FW = new FileWriter(orderdetail,true);
+                    BufferedWriter BW = new BufferedWriter(FW);
                     String record = "L"+(num+1)+","+datetxt.getText()+","+timetxt.getText()+";"+line1+"\n";
+                     
+                     
+                    
                      bww.write(ccdetail);
                      bww.close();
                      frr.close();

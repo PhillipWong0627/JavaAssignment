@@ -39,6 +39,7 @@ public class OrderPage extends javax.swing.JFrame {
      */
     public OrderPage() {
         initComponents();
+        deliveryfees.setText("0");
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
         jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
         jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
@@ -48,7 +49,7 @@ public class OrderPage extends javax.swing.JFrame {
         jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
         jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
         o.setTime();
-        deliveryfees.setText("0");
+        o.SearchAllFood();
     }
 
     
@@ -95,34 +96,7 @@ public class OrderPage extends javax.swing.JFrame {
         }
     }
 
-    public void SearchAllFood() {
-        try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
-            FileReader tr = new FileReader(fooddata);
-            BufferedReader br = new BufferedReader(new FileReader(fooddata));
-            String firstLine = br.readLine().trim();
-            String[] columnName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-            model.setColumnIdentifiers(columnName);
-
-            Object[] tableLines = br.lines().toArray();
-
-            for (int z = 0; z < tableLines.length; z++) {
-                String line = tableLines[z].toString().trim();
-                String[] dataRow = line.split(",");
-                jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-                jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-                jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-                jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
-                model.addRow(dataRow);
-
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -146,7 +120,6 @@ public class OrderPage extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        showallfood = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -225,7 +198,7 @@ public class OrderPage extends javax.swing.JFrame {
         jScrollPane4.setViewportView(receipt);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel10.setText("Order List");
+        jLabel10.setText("Cart");
 
         datetxt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -247,7 +220,7 @@ public class OrderPage extends javax.swing.JFrame {
                         .addGap(214, 214, 214))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(7, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -320,35 +293,22 @@ public class OrderPage extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        showallfood.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        showallfood.setText("Click Here to Show all Food!");
-        showallfood.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showallfoodActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        jLabel6.setText("All Food Here");
+        jLabel6.setText("Food List");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel6))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(showallfood)
-                .addGap(107, 107, 107))
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,18 +316,13 @@ public class OrderPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(showallfood)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "FoodID", "Food Name", "Price", "Category"
@@ -549,7 +504,7 @@ public class OrderPage extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -583,10 +538,6 @@ public class OrderPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void showallfoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showallfoodActionPerformed
-        SearchAllFood();
-    }//GEN-LAST:event_showallfoodActionPerformed
-
     private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         SearchbyCategory();
     }//GEN-LAST:event_categoryActionPerformed
@@ -616,10 +567,9 @@ public class OrderPage extends javax.swing.JFrame {
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        deliveryfees.setText("0.0");
-        subtotal.setText("0.0");
-        total.setText("0.0");
-        receipt.setText("");
+        OrderPage order = new OrderPage();
+        order.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_clearActionPerformed
 
@@ -710,7 +660,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
@@ -718,7 +668,6 @@ public class OrderPage extends javax.swing.JFrame {
     public static javax.swing.JTextArea receipt;
     private javax.swing.JButton search;
     private javax.swing.JLabel searchfood;
-    private javax.swing.JButton showallfood;
     public static javax.swing.JTextField subtotal;
     public static javax.swing.JLabel timetxt;
     public static javax.swing.JTextField total;

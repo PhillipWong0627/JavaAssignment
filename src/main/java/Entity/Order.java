@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -111,6 +112,35 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
 
         }
 
+    }
+    
+    public void SearchAllFood() {
+        try {
+            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+            FileReader tr = new FileReader(fooddata);
+            BufferedReader br = new BufferedReader(new FileReader(fooddata));
+            String firstLine = br.readLine().trim();
+            String[] columnName = firstLine.split(",");
+            DefaultTableModel model = (DefaultTableModel) OrderPage.jTable1.getModel();
+            model.setRowCount(0);
+            model.setColumnIdentifiers(columnName);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(",");
+                OrderPage.jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+                OrderPage.jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+                OrderPage.jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+                OrderPage.jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+                model.addRow(dataRow);
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
  
 }
