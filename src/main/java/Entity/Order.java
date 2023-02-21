@@ -72,7 +72,7 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
         } else {
             try {
-                File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+                File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
                 FileReader tr = new FileReader(fooddata);
                 BufferedReader br = new BufferedReader(new FileReader(fooddata));
                 Object[] tableLines = br.lines().toArray();
@@ -113,63 +113,4 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
 
     }
  
-//    public static String incrementNumberIn(String s){
-//        String result ="";
-//        String numberStr ="";
-//        int i = s.length()-1;
-//        for(;i>0;i--){
-//            char c = s.charAt(i);
-//            if(!Character.isDigit(c))
-//                break;
-//                numberStr = c + numberStr;
-//            
-//        }
-//        int number = Integer.parseInt(numberStr);
-//        number++;
-//        
-//        result += s.substring(0,i+1);
-//        result += number <10 ? "0":"";
-//        result += number;
-//        
-//        return result;
-//    }
-//    
-//    public static String[] ReadCol (int col , File file, String delimiter){
-//        String data[];
-//        String currentLine;
-//        ArrayList<String>colData = new ArrayList<String>();
-//        
-//        try{
-//            FileReader fr = new FileReader(file);
-//            BufferedReader br = new BufferedReader(fr);
-//            
-//            while((currentLine = br.readLine())!=null){
-//                data = currentLine.split(delimiter);
-//                colData.add(data[col]);
-//            }
-//        }catch(Exception e){
-//            return null;
-//        }
-//        return colData.toArray(new String[0]);
-//    }
-    
 }
-
-//class order {
-
-//    private Integer OrderId;
-//    private String DateCreated;
-//    private Customer Customer;
-//    private String OrderStatus;
-//    private Payment Payment;
-//    private ArrayList<OrderDetails> OrderList;
-//
-//    public void Order(Integer orderId, String datecreated, Customer customer, String orderStatus, Payment payment, ArrayList<OrderDetails> orderList) {
-//        this.OrderId = orderId;
-//        this.DateCreated = datecreated;
-//        this.Customer = customer;
-//        this.OrderStatus = orderStatus;
-//        this.Payment = payment;
-//        this.OrderList = orderList;
-//    }
-//}

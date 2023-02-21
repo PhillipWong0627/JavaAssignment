@@ -65,7 +65,7 @@ public class OrderPage extends javax.swing.JFrame {
     
     public void SearchbyCategory() {
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
@@ -97,7 +97,7 @@ public class OrderPage extends javax.swing.JFrame {
 
     public void SearchAllFood() {
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\src\\main\\java\\Customer\\fooddata.txt");
+            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
@@ -179,6 +179,11 @@ public class OrderPage extends javax.swing.JFrame {
         subtotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         subtotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         subtotal.setText("0.0");
+        subtotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subtotalActionPerformed(evt);
+            }
+        });
 
         deliveryfees.setEditable(false);
         deliveryfees.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -606,9 +611,7 @@ public class OrderPage extends javax.swing.JFrame {
 } 
         PaymentPage payment = new PaymentPage();
         payment.setVisible(true);
-        this.setVisible(true);
-       
-//        (n++)+","+datetxt.getText()+","+timetxt.getText()+";"+
+        this.setVisible(false);
 
     }//GEN-LAST:event_payActionPerformed
 
@@ -632,6 +635,10 @@ public class OrderPage extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_addActionPerformed
+
+    private void subtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_subtotalActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,2 +1,2 @@
 staffId:staffName:password:phoneNo:
-D002:BJek:123:0142683487:
+D002:BinJie:123:0142683487:

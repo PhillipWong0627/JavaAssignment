@@ -87,6 +87,7 @@ public class PaymentPage extends javax.swing.JFrame {
             try {
                 int num=0;
                 int num1=0;
+                int num2=0;
                 File cart = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt");
                 FileReader fr = new FileReader(cart);
                 BufferedReader brr = new BufferedReader(new FileReader(cart));
@@ -115,10 +116,25 @@ public class PaymentPage extends javax.swing.JFrame {
                             num1++;
                                 
                         }
-                                FileWriter fw;
-                                fw = new FileWriter(deliverydetail,true);
-                                BufferedWriter bw = new BufferedWriter(fw);
-                                String something = "L"+(num1+1)+":"+"P"+(num1+1)+":"+address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"\n";
+                            
+                        File creditcard = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\creditcarddetail\\creditcarddetail.txt");
+                            FileReader frr = new FileReader(creditcard);
+                            BufferedReader bread = new BufferedReader(new FileReader(creditcard));
+                            Object[] tableLinescreditcard = nr.lines().toArray();
+                            for (int p = 0; p < tableLinescreditcard.length; p++) {
+                            String line2 = tableLines[p].toString().trim();
+                            num2++;
+                            }
+                            
+                    FileWriter fww;
+                    fww = new FileWriter(creditcard,true);
+                    BufferedWriter bww = new BufferedWriter(fww);
+                    String ccdetail = "L"+(num+1)+":"+"Pay"+(num+1)+":"+ccname.getText()+":"+ccnumber.getText()+":"+pay.getText()+":"+"\n";
+                            
+                    FileWriter fw;
+                    fw = new FileWriter(deliverydetail,true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    String something = "L"+(num+1)+":"+"P"+(num+1)+":"+address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"\n";
                         
                         
                      FileWriter FW;
@@ -128,13 +144,18 @@ public class PaymentPage extends javax.swing.JFrame {
                      
                      
                     String record = "L"+(num+1)+","+datetxt.getText()+","+timetxt.getText()+";"+line1+"\n";
-                     
+                     bww.write(ccdetail);
+                     bww.close();
+                     frr.close();
                      BW.write(record);
-                     bw.write(something);
                      BW.close();
-                     bw.close();
                      FW.close();
+                     bw.write(something);
+                     bw.close();
                      fw.close();
+                     
+                     
+                     
                }
                 
         } catch (FileNotFoundException ex) {
@@ -142,7 +163,6 @@ public class PaymentPage extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 }
         
         
@@ -361,7 +381,7 @@ public class PaymentPage extends javax.swing.JFrame {
     }//GEN-LAST:event_ccnumberActionPerformed
 
     private void paymentbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentbuttonActionPerformed
-    count++;
+
     if(ccname.getText().equals("")||ccnumber.getText().equals("")){
         JOptionPane.showMessageDialog(null, "You must be blank something" +ccname.getText());
     }else{    
