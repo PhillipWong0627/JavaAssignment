@@ -4,7 +4,7 @@
  */
 package Entity;
 
-import Admin.AdminLogin;
+import Admin.AdminLoginCopy;
 import core.CurrentUserSource;
 import java.io.BufferedReader;
 import java.io.File;
@@ -58,7 +58,7 @@ public class DeliveryStaff extends User {
                     CurrentUserSource.currenctUserName = staffName;
                     CurrentUserSource.currenctUserRole = "ADMIN";
                     
-                    AdminLogin adlogin = new AdminLogin();
+                    AdminLoginCopy adlogin = new AdminLoginCopy();
                     adlogin.dispose();
                     
                     return true;
@@ -67,7 +67,7 @@ public class DeliveryStaff extends User {
 
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminLoginCopy.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return false;

@@ -5,7 +5,7 @@
 package Main;
 
 import Admin.AdminHomePage;
-import Admin.AdminLogin;
+import Admin.AdminLoginCopy;
 import Customer.CustomerLogin;
 
 /**
@@ -189,7 +189,7 @@ public class WelcomePage extends javax.swing.JFrame {
     private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
         //Admin Login Page
         
-        AdminLogin adminLogin = new AdminLogin();
+        AdminLoginCopy adminLogin = new AdminLoginCopy();
         adminLogin.show();
         dispose();
         
