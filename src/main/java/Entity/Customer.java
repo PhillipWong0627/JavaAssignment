@@ -4,6 +4,7 @@
  */
 package Entity;
 
+import Customer.CustomerInterface;
 import Customer.CustomerLogin;
 import Customer.CustomerRegister;
 import Customer.OrderPage;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -163,30 +165,7 @@ public class Customer{
 //            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }   
-    public void login(){
-        try {
-            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-            FileReader tr = new FileReader(customerinfo);
-            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
-            String firstLine = br.readLine().trim();
-//            String[] columnName = firstLine.split(",");
-            Object[] tableLines = br.lines().toArray();
-
-            for (int z = 0; z < tableLines.length; z++) {
-                String line = tableLines[z].toString().trim();
-                String[] dataRow = line.split(":");
-                System.out.println(dataRow[0]);
-                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
-                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
-                    break;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Wrong Username or password");
-                }   
-            }
-            } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
     
     public void register(){
         

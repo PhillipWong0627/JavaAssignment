@@ -296,9 +296,6 @@ public void login(){
     }//GEN-LAST:event_clearallActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
-        
-//        Back to Welcome Page
-
         WelcomePage welcomePage = new WelcomePage();
         this.dispose();
         welcomePage.setVisible(true);

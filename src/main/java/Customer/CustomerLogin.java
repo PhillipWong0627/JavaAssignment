@@ -6,11 +6,17 @@ package Customer;
 
 import Entity.Customer;
 import Main.WelcomePage;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -19,7 +25,7 @@ import java.util.logging.Logger;
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
-Customer c = new Customer();
+//Customer c = new Customer();
     
     /**
      * Creates new form CustomerLogin
@@ -27,7 +33,8 @@ Customer c = new Customer();
     public CustomerLogin() {
         initComponents();
     }
-     
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -259,8 +266,59 @@ Customer c = new Customer();
     }//GEN-LAST:event_passwordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-    c.login();
+//    try {
+//            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+//            FileReader tr = new FileReader(customerinfo);
+//            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
+//            String firstLine = br.readLine().trim();
+////            String[] columnName = firstLine.split(",");
+//            Object[] tableLines = br.lines().toArray();
+//
+//            for (int z = 0; z < tableLines.length; z++) {
+//                String line = tableLines[z].toString().trim();
+//                String[] dataRow = line.split(":");
+//                System.out.println(dataRow[0]);
+//                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+//                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
+//                    CustomerInterface csinterface = new CustomerInterface();
+//                    csinterface.setVisible(true);
+//                    this.dispose();
+//                    break;
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Wrong Username or password");
+//                    break;
+//                }   
+//            }
+//            } catch (IOException ex) {
+//            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     
+        File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+        try ( BufferedReader br = new BufferedReader(new FileReader(customerinfo))) {
+            String firstLine = br.readLine();
+            String[] columnNames = firstLine.split(":"); // Assumes the file is using ":" as a delimiter
+
+            List<String[]> dataRows = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] dataRow = line.split(":"); // Assumes the file is using ":" as a delimiter
+                dataRows.add(dataRow);
+            }
+
+            for (String[] dataRow : dataRows) {
+                if (CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])) {
+                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
+                    CustomerInterface csinterface = new CustomerInterface();
+                    csinterface.setVisible(true);
+                    this.dispose();
+                    break;
+                }
+            }
+
+//            JOptionPane.showMessageDialog(null, "Wrong Username or password");
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         
     }//GEN-LAST:event_loginActionPerformed
