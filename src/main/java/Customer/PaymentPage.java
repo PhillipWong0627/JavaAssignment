@@ -109,22 +109,22 @@ public class PaymentPage extends javax.swing.JFrame {
                         
                         File deliverydetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt");
                             FileReader mr = new FileReader(deliverydetail);
-                            BufferedReader nr = new BufferedReader(new FileReader(orderdetail));
-                            Object[] tableLinesdelivery = nr.lines().toArray();
-                            for (int n = 0; n < tableLinesdelivery.length; n++) {
-                            String line2 = tableLines[n].toString().trim();
-                            num1++;
-                                
-                        }
+                            BufferedReader nr = new BufferedReader(new FileReader(deliverydetail));
+//                            Object[] tableLinesdelivery = nr.lines().toArray();
+//                            for (int n = 0; n < tableLinesdelivery.length; n++) {
+//                            String line2 = tableLines[n].toString().trim();
+//                            num1++;
+//                                
+//                        }
                             
                         File creditcard = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\creditcarddetail\\creditcarddetail.txt");
                             FileReader frr = new FileReader(creditcard);
                             BufferedReader bread = new BufferedReader(new FileReader(creditcard));
-                            Object[] tableLinescreditcard = nr.lines().toArray();
-                            for (int p = 0; p < tableLinescreditcard.length; p++) {
-                            String line2 = tableLines[p].toString().trim();
-                            num2++;
-                            }
+//                            Object[] tableLinescreditcard = nr.lines().toArray();
+//                            for (int p = 0; p < tableLinescreditcard.length; p++) {
+//                            String line2 = tableLines[p].toString().trim();
+//                            num2++;
+//                            }
                             
                     FileWriter fww;
                     fww = new FileWriter(creditcard,true);

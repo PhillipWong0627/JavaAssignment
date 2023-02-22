@@ -13,12 +13,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /**
  *
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
-
+Customer c = new Customer();
     
     /**
      * Creates new form CustomerLogin
@@ -258,11 +259,8 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-    Customer cus = new Customer();
-    cus.CreateFolder();
-    cus.CreateFile();
-    cus.CountLines();
-    cus.logic(username.getText(), password.getText());
+    c.login();
+    
 
         
     }//GEN-LAST:event_loginActionPerformed
@@ -363,9 +361,9 @@ public class CustomerLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton login;
-    private javax.swing.JTextField password;
+    public static javax.swing.JTextField password;
     private javax.swing.JLabel passwordlabel;
-    private javax.swing.JTextField username;
+    public static javax.swing.JTextField username;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables
 }
