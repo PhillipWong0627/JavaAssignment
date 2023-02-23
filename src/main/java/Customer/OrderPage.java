@@ -5,7 +5,9 @@
 package Customer;
 
 import Customer.*;
+import Entity.Cart;
 import Entity.Order;
+import Entity.Food;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,7 +34,8 @@ public class OrderPage extends javax.swing.JFrame {
     int n = 1;
   
     Order o = new Order();
-
+    Cart c = new Cart();
+    Food f = new Food();
     
     /**
      * Creates new form RegisterPage
@@ -49,7 +52,7 @@ public class OrderPage extends javax.swing.JFrame {
         jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
         jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
         o.setTime();
-        o.SearchAllFood();
+        f.SearchAllFood();
     }
 
     
@@ -64,37 +67,7 @@ public class OrderPage extends javax.swing.JFrame {
 //    }
     
     
-    public void SearchbyCategory() {
-        try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
-            FileReader tr = new FileReader(fooddata);
-            BufferedReader br = new BufferedReader(new FileReader(fooddata));
-            String firstLine = br.readLine().trim();
-            String[] columnName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            model.setRowCount(0);
-            model.setColumnIdentifiers(columnName);
-
-            Object[] tableLines = br.lines().toArray();
-
-            for (int z = 0; z < tableLines.length; z++) {
-                String line = tableLines[z].toString().trim();
-                String[] dataRow = line.split(",");
-                if (dataRow[3].equals(category.getText())) {
-                    jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
-                    jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
-                    jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                    jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
-                    model.addRow(dataRow);
-                    searchfood.setText(category.getText());
-                }
-
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     
 
@@ -178,7 +151,7 @@ public class OrderPage extends javax.swing.JFrame {
         jLabel5.setText("Total :");
 
         clear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        clear.setText("Clear");
+        clear.setText("Clear and Refresh");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
@@ -230,11 +203,11 @@ public class OrderPage extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
+                        .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(clear)
-                        .addGap(47, 47, 47)))
+                        .addGap(11, 11, 11)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,37 +512,26 @@ public class OrderPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
-        SearchbyCategory();
+        f.SearchbyCategory();
     }//GEN-LAST:event_categoryActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        SearchbyCategory();
+        f.SearchbyCategory();
     }//GEN-LAST:event_searchActionPerformed
 
     private void payActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payActionPerformed
-    try{
-        FileWriter Writercart = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
-        FileWriter Writerlastpayment = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\lastpayment\\lastpay.txt", false);
-        Writercart.write("Food Cart"+"\n");
-        Writercart.write(backend.getText());
-        Writercart.close();
-        Writerlastpayment.write("Lastpayment"+"\n");
-        Writerlastpayment.write(total.getText());
-        Writerlastpayment.close();
-        }       
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, "Error");
-} 
+        c.cart();
         PaymentPage payment = new PaymentPage();
         payment.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_payActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
         OrderPage order = new OrderPage();
         order.setVisible(true);
         this.setVisible(false);
+        
+        
 
     }//GEN-LAST:event_clearActionPerformed
 
@@ -636,7 +598,7 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JButton add;
     public static javax.swing.JTextField addtxt;
     public static javax.swing.JTextArea backend;
-    private javax.swing.JTextField category;
+    public static javax.swing.JTextField category;
     private javax.swing.JButton clear;
     public static javax.swing.JLabel datetxt;
     public static javax.swing.JTextField deliveryfees;
@@ -661,20 +623,20 @@ public class OrderPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     public static javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    public static javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JButton pay;
     public static javax.swing.JTextArea receipt;
     private javax.swing.JButton search;
-    private javax.swing.JLabel searchfood;
+    public static javax.swing.JLabel searchfood;
     public static javax.swing.JTextField subtotal;
     public static javax.swing.JLabel timetxt;
     public static javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 
-    private void TestCart() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    private void TestCart() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
 }

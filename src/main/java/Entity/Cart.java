@@ -4,7 +4,13 @@
  */
 package Entity;
 
+import Customer.OrderPage;
+import static Customer.OrderPage.backend;
+import static Customer.OrderPage.total;
+import Customer.PaymentPage;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,5 +27,20 @@ public class Cart {
         this.quantity = qty;
     }
     
+    public void cart(){
+    try{
+        FileWriter Writercart = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
+        FileWriter Writerlastpayment = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\lastpayment\\lastpay.txt", false);
+        Writercart.write("Food Cart"+"\n");
+        Writercart.write(backend.getText());
+        Writercart.close();
+        Writerlastpayment.write("Lastpayment"+"\n");
+        Writerlastpayment.write(total.getText());
+        Writerlastpayment.close();
+        }       
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error");
+        } 
+    }
     
 }
