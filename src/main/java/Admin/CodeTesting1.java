@@ -4,7 +4,6 @@
  */
 package Admin;
 
-import Delivery.DeliveryStaff;
 import Entity.Administrator;
 import java.io.FileNotFoundException;
 
@@ -16,7 +15,7 @@ public class CodeTesting1 {
     
     public static void main(String[] args) throws FileNotFoundException{
         Administrator ad = new Administrator();
-        DeliveryStaff ds = new DeliveryStaff();
+        //DeliveryStaff ds = new DeliveryStaff();
         
         
         
