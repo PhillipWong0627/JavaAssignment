@@ -4,28 +4,15 @@
  */
 package Delivery;
 
-import Admin.*;
-import Customer.OrderPage;
-import Entity.Administrator;
 import Main.WelcomePage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
-
+import Entity.Staff;
 /**
  *
  * @author user
  */
 public class DeliveryStaffLogin extends javax.swing.JFrame {
     
-
+Staff dsl = new Staff();
 
     /**
      * Creates new form AdminLogin
@@ -34,34 +21,7 @@ public class DeliveryStaffLogin extends javax.swing.JFrame {
         initComponents();
     }
     
-public void login(){
-        try {
-            File deliverystaff = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\staffFile.txt");
-            FileReader tr = new FileReader(deliverystaff);
-            BufferedReader br = new BufferedReader(new FileReader(deliverystaff));
-            String firstLine = br.readLine().trim();
-            String[] columnName = firstLine.split(",");
-            Object[] tableLines = br.lines().toArray();
 
-            for (int z = 0; z < tableLines.length; z++) {
-                String line = tableLines[z].toString().trim();
-                String[] dataRow = line.split(":");
-                System.out.println(dataRow[0]);
-                if(username.getText().equals(dataRow[1]) && password.getText().equals(dataRow[2])){
-                    JOptionPane.showMessageDialog(null, "Correct");
-                    break;
-                } else {
-                    System.out.println("not success");
-                }
-            
-                
-            }
-            
-
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +41,7 @@ public void login(){
         jPanel5 = new javax.swing.JPanel();
         passwordlabel = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
-        login = new javax.swing.JButton();
+        login3 = new javax.swing.JButton();
         clearall = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
 
@@ -169,12 +129,12 @@ public void login(){
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        login.setBackground(new java.awt.Color(204, 204, 204));
-        login.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        login.setText("Login");
-        login.addActionListener(new java.awt.event.ActionListener() {
+        login3.setBackground(new java.awt.Color(204, 204, 204));
+        login3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        login3.setText("Login");
+        login3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
+                login3ActionPerformed(evt);
             }
         });
 
@@ -215,7 +175,7 @@ public void login(){
                 .addGap(85, 85, 85)
                 .addComponent(clearall)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(login)
+                .addComponent(login3)
                 .addGap(89, 89, 89))
         );
         jPanel3Layout.setVerticalGroup(
@@ -227,7 +187,7 @@ public void login(){
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(login)
+                    .addComponent(login3)
                     .addComponent(clearall))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(back2)
@@ -282,10 +242,12 @@ public void login(){
 
 
     
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+    private void login3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login3ActionPerformed
         // Login Validation
-        login();
-    }//GEN-LAST:event_loginActionPerformed
+        if (dsl.login()) {
+        this.dispose();
+        }
+    }//GEN-LAST:event_login3ActionPerformed
 
     private void clearallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearallActionPerformed
         // TODO add your handling code here:
@@ -345,10 +307,14 @@ public void login(){
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JButton login;
-    private javax.swing.JTextField password;
+    private javax.swing.JButton login3;
+    public static javax.swing.JTextField password;
     private javax.swing.JLabel passwordlabel;
-    private javax.swing.JTextField username;
+    public static javax.swing.JTextField username;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables
+
+    private void login() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

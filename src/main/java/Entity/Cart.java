@@ -8,16 +8,14 @@ import Customer.OrderPage;
 import static Customer.OrderPage.backend;
 import static Customer.OrderPage.receipt;
 import static Customer.OrderPage.total;
-import Customer.PaymentPage;
 import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
-public class Cart extends Order {
+public class Cart extends Receipt {
 //    private Integer cartID;
 //    private Food food;
 //    private Integer quantity;
@@ -46,6 +44,8 @@ public class Cart extends Order {
         } 
     }
     
+    
+    
     public void end(){
         receipt.append(("**********************Thank you for purchasing**********************\n"
         +"              Delivery Fees:\t\t"+"RM"+OrderPage.subtotal.getText()+"\n"
@@ -54,4 +54,6 @@ public class Cart extends Order {
           
         );
     }
+    
+    
 }

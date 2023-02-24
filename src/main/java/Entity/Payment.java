@@ -4,6 +4,7 @@
  */
 package Entity;
 
+import static Customer.CustomerLogin.username;
 import Customer.PaymentPage;
 import static Customer.PaymentPage.datetxt;
 import static Customer.PaymentPage.pay;
@@ -19,12 +20,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author user
  */
-public class Payment {
+public class Payment{
 //    private String PaymentId;
 //    private String PaymentType;
 //    private String PaymentDate;
@@ -38,6 +40,13 @@ public class Payment {
 //        this.PaymentTime = paymentTime;
 //        this.PaymentAmount = paymentAmount;
 //    }
+    public void ReadUsertoPayment() throws IOException{
+        FileWriter Writeruser = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\currentuser\\currentuser.txt", false);
+        Writeruser.write("Current User"+"\n");
+        Writeruser.write(username.getText());
+        Writeruser.close();
+    }
+        
     
     public void setTime() {
         new Thread(new Runnable() {
@@ -60,7 +69,7 @@ public class Payment {
         }).start();
     }
     
-    public void trymethod(){
+    public void Savemethod(){
             try {
                 int num=0;
 //                int num1=0;
@@ -106,12 +115,12 @@ public class Payment {
                     FileWriter fww;
                     fww = new FileWriter(creditcard,true);
                     BufferedWriter bww = new BufferedWriter(fww);
-                    String ccdetail = "L"+(num+1)+":"+"Payment"+(num+1)+":"+PaymentPage.ccname.getText()+":"+PaymentPage.ccnumber.getText()+":"+"RM"+PaymentPage.pay.getText()+":"+"\n";
+                    String ccdetail = "L"+(num+1)+":"+"P"+(num+1)+":"+PaymentPage.ccname.getText()+":"+PaymentPage.ccnumber.getText()+":"+"RM"+PaymentPage.pay.getText()+":"+"\n";
                             
                     FileWriter fw;
                     fw = new FileWriter(deliverydetail,true);
                     BufferedWriter bw = new BufferedWriter(fw);
-                    String something = "L"+(num+1)+":"+"P"+(num+1)+":"+PaymentPage.address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"-"+"\n";
+                    String something = "L"+(num+1)+":"+"P"+(num+1)+":"+PaymentPage.userhere.getText()+":"+PaymentPage.address.getText()+":"+"PendingAssign"+":"+"PendingAssign"+":"+"-"+"\n";
                         
                         
                     FileWriter FW;
@@ -130,9 +139,8 @@ public class Payment {
                      bw.write(something);
                      bw.close();
                      fw.close();
-                     
-                     
-                     
+                    
+                    JOptionPane.showMessageDialog(null, "Payment Success"+"\n"+ "Your Order is L"+ (num+1) +". and Your Payment is P"+ (num+1));  
                }
                 
         } catch (FileNotFoundException ex) {
@@ -159,5 +167,38 @@ public class Payment {
         }
     }
     
-    
+     public void ReadReceipt(){
+        try {
+        File price = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\receipt\\receipt.txt");
+        BufferedReader br = new BufferedReader(new FileReader(price));
+        
+        String line;
+        while ((line = br.readLine()) != null) {
+            PaymentPage.textarea.append(line + "\n");
+        }
+        
+        br.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void ReadCurrentUser(){
+        try {
+            File price = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\currentuser\\currentuser.txt");
+            FileReader tr = new FileReader(price);
+            BufferedReader br = new BufferedReader(new FileReader(price));
+            String firstLine = br.readLine().trim();
+            Object[] tableLines = br.lines().toArray();
+            for (int z = 0; z <1; z++) {
+                String line = tableLines[z].toString().trim();
+                PaymentPage.userhere.setText(line);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }

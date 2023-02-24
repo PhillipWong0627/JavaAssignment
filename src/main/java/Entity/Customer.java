@@ -8,167 +8,183 @@ import Customer.CustomerInterface;
 import Customer.CustomerLogin;
 import Customer.CustomerRegister;
 import Customer.OrderPage;
+import Customer.CustomerUpdateProfile;
+import static Customer.CustomerUpdateProfile.profile;
+import static Customer.CustomerUpdateProfile.search;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
  *
  * @author user
  */
-public class Customer{
-    private String customerName;
-    private String customerAddress;
-    private String Email;
-    private Integer creditCardNo;
-    private ArrayList<Cart> carList;
+public class Customer extends Payment{
+//    private String customerName;
+//    private String customerAddress;
+//    private String Email;
+//    private Integer creditCardNo;
+//    private ArrayList<Cart> carList;
     
-    File filename = new File ("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerinfo");
-    int ln;
-    String Username,Password;
-    
-    public void Customer (String custName, String custAddress, String email,Integer creditCardNo, ArrayList<Cart> cartList){
-        this.customerName = custName;
-        this.customerAddress = custAddress;
-        this.Email = email;
-        this.creditCardNo = creditCardNo;
-        this.carList = cartList;
+    public boolean register() throws IOException{
+        
+        File customerdetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+        FileWriter FW;
+        FW = new FileWriter(customerdetail,true);
+        BufferedWriter BW = new BufferedWriter(FW);
+        String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.password.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
+        BW.write(record);
+        BW.close();
+        FW.close();
+        
+        JOptionPane.showMessageDialog(null, "Successfully register, "+CustomerRegister.usernamere.getText());
+        CustomerLogin cslogin = new CustomerLogin();
+        cslogin.setVisible(true);
+        return true;
     }
     
-//    public void CreateFolder(){
-//        if (!filename.exists()){
-//            filename.mkdirs();
-//        }
-//    }
-//    
-//    public void CreateFile(){
-//        try {
-//            FileReader fr = new FileReader(filename+"\\customerlogin.txt");
-//            System.out.println("file exists");
-//        } catch (FileNotFoundException ex) {
-//            try {
-//                FileWriter fw = new FileWriter(filename+"\\customerlogin.txt");
-//                System.out.println("File created successfully");
-//            } catch (IOException ex1) {
-//                Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex1);
-//            }
-//        }
-//    }
-//    public void AddData(String username, String password, String email,String dateofbirth, String phonenumber, String address){
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt", "rw");
-//            
-//            for(int i=0;i<ln;i++){
-//                raf.readLine(); 
-//            }
-//                
-//                raf.writeBytes(username+":"+password+":"+email+":"+dateofbirth+":"+phonenumber+":"+address+"\r\n");
-//                JOptionPane.showMessageDialog(null, "Successfully Register, "+ username +". Proceed to login page now >.<");  
-//                
-//                
-//            
-//            
-//            
-//        
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
-    
-    //check single set only
-//    public void CheckData(String username, String password){
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-//            String line = raf.readLine();
-//            Username = line.substring(9);
-//            Password = raf.readLine().substring(9);
-//            
-//            if(username.equals(Username)& password.equals(Password)){
-//                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
-//            }else{
-//                JOptionPane.showMessageDialog(null, "Wrong username or password");
-//            }
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//    
-//    //check multiple set
-//    public void logic(String username, String password){
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-//            for(int i=0; i<ln;i+=9){
-//                System.out.println("count "+i);
-//                String forusername = raf.readLine().substring(9);
-//                String forpassword = raf.readLine().substring(9);
-//                System.out.println(forusername);
-//                if(username.equals(forusername)& password.equals(forpassword)){
-//                JOptionPane.showMessageDialog(null, "Welcome back to P&K Food Center, "+username);
-//                break;
-//                    }else if(i==(ln-8)){
-//                    JOptionPane.showMessageDialog(null, "Wrong username or password");
-//                    break;  
-//            }
-//                for(int k=1;k<=7;k++){
-//                    raf.readLine();
-//                }
-//            }
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//    public void CountLines(){
-//        try {
-//            ln=1;
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-//            for(int i=0;raf.readLine()!=null;i++){
-//                ln++;
-//            }
-//            System.out.println("Number of Lines:"+ln);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    
-//    public void checkduplicate(String username){
-//        ln=1;
-//        try {
-//            RandomAccessFile raf = new RandomAccessFile(filename+"\\customerlogin.txt", "rw");
-//            for(int i=0; i<ln;i+=9){
-//                System.out.println("count "+i);
-//                String forusername = raf.readLine().substring(9);
-//                if(username.equals(forusername)){
-//                    System.out.println("Username exist");
-//                }
-//            }
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (IOException ex) {
-//            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }   
     
     
-    public void register(){
-        
+    public boolean login(){
+        try {
+            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            FileReader tr = new FileReader(customerinfo);
+            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
+            String firstLine = br.readLine().trim();
+//            String[] columnName = firstLine.split(",");
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                System.out.println(dataRow[0]);
+                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+                    ReadUsertoPayment();
+                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
+                    CustomerInterface csinterface = new CustomerInterface();
+                    csinterface.setVisible(true);
+                    return true;
+                } 
+            }
+            } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            JOptionPane.showMessageDialog(null, "Wrong Username or password"); 
+        return false;
+    }
+    
+    public void CustomerUpdateProfile() {
+        try {
+            File customerprofile = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            FileReader tr = new FileReader(customerprofile);
+            BufferedReader br = new BufferedReader(new FileReader(customerprofile));
+            String firstLine = br.readLine().trim();
+            String[] columnName = firstLine.split(":");
+            DefaultTableModel model = (DefaultTableModel) CustomerUpdateProfile.profile.getModel();
+            model.setRowCount(0);
+            model.setColumnIdentifiers(columnName);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                model.addRow(dataRow);
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void search(){
+        DefaultTableModel model = (DefaultTableModel) profile.getModel();
+        try {
+            File f = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            String SearchUsername = search.getText();
+            if (SearchUsername.isEmpty()){
+                return;
+            }
+            Scanner Sc1 = new Scanner(f);
+            int Status = 0;
+            while (Sc1.hasNextLine()) {
+                String Line = Sc1.nextLine();
+                System.out.println(Line);
+                String[] myArr = Line.split(":");
+                if (myArr[0].equals(SearchUsername)) {
+                    Status = 1; // String found
+                    CustomerUpdateProfile.username.setText(myArr[0]);
+                    CustomerUpdateProfile.password.setText(myArr[1]);
+                    CustomerUpdateProfile.email.setText(myArr[2]);
+                    CustomerUpdateProfile.dob.setText(myArr[3]);
+                    CustomerUpdateProfile.phonenumber.setText(myArr[4]);
+                    CustomerUpdateProfile.address.setText(myArr[5]);
+                    for(int i=0;i<model.getRowCount();i++){
+                        String tempusername = (String)model.getValueAt(i,0);
+                        if (tempusername.equals(myArr[0])){
+                            CustomerUpdateProfile.profile.setRowSelectionInterval(i, i);
+                            break;
+                        }
+                    }
+                }
+            }
+            if (Status == 0) {
+                 JOptionPane.showMessageDialog(null, "No such username");
+            }
+        } catch (IOException Ex) {
+            // Handle exception
+        }
+    }
+    
+    public void update(){
+        int item = profile.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) profile.getModel();
+
+        if (item >= 0) {
+            model.setValueAt(CustomerUpdateProfile.username.getText(), item, 0);
+            model.setValueAt(CustomerUpdateProfile.password.getText(), item, 1);
+            model.setValueAt(CustomerUpdateProfile.email.getText(), item, 2);
+            model.setValueAt(CustomerUpdateProfile.dob.getText(), item, 3);
+            model.setValueAt(CustomerUpdateProfile.phonenumber.getText(), item, 4);
+            model.setValueAt(CustomerUpdateProfile.address.getText(), item, 5);
+
+            String filePath = "C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt";
+            File file = new File(filePath);
+            try {
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                String colHeadings = "";
+                for (int i = 0; i < model.getColumnCount(); i++) {
+                    colHeadings = colHeadings + model.getColumnName(i) + ":";
+                }
+                bw.write(colHeadings + "\n");
+
+                for (int i = 0; i < profile.getRowCount(); i++) {
+                    for (int j = 0; j < profile.getColumnCount(); j++) {
+                        bw.write(profile.getValueAt(i, j).toString() + ":");
+                    }
+                    bw.newLine();
+                }
+
+                bw.close();
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CustomerUpdateProfile.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+            JOptionPane.showMessageDialog(null, "Account Updated SUCCESSFULLY!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please fill up ALL details!");
+        }
     }
 }
 
