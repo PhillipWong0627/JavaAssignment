@@ -62,13 +62,13 @@ public class Food{
     
     
     public void SearchbyCategory() {
+        DefaultTableModel model = (DefaultTableModel) OrderPage.jTable2.getModel();
         try {
             File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
             String[] columnName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) OrderPage.jTable2.getModel();
             model.setRowCount(0);
             model.setColumnIdentifiers(columnName);
 
@@ -84,9 +84,6 @@ public class Food{
                     OrderPage.jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
                     model.addRow(dataRow);
                     OrderPage.searchfood.setText(OrderPage.category.getText());
-                }else{
-                    JOptionPane.showMessageDialog(null, "No such category, please refer back to Food List");
-                    break;
                 }
 
             }
@@ -94,5 +91,9 @@ public class Food{
         } catch (IOException ex) {
             Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(model.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "No such category, please refer back to Food List");
+        }
+        
     }
 }

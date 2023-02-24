@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -67,6 +68,8 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
         
     }
     
+    
+    
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException {
         x++;
         String add = OrderPage.addtxt.getText();
@@ -95,12 +98,10 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
                         }else if(subTotal>30 &&subTotal<=50){
                             tax = subTotal*0.05;
                         }else{
-                            tax = 0.00;
-                            break;
+                            tax = 0.00;  
+//                            break;
                         }
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Code not found");
-//                        break;
+                        return;
                     }
                 }
                 OrderPage.subtotal.setText(String.valueOf(subTotal));
@@ -110,10 +111,20 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+//            JOptionPane.showMessageDialog(null, "Code not found");
+            
         }
 
     }
     
- 
+ public void SaveReceipt(){
+    try{
+        FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\receipt\\receipt.txt", true);
+        Writer.write(receipt.getText());
+        Writer.close();
+        }
+        catch (Exception e){
+        JOptionPane.showMessageDialog(null, "Error");
+        }  
+            }
 }

@@ -63,29 +63,29 @@ public class Customer{
 //            }
 //        }
 //    }
-    public void AddData(String username, String password, String email,String dateofbirth, String phonenumber, String address){
-        try {
-            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt", "rw");
-            
-            for(int i=0;i<ln;i++){
-                raf.readLine(); 
-            }
-                
-                raf.writeBytes(username+":"+password+":"+email+":"+dateofbirth+":"+phonenumber+":"+address+"\r\n");
-                JOptionPane.showMessageDialog(null, "Successfully Register, "+ username +". Proceed to login page now >.<");  
-                
-                
-            
-            
-            
-        
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+//    public void AddData(String username, String password, String email,String dateofbirth, String phonenumber, String address){
+//        try {
+//            RandomAccessFile raf = new RandomAccessFile("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt", "rw");
+//            
+//            for(int i=0;i<ln;i++){
+//                raf.readLine(); 
+//            }
+//                
+//                raf.writeBytes(username+":"+password+":"+email+":"+dateofbirth+":"+phonenumber+":"+address+"\r\n");
+//                JOptionPane.showMessageDialog(null, "Successfully Register, "+ username +". Proceed to login page now >.<");  
+//                
+//                
+//            
+//            
+//            
+//        
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(CustomerLogin.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
     
     //check single set only
 //    public void CheckData(String username, String password){

@@ -41,15 +41,31 @@ public class CustomerRegister extends javax.swing.JFrame {
     public void register(){
         try {
             File customerdetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            
             FileReader tr = new FileReader(customerdetail);
             BufferedReader br = new BufferedReader(new FileReader(customerdetail));
-            FileWriter FW;
-            FW = new FileWriter(customerdetail,true);
-            BufferedWriter BW = new BufferedWriter(FW);
-            String record = username.getText()+":"+password.getText()+":"+email.getText()+":"+dateofbirth.getText()+":"+phonenumber.getText()+":"+address.getText()+"\r\n";
-            BW.write(record);
-            BW.close();
-            FW.close();
+            String firstLine = br.readLine().trim();
+//            String[] columnName = firstLine.split(",");
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                if (username.getText().equals(dataRow[0])){
+                    System.out.println("");
+                }
+            }
+            
+            
+                
+            
+//            FileWriter FW;
+//            FW = new FileWriter(customerdetail,true);
+//            BufferedWriter BW = new BufferedWriter(FW);
+//            String record = username.getText()+":"+password.getText()+":"+email.getText()+":"+dateofbirth.getText()+":"+phonenumber.getText()+":"+address.getText()+"\r\n";
+//            BW.write(record);
+//            BW.close();
+//            FW.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -422,9 +438,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

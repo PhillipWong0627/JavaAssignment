@@ -89,7 +89,8 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
         phonenumber = new javax.swing.JTextField();
         jtextfield1 = new javax.swing.JLabel();
         search = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchbutton = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,6 +171,16 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
         orderid7.setText("Phone Number:");
 
         phonenumber.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        phonenumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phonenumberFocusLost(evt);
+            }
+        });
+        phonenumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phonenumberActionPerformed(evt);
+            }
+        });
 
         jtextfield1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jtextfield1.setText("Enter your username:");
@@ -181,10 +192,18 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchbutton.setText("Search");
+        searchbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchbuttonActionPerformed(evt);
+            }
+        });
+
+        back.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
             }
         });
 
@@ -197,37 +216,45 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(orderid6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(orderid7, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                                    .addComponent(dob))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(email)
+                                    .addComponent(password)
+                                    .addComponent(username)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(orderid6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(orderid7, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(phonenumber, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-                                        .addComponent(dob)))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(email)
-                                        .addComponent(password)
-                                        .addComponent(username)))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jtextfield1)
                         .addGap(18, 18, 18)
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +263,7 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(searchbutton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -264,7 +291,9 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
                     .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(169, 169, 169))
         );
 
@@ -278,9 +307,9 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,18 +368,17 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
             String filePath = "C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt";
             File file = new File(filePath);
             try {
-
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter bw = new BufferedWriter(fw);
                 String colHeadings = "";
                 for (int i = 0; i < model.getColumnCount(); i++) {
-                    colHeadings = colHeadings + model.getColumnName(i) + ",";
+                    colHeadings = colHeadings + model.getColumnName(i) + ":";
                 }
                 bw.write(colHeadings + "\n");
 
                 for (int i = 0; i < profile.getRowCount(); i++) {
                     for (int j = 0; j < profile.getColumnCount(); j++) {
-                        bw.write(profile.getValueAt(i, j).toString() + ",");
+                        bw.write(profile.getValueAt(i, j).toString() + ":");
                     }
                     bw.newLine();
                 }
@@ -359,7 +387,7 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
                 fw.close();
             } catch (IOException ex) {
                 Logger.getLogger(CustomerUpdateProfile.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } 
 
             JOptionPane.showMessageDialog(this, "Account Updated SUCCESSFULLY!");
             //            bum.setVisible(true);
@@ -375,23 +403,35 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
 
     }//GEN-LAST:event_searchActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbuttonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) profile.getModel();
         try {
             File f = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
             String SearchUsername = search.getText();
+            if (SearchUsername.isEmpty()){
+                return;
+            }
             Scanner Sc1 = new Scanner(f);
             int Status = 0;
             while (Sc1.hasNextLine()) {
                 String Line = Sc1.nextLine();
-                if (Line.contains(SearchUsername)) {
+                System.out.println(Line);
+                String[] myArr = Line.split(":");
+                if (myArr[0].equals(SearchUsername)) {
                     Status = 1; // String found
-                    String[] myArr = Line.split(":");
-//                    username.setText(myArr[0].toString());
-                    password.setText(myArr[1].toString());
-                    email.setText(myArr[2].toString());
-                    dob.setText(myArr[3].toString());
-                    phonenumber.setText(myArr[4].toString());
-                    address.setText(myArr[5].toString());
+                    username.setText(myArr[0]);
+                    password.setText(myArr[1]);
+                    email.setText(myArr[2]);
+                    dob.setText(myArr[3]);
+                    phonenumber.setText(myArr[4]);
+                    address.setText(myArr[5]);
+                    for(int i=0;i<model.getRowCount();i++){
+                        String tempusername = (String)model.getValueAt(i,0);
+                        if (tempusername.equals(myArr[0])){
+                            profile.setRowSelectionInterval(i, i);
+                            break;
+                        }
+                    }
                 }
             }
             if (Status == 0) {
@@ -400,7 +440,23 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
         } catch (IOException Ex) {
             // Handle exception
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_searchbuttonActionPerformed
+
+    private void phonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phonenumberActionPerformed
+
+    private void phonenumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phonenumberFocusLost
+        if (!phonenumber.getText().matches("^[0-9]{10,11}$")) {
+            phonenumber.setText("");
+        }
+    }//GEN-LAST:event_phonenumberFocusLost
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        CustomerInterface ci = new CustomerInterface();
+        ci.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,9 +530,9 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea address;
+    private javax.swing.JButton back;
     private javax.swing.JTextField dob;
     private javax.swing.JTextField email;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -494,6 +550,7 @@ public class CustomerUpdateProfile extends javax.swing.JFrame {
     private javax.swing.JTextField phonenumber;
     private javax.swing.JTable profile;
     private javax.swing.JTextField search;
+    private javax.swing.JButton searchbutton;
     private javax.swing.JButton update;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

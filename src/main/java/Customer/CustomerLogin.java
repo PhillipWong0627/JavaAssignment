@@ -266,59 +266,58 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-//    try {
-//            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-//            FileReader tr = new FileReader(customerinfo);
-//            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
-//            String firstLine = br.readLine().trim();
-////            String[] columnName = firstLine.split(",");
-//            Object[] tableLines = br.lines().toArray();
+    try {
+            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            FileReader tr = new FileReader(customerinfo);
+            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
+            String firstLine = br.readLine().trim();
+//            String[] columnName = firstLine.split(",");
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                System.out.println(dataRow[0]);
+                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
+                    CustomerInterface csinterface = new CustomerInterface();
+                    csinterface.setVisible(true);
+                    this.dispose();
+                    return;
+                } 
+            }
+            } catch (IOException ex) {
+            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            JOptionPane.showMessageDialog(null, "Wrong Username or password");    
+                   
+    
+//        File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+//        try ( BufferedReader br = new BufferedReader(new FileReader(customerinfo))) {
+//            String firstLine = br.readLine();
+//            String[] columnNames = firstLine.split(":"); // Assumes the file is using ":" as a delimiter
 //
-//            for (int z = 0; z < tableLines.length; z++) {
-//                String line = tableLines[z].toString().trim();
-//                String[] dataRow = line.split(":");
-//                System.out.println(dataRow[0]);
-//                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+//            List<String[]> dataRows = new ArrayList<>();
+//            String line;
+//            while ((line = br.readLine()) != null) {
+//                String[] dataRow = line.split(":"); // Assumes the file is using ":" as a delimiter
+//                dataRows.add(dataRow);
+//            }
+//
+//            for (String[] dataRow : dataRows) {
+//                if (CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])) {
 //                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
 //                    CustomerInterface csinterface = new CustomerInterface();
 //                    csinterface.setVisible(true);
 //                    this.dispose();
 //                    break;
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Wrong Username or password");
-//                    break;
-//                }   
+//                }
 //            }
-//            } catch (IOException ex) {
+//
+////            JOptionPane.showMessageDialog(null, "Wrong Username or password");
+//        } catch (IOException ex) {
 //            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-    
-        File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-        try ( BufferedReader br = new BufferedReader(new FileReader(customerinfo))) {
-            String firstLine = br.readLine();
-            String[] columnNames = firstLine.split(":"); // Assumes the file is using ":" as a delimiter
-
-            List<String[]> dataRows = new ArrayList<>();
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] dataRow = line.split(":"); // Assumes the file is using ":" as a delimiter
-                dataRows.add(dataRow);
-            }
-
-            for (String[] dataRow : dataRows) {
-                if (CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])) {
-                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
-                    CustomerInterface csinterface = new CustomerInterface();
-                    csinterface.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-            }
-
-//            JOptionPane.showMessageDialog(null, "Wrong Username or password");
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         
     }//GEN-LAST:event_loginActionPerformed

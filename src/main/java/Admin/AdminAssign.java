@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Delivery;
+package Admin;
 
+import Delivery.*;
 import Main.*;
 import Customer.*;
 import java.io.BufferedReader;
@@ -22,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kenny
  */
-public class DeliveryInterface extends javax.swing.JFrame {
+public class AdminAssign extends javax.swing.JFrame {
 
     /**
      * Creates new form RegisterPage
      */
-    public DeliveryInterface() throws IOException {
+    public AdminAssign() throws IOException {
         initComponents();
         DeliveryDetailsTable();
 
@@ -75,19 +76,20 @@ public class DeliveryInterface extends javax.swing.JFrame {
         delivery = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jtextfield = new javax.swing.JLabel();
+        orderid = new javax.swing.JTextField();
         orderid1 = new javax.swing.JLabel();
+        paymentid = new javax.swing.JTextField();
         orderid2 = new javax.swing.JLabel();
+        deliverystaff = new javax.swing.JTextField();
         orderid3 = new javax.swing.JLabel();
         orderid4 = new javax.swing.JLabel();
         status = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        address = new javax.swing.JTextArea();
         orderid5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         feedback = new javax.swing.JTextArea();
         update = new javax.swing.JButton();
-        delivery2 = new javax.swing.JLabel();
-        address = new javax.swing.JLabel();
-        order = new javax.swing.JLabel();
-        payment = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,7 +97,7 @@ public class DeliveryInterface extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("Delivery Staff");
+        jLabel2.setText("Admin Assign");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,11 +133,17 @@ public class DeliveryInterface extends javax.swing.JFrame {
         jtextfield.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jtextfield.setText("OrderID:");
 
+        orderid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         orderid1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid1.setText("PaymentID:");
 
+        paymentid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         orderid2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid2.setText("DeliveryStaff:");
+
+        deliverystaff.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         orderid3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid3.setText("Address:");
@@ -144,6 +152,11 @@ public class DeliveryInterface extends javax.swing.JFrame {
         orderid4.setText("Status:");
 
         status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        address.setColumns(20);
+        address.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        address.setRows(5);
+        jScrollPane2.setViewportView(address);
 
         orderid5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid5.setText("Feedback:");
@@ -162,18 +175,6 @@ public class DeliveryInterface extends javax.swing.JFrame {
             }
         });
 
-        delivery2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        delivery2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        address.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        address.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        order.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        order.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        payment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        payment.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -182,60 +183,54 @@ public class DeliveryInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(status))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(delivery2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                        .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(orderid))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(paymentid))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(status))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deliverystaff)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(order))
+                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payment))
+                    .addComponent(paymentid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delivery2))
+                    .addComponent(deliverystaff, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,7 +267,7 @@ public class DeliveryInterface extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,10 +290,10 @@ public class DeliveryInterface extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) delivery.getModel();
         int selectedInfo = delivery.getSelectedRow();
 
-        order.setText(model.getValueAt(selectedInfo, 0).toString());
-        payment.setText(model.getValueAt(selectedInfo, 1).toString());
+        orderid.setText(model.getValueAt(selectedInfo, 0).toString());
+        paymentid.setText(model.getValueAt(selectedInfo, 1).toString());
         address.setText(model.getValueAt(selectedInfo, 2).toString());
-        delivery2.setText(model.getValueAt(selectedInfo, 3).toString());
+        deliverystaff.setText(model.getValueAt(selectedInfo, 3).toString());
         status.setText(model.getValueAt(selectedInfo, 4).toString());
         feedback.setText(model.getValueAt(selectedInfo, 5).toString());
     }//GEN-LAST:event_deliveryMouseClicked
@@ -308,10 +303,10 @@ public class DeliveryInterface extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) delivery.getModel();
 
         if (item >= 0) {
-            model.setValueAt(order.getText(), item, 0);
-            model.setValueAt(payment.getText(), item, 1);
+            model.setValueAt(orderid.getText(), item, 0);
+            model.setValueAt(paymentid.getText(), item, 1);
             model.setValueAt(address.getText(), item, 2);
-            model.setValueAt(delivery2.getText(), item, 3);
+            model.setValueAt(deliverystaff.getText(), item, 3);
             model.setValueAt(status.getText(), item, 4);
             model.setValueAt(feedback.getText(), item, 5);
 
@@ -323,13 +318,13 @@ public class DeliveryInterface extends javax.swing.JFrame {
                 BufferedWriter bw = new BufferedWriter(fw);
                 String colHeadings = "";
                 for (int i = 0; i < model.getColumnCount();i++){
-                    colHeadings = colHeadings + model.getColumnName(i) + ":";
+                    colHeadings = colHeadings + model.getColumnName(i) + ",";
                 }
                 bw.write(colHeadings + "\n");
 
                 for (int i = 0; i < delivery.getRowCount(); i++) {
                     for (int j = 0; j < delivery.getColumnCount(); j++) {
-                        bw.write(delivery.getValueAt(i, j).toString() + ":");
+                        bw.write(delivery.getValueAt(i, j).toString() + ",");
                     }
                     bw.newLine();
                 }
@@ -337,7 +332,7 @@ public class DeliveryInterface extends javax.swing.JFrame {
                 bw.close();
                 fw.close();
             } catch (IOException ex) {
-                Logger.getLogger(DeliveryInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             JOptionPane.showMessageDialog(this, "Account Updated SUCCESSFULLY!");
@@ -366,14 +361,30 @@ public class DeliveryInterface extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -395,33 +406,34 @@ public class DeliveryInterface extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new DeliveryInterface().setVisible(true);
+                    new AdminAssign().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(DeliveryInterface.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel address;
+    private javax.swing.JTextArea address;
     private javax.swing.JTable delivery;
-    private javax.swing.JLabel delivery2;
+    private javax.swing.JTextField deliverystaff;
     private javax.swing.JTextArea feedback;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel jtextfield;
-    private javax.swing.JLabel order;
+    private javax.swing.JTextField orderid;
     private javax.swing.JLabel orderid1;
     private javax.swing.JLabel orderid2;
     private javax.swing.JLabel orderid3;
     private javax.swing.JLabel orderid4;
     private javax.swing.JLabel orderid5;
-    private javax.swing.JLabel payment;
+    private javax.swing.JTextField paymentid;
     private javax.swing.JTextField status;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
