@@ -104,6 +104,7 @@ public class AdminHomePage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 108, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(adminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,8 +115,7 @@ public class AdminHomePage extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(adminBtn4))
-                            .addComponent(adminBtn3)))
-                    .addComponent(adminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(adminBtn3))))
                 .addGap(66, 66, 66))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,11 +133,11 @@ public class AdminHomePage extends javax.swing.JFrame {
                         .addComponent(adminBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(adminBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(adminBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(adminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(adminBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,6 +167,12 @@ public class AdminHomePage extends javax.swing.JFrame {
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
         // TODO add your handling code here:
+        ItemManagement itemManagement = new ItemManagement();
+        
+        this.dispose();
+        itemManagement.setVisible(true);
+        
+        
     }//GEN-LAST:event_adminBtnActionPerformed
 
     private void adminBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtn1ActionPerformed
@@ -182,6 +188,11 @@ public class AdminHomePage extends javax.swing.JFrame {
 
     private void adminBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtn2ActionPerformed
         // TODO add your handling code here:
+        CategoryManagement categoryManagement = new CategoryManagement();
+        this.dispose();
+        categoryManagement.setVisible(true);
+        
+        
     }//GEN-LAST:event_adminBtn2ActionPerformed
 
     private void adminBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtn3ActionPerformed

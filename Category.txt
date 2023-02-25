@@ -1,0 +1,3 @@
+CategoryId:CategoryType:
+C001:Chinese:
+C002:Western

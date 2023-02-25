@@ -20,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class CategoryManagement extends javax.swing.JFrame {
+public class ItemManagement extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminManagement
      */
     
 //    Object[] AdminData = new Object[];
-    public CategoryManagement() {
+    public ItemManagement() {
         initComponents();
         lblStatus.setVisible(false);
     }
@@ -52,10 +52,14 @@ public class CategoryManagement extends javax.swing.JFrame {
         btnFetch1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        CatID = new javax.swing.JTextField();
+        FOODID = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        CatType = new javax.swing.JTextField();
+        foodName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        foodPrice = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        catType = new javax.swing.JTextField();
         lblStatus = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -63,7 +67,7 @@ public class CategoryManagement extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 153, 153));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("ADD CATEGORY");
+        jButton2.setText("ADD ITEM");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -75,7 +79,7 @@ public class CategoryManagement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CategoryId", "CategoryType"
+                "FOOD ID", "NAME", "FODD PRICE", "CAT TYPE"
             }
         ));
         jScrollPane1.setViewportView(adminTable);
@@ -98,7 +102,7 @@ public class CategoryManagement extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(153, 255, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("CATEGORY MANAGEMENT");
+        jLabel1.setText("ITEM MANAGEMENT");
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("BACK");
@@ -127,7 +131,7 @@ public class CategoryManagement extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
-        jLabel3.setText("Category ID : ");
+        jLabel3.setText("FOOD ID : ");
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("SEARCH");
@@ -137,7 +141,23 @@ public class CategoryManagement extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Categroy Type : ");
+        jLabel4.setText("NAME : ");
+
+        jLabel5.setText("FOOD PRICE : ");
+
+        foodPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodPriceActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("CATEGORY \nTYPE:");
+
+        catType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catTypeActionPerformed(evt);
+            }
+        });
 
         lblStatus.setText("lblStatus");
 
@@ -149,18 +169,25 @@ public class CategoryManagement extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(34, 34, 34)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CatType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(lblStatus))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(FOODID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CatID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(catType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblStatus)
+                        .addGap(28, 28, 28))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,12 +195,20 @@ public class CategoryManagement extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(CatID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FOODID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CatType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(catType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblStatus))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -187,7 +222,7 @@ public class CategoryManagement extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
+                .addGap(216, 216, 216)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -216,19 +251,19 @@ public class CategoryManagement extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,12 +281,12 @@ public class CategoryManagement extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
-       addCategory AddCategory = new addCategory();
-       
+        
+       addItem c = new addItem();
+        
        this.dispose();
-       AddCategory.setVisible(true);
-
+       c.setVisible(true);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -267,7 +302,7 @@ public class CategoryManagement extends javax.swing.JFrame {
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
         // Click this button to Fetch All the existiing Data
         
-        File adfile = new File("Category.txt");
+        File adfile = new File("itemFile.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(adfile));
             
@@ -292,9 +327,9 @@ public class CategoryManagement extends javax.swing.JFrame {
             
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CategoryManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ItemManagement.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CategoryManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ItemManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
@@ -317,7 +352,7 @@ public class CategoryManagement extends javax.swing.JFrame {
         System.out.println(SelRow);
         tModel.removeRow(SelRow);
         
-        File itemFile = new File("Category.txt");
+        File itemFile = new File("itemFile.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(itemFile));
             
@@ -347,7 +382,7 @@ public class CategoryManagement extends javax.swing.JFrame {
             
             
         } catch (IOException ex) {
-            Logger.getLogger(CategoryManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ItemManagement.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
         
@@ -360,7 +395,7 @@ public class CategoryManagement extends javax.swing.JFrame {
         DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
 
         
-        File adminFile = new File("Category.txt");
+        File adminFile = new File("itemFile.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(adminFile));
             
@@ -387,7 +422,7 @@ public class CategoryManagement extends javax.swing.JFrame {
             
             
         } catch (IOException ex) {
-            Logger.getLogger(CategoryManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ItemManagement.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
         
@@ -395,57 +430,72 @@ public class CategoryManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFetch1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+        try {                                         
             // TODO add your handling code here:
             Administrator administrator = new Administrator();
-
-            if("".equals(CatID.getText())){
+            
+            if("".equals(FOODID.getText())){
                 System.out.println("Empty");
-
+                
                 lblStatus.setVisible(true);
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
-
-                boolean valid = administrator.searchAdmin(CatID.getText());
-
-                if(valid){
-                    System.out.println("HALLO WORLD");
-                    File adminFile = new File("Category.txt");
-
-                    BufferedReader br = new BufferedReader(new FileReader(adminFile));
-
-                    //Save Each line of data into adminRow Arrayin x;x;x
-                    Object[] adminRow = br.lines().toArray();
-
-                    for(int i=0; i<adminRow.length;i++){
-                        String rows = adminRow[i].toString().trim();
-                        //System.out.println(rows);
-                        String[] splitRows = rows.split(":");
-
-                        if(splitRows[0].equals(CatID.getText())){
-
-                            CatType.setText(splitRows[1]);
-                  
-
-                        }
-
+                
+                boolean valid = administrator.searchAdmin(FOODID.getText());
+            
+            if(valid){
+                System.out.println("HALLO WORLD");
+                File adminFile = new File("adminFile.txt");
+                
+                BufferedReader br = new BufferedReader(new FileReader(adminFile));
+                
+                //Save Each line of data into adminRow Arrayin x;x;x
+                Object[] adminRow = br.lines().toArray();
+                
+                for(int i=0; i<adminRow.length;i++){
+                    String rows = adminRow[i].toString().trim();
+                    //System.out.println(rows);
+                    String[] splitRows = rows.split(":");
+                    
+                    if(splitRows[0].equals(FOODID.getText())){
+                        
+                        foodName.setText(splitRows[1]);
+                        foodPrice.setText(splitRows[3]);
+                        catType.setText(splitRows[4]);
+                        
                     }
-
-                }else{
-                    CatType.setText("");
-    
-
-                    lblStatus.setVisible(true);
-                    lblStatus.setText("Id Not Exist!!");
+                    
                 }
-
+                
+            }else{
+                foodName.setText("");
+                foodPrice.setText("");
+                catType.setText("");
+                
+                lblStatus.setVisible(true);
+                lblStatus.setText("Id Not Exist!!");
             }
-
+                
+                
+            }
+            
+             
+            
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CategoryManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ItemManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void foodPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodPriceActionPerformed
+
+    private void catTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_catTypeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -464,26 +514,14 @@ public class CategoryManagement extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -492,17 +530,19 @@ public class CategoryManagement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryManagement().setVisible(true);
+                new ItemManagement().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CatID;
-    private javax.swing.JTextField CatType;
+    private javax.swing.JTextField FOODID;
     private javax.swing.JTable adminTable;
     private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnFetch1;
+    private javax.swing.JTextField catType;
+    private javax.swing.JTextField foodName;
+    private javax.swing.JTextField foodPrice;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -512,6 +552,8 @@ public class CategoryManagement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblStatus;

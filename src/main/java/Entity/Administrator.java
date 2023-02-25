@@ -127,7 +127,7 @@ public class Administrator {
 
     }
     
-    public void addCategory(String foodID, String Name, Float foodPrice, String CatType) throws IOException{
+    public void addItem(String foodID, String Name, Float foodPrice, String CatType) throws IOException{
         
         int foodId = 1;
         
@@ -138,7 +138,7 @@ public class Administrator {
         
 //        System.out.println(f.getFoodID());
         
-        File file = new File("categoryFile.txt");
+        File file = new File("itemFile.txt");
         FileWriter FW;
        
         FW = new FileWriter(file,true);
@@ -146,14 +146,44 @@ public class Administrator {
             String record = foodId + ":"+ f.getName()+":"+ f.getFoodPrice() + ":"+ f.getCategory().getCategoryType()+ "\n";
             
             BW.write(record);
-            System.out.println("Category Have Been Successfully Added");
-            foodId++;
+            System.out.println("Food Item Have Been Successfully Added");
 
+            foodId++;
+            
         }
         FW.close();
         
-        
+    
     }
+    
+    public void addCategory(String CategoryID, String CategoryType ) throws IOException{
+        
+        int CatId = 1;
+        
+        Category c = new Category(CategoryType);
+        
+        System.out.println(c.toString());
+        
+        
+         
+        File file = new File("Category.txt");
+        FileWriter FW;
+       
+        FW = new FileWriter(file,true);
+        try (BufferedWriter BW = new BufferedWriter(FW)) {
+            String record = CatId + ":"+ c.getCategoryType()+ "\n";
+            
+            BW.write(record);
+            System.out.println("Category Have Been Successfully Added");
+
+            CatId++;
+            
+        }
+        FW.close();
+        
+    
+    }
+    
     
     
     
@@ -248,7 +278,6 @@ public class Administrator {
     }
     
 
-    
     public void updateUser(){
         
         
