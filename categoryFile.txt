@@ -1,0 +1,4 @@
+foodID:Name:FoodPrice:CatType:
+Food-1:ChickenChop:11.80:Western:
+Food-2:Nasi Lemak:6.70:Malaysia:
+1:Chicken Chop:15.6:Western

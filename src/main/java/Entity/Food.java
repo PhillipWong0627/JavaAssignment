@@ -20,17 +20,82 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Food{
     
-//    private String FoodID;
-//    private String Name;
-//    private Float FoodPrice;
-//    private Category Category;
-//    
+    private String FoodID;
+    private String Name;
+    private Float FoodPrice;
+    private Category Category;
+
+    Food(String foodID, String Name, Float foodPrice, String CatType) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 //    public void Food(String foodId, String name, Float foodPrice, Category category){
 //        this.FoodID = foodId;
 //        this.Name = name;
 //        this.FoodPrice = foodPrice;
 //        this.Category = category;
 //    }
+
+    public String getFoodID() {
+        return FoodID;
+    }
+
+    public void setFoodID(String FoodID) {
+        this.FoodID = FoodID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public Float getFoodPrice() {
+        return FoodPrice;
+    }
+
+    public void setFoodPrice(Float FoodPrice) {
+        this.FoodPrice = FoodPrice;
+    }
+
+    public Category getCategory() {
+        return Category;
+    }
+
+    public void setCategory(Category Category) {
+        this.Category = Category;
+    }
+    
+    
+    
+    public Food(){
+        
+    }
+
+    public Food(String FoodID, String Name, Float FoodPrice, Category Category) {
+        this.FoodID = FoodID;
+        this.Name = Name;
+        this.FoodPrice = FoodPrice;
+        this.Category = Category;
+    }
+    
+    public void setFood(){
+        
+        
+    }
+    
+    
+    
+
+    @Override
+    public String toString() {
+        return "Food{" + "FoodID=" + FoodID + ", Name=" + Name + ", FoodPrice=" + FoodPrice + ", Category=" + Category + '}';
+    }
+    
+    
     public void SearchAllFood(){
         try {
             File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
@@ -96,4 +161,6 @@ public class Food{
         }
         
     }
+    
+    
 }

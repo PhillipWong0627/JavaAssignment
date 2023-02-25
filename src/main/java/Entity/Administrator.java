@@ -19,6 +19,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author user
@@ -124,9 +125,37 @@ public class Administrator {
         
         System.out.println("Staff Have Been Successfully Added");
 
+    }
+    
+    public void addCategory(String foodID, String Name, Float foodPrice, String CatType) throws IOException{
+        
+        int foodId = 1;
+        
+        Category c = new Category(CatType);
+        Food f = new Food(foodID,Name,foodPrice,c);
+        
+        System.out.println(f.toString());
+        
+//        System.out.println(f.getFoodID());
+        
+        File file = new File("categoryFile.txt");
+        FileWriter FW;
+       
+        FW = new FileWriter(file,true);
+        try (BufferedWriter BW = new BufferedWriter(FW)) {
+            String record = foodId + ":"+ f.getName()+":"+ f.getFoodPrice() + ":"+ f.getCategory().getCategoryType()+ "\n";
+            
+            BW.write(record);
+            System.out.println("Category Have Been Successfully Added");
+            foodId++;
 
+        }
+        FW.close();
+        
         
     }
+    
+    
     
     public void ModifyAdmin() throws FileNotFoundException{    
         
