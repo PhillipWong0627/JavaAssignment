@@ -17,9 +17,7 @@ public class CodeTesting {
         Administrator ad = new Administrator();
         //DeliveryStaff ds = new DeliveryStaff();
         
-        
-        System.out.println("asdasd");
-        System.out.println("Hallo");
+
         ad.ModifyAdmin();
 
         
