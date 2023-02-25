@@ -5,6 +5,7 @@
 package Entity;
 
 import Customer.OrderPage;
+import NonRegisteredCustomer.NonROrderPage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,21 +17,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author user
+ * @author Kenny
  */
-public class Food{
-    
-//    private String FoodID;
-//    private String Name;
-//    private Float FoodPrice;
-//    private Category Category;
-//    
-//    public void Food(String foodId, String name, Float foodPrice, Category category){
-//        this.FoodID = foodId;
-//        this.Name = name;
-//        this.FoodPrice = foodPrice;
-//        this.Category = category;
-//    }
+public class NonRegistered {
     public void SearchAllFood(){
         try {
             File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
@@ -38,7 +27,7 @@ public class Food{
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
             String[] columnName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) OrderPage.jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) NonROrderPage.jTable1.getModel();
             model.setRowCount(0);
             model.setColumnIdentifiers(columnName);
 
@@ -47,22 +36,22 @@ public class Food{
             for (int z = 0; z < tableLines.length; z++) {
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(",");
-                OrderPage.jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
-                OrderPage.jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
-                OrderPage.jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
-                OrderPage.jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+                NonROrderPage.jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+                NonROrderPage.jTable1.getColumnModel().getColumn(1).setPreferredWidth(150);
+                NonROrderPage.jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+                NonROrderPage.jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
                 model.addRow(dataRow);
 
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NonROrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     
     public void SearchbyCategory() {
-        DefaultTableModel model = (DefaultTableModel) OrderPage.jTable2.getModel();
+        DefaultTableModel model = (DefaultTableModel) NonROrderPage.jTable2.getModel();
         try {
             File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
             FileReader tr = new FileReader(fooddata);
@@ -78,18 +67,18 @@ public class Food{
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(",");
                 if (dataRow[3].equals(OrderPage.category.getText())) {
-                    OrderPage.jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
-                    OrderPage.jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
-                    OrderPage.jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
-                    OrderPage.jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
+                    NonROrderPage.jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
+                    NonROrderPage.jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
+                    NonROrderPage.jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
+                    NonROrderPage.jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
                     model.addRow(dataRow);
-                    OrderPage.searchfood.setText(OrderPage.category.getText());
+                    NonROrderPage.searchfood.setText(OrderPage.category.getText());
                 }
 
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NonROrderPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(model.getRowCount()==0){
             JOptionPane.showMessageDialog(null, "No such category, please refer back to Food List");

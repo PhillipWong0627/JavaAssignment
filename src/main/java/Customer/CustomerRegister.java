@@ -5,18 +5,9 @@
 package Customer;
 
 
-import static Customer.PaymentPage.datetxt;
-import static Customer.PaymentPage.timetxt;
 import Entity.Customer;
 import Main.WelcomePage;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,9 +18,6 @@ import javax.swing.JOptionPane;
  * @author Kenny
  */
 public class CustomerRegister extends javax.swing.JFrame {
-
-    int ln;
-    private String filename;   
     
     /**
      * Creates new form RegisterPage
@@ -38,24 +26,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         initComponents();
     } 
     
-    public void register(){
-        try {
-            File customerdetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-            FileReader tr = new FileReader(customerdetail);
-            BufferedReader br = new BufferedReader(new FileReader(customerdetail));
-            FileWriter FW;
-            FW = new FileWriter(customerdetail,true);
-            BufferedWriter BW = new BufferedWriter(FW);
-            String record = username.getText()+":"+password.getText()+":"+email.getText()+":"+dateofbirth.getText()+":"+phonenumber.getText()+":"+address.getText()+"\r\n";
-            BW.write(record);
-            BW.close();
-            FW.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
-        }
-}
+    Customer cs = new Customer();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +58,7 @@ public class CustomerRegister extends javax.swing.JFrame {
         jPanel47 = new javax.swing.JPanel();
         usernamelabel40 = new javax.swing.JLabel();
         address = new javax.swing.JTextField();
-        username = new javax.swing.JTextField();
+        usernamere = new javax.swing.JTextField();
         register = new javax.swing.JButton();
         backtomainmenu = new javax.swing.JButton();
         clear = new javax.swing.JButton();
@@ -293,10 +264,10 @@ public class CustomerRegister extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        username.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        username.addActionListener(new java.awt.event.ActionListener() {
+        usernamere.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        usernamere.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
+                usernamereActionPerformed(evt);
             }
         });
 
@@ -311,7 +282,7 @@ public class CustomerRegister extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                             .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(usernamere, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jPanel40, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,7 +296,7 @@ public class CustomerRegister extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernamere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -422,17 +393,15 @@ public class CustomerRegister extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+    private void usernamereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamereActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
+    }//GEN-LAST:event_usernamereActionPerformed
 
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
@@ -456,10 +425,16 @@ public class CustomerRegister extends javax.swing.JFrame {
 
     
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        if(username.getText().equals("")||password.getText().equals("")||email.getText().equals("")||dateofbirth.getText().equals("")||phonenumber.getText().equals("")||address.getText().equals("")){
+        if(usernamere.getText().equals("")||password.getText().equals("")||email.getText().equals("")||dateofbirth.getText().equals("")||phonenumber.getText().equals("")||address.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Fill in all the information before register");
         }else{
-            register();
+            try {
+                if(cs.register()){
+                    this.dispose();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CustomerRegister.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
 //        Customer cus = new Customer();
@@ -479,7 +454,7 @@ public class CustomerRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_backtomainmenuActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        username.setText("");
+        usernamere.setText("");
         password.setText("");
         email.setText("");
         dateofbirth.setText("");
@@ -566,11 +541,11 @@ public class CustomerRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField address;
+    public static javax.swing.JTextField address;
     private javax.swing.JButton backtomainmenu;
     private javax.swing.JButton clear;
-    private javax.swing.JTextField dateofbirth;
-    private javax.swing.JTextField email;
+    public static javax.swing.JTextField dateofbirth;
+    public static javax.swing.JTextField email;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
@@ -582,15 +557,15 @@ public class CustomerRegister extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel47;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JButton login;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField phonenumber;
+    public static javax.swing.JTextField password;
+    public static javax.swing.JTextField phonenumber;
     private javax.swing.JButton register;
-    private javax.swing.JTextField username;
     private javax.swing.JLabel usernamelabel33;
     private javax.swing.JLabel usernamelabel35;
     private javax.swing.JLabel usernamelabel36;
     private javax.swing.JLabel usernamelabel37;
     private javax.swing.JLabel usernamelabel39;
     private javax.swing.JLabel usernamelabel40;
+    public static javax.swing.JTextField usernamere;
     // End of variables declaration//GEN-END:variables
 }

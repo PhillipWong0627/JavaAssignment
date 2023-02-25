@@ -5,12 +5,10 @@
 package Entity;
 
 import Customer.OrderPage;
-import Customer.PaymentPage;
 import static Customer.OrderPage.backend;
 import static Customer.OrderPage.datetxt;
 import static Customer.OrderPage.receipt;
 import static Customer.OrderPage.timetxt;
-import static Customer.OrderPage.total;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,12 +16,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 
@@ -58,7 +54,7 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
     }
 
     
-    public void PKFC() throws IOException{
+    public void PKFC(){
         OrderPage.receipt.setText("**********************Philip & Kenny Food Centre**********************\n"
         +"              Time: "+timetxt.getText()+"          Date: "+datetxt.getText()+"\n"
         +"**************************************************************************"+"\n"
@@ -66,6 +62,8 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
         );
         
     }
+    
+    
     
     public void ReadFileAndPrompt() throws FileNotFoundException, IOException {
         x++;
@@ -95,25 +93,26 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
                         }else if(subTotal>30 &&subTotal<=50){
                             tax = subTotal*0.05;
                         }else{
-                            tax = 0.00;
-                            break;
+                            tax = 0.00;  
+                            
+//                            break; 
                         }
-//                    }else{
-//                        JOptionPane.showMessageDialog(null, "Code not found");
-//                        break;
+                        OrderPage.subtotal.setText(String.valueOf(subTotal));
+                        OrderPage.deliveryfees.setText(String.valueOf(decformat.format(tax)));
+                        OrderPage.total.setText(String.valueOf(decformat.format(subTotal+tax)));
+                        return;
                     }
                 }
-                OrderPage.subtotal.setText(String.valueOf(subTotal));
-                OrderPage.deliveryfees.setText(String.valueOf(decformat.format(tax)));
-                OrderPage.total.setText(String.valueOf(decformat.format(subTotal+tax)));
+                
                 
             } catch (IOException ex) {
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            JOptionPane.showMessageDialog(null, "Code not found");
+            
         }
 
     }
     
- 
+
 }

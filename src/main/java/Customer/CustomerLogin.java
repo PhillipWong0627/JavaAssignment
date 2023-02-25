@@ -6,17 +6,6 @@ package Customer;
 
 import Entity.Customer;
 import Main.WelcomePage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 
 
@@ -25,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Kenny
  */
 public class CustomerLogin extends javax.swing.JFrame {
-//Customer c = new Customer();
+Customer c = new Customer();
     
     /**
      * Creates new form CustomerLogin
@@ -57,7 +46,7 @@ public class CustomerLogin extends javax.swing.JFrame {
         password = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         clearall = new javax.swing.JButton();
-        back1 = new javax.swing.JButton();
+        register = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,12 +149,12 @@ public class CustomerLogin extends javax.swing.JFrame {
             }
         });
 
-        back1.setBackground(new java.awt.Color(204, 204, 204));
-        back1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        back1.setText("Click Here to Register");
-        back1.addActionListener(new java.awt.event.ActionListener() {
+        register.setBackground(new java.awt.Color(204, 204, 204));
+        register.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        register.setText("Click Here to Register");
+        register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back1ActionPerformed(evt);
+                registerActionPerformed(evt);
             }
         });
 
@@ -198,7 +187,7 @@ public class CustomerLogin extends javax.swing.JFrame {
                                 .addComponent(login)
                                 .addGap(18, 18, 18)
                                 .addComponent(clearall))
-                            .addComponent(back1))
+                            .addComponent(register))
                         .addGap(30, 30, 30))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -215,7 +204,7 @@ public class CustomerLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back2)
-                    .addComponent(back1))
+                    .addComponent(register))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -266,59 +255,10 @@ public class CustomerLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-//    try {
-//            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-//            FileReader tr = new FileReader(customerinfo);
-//            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
-//            String firstLine = br.readLine().trim();
-////            String[] columnName = firstLine.split(",");
-//            Object[] tableLines = br.lines().toArray();
-//
-//            for (int z = 0; z < tableLines.length; z++) {
-//                String line = tableLines[z].toString().trim();
-//                String[] dataRow = line.split(":");
-//                System.out.println(dataRow[0]);
-//                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
-//                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
-//                    CustomerInterface csinterface = new CustomerInterface();
-//                    csinterface.setVisible(true);
-//                    this.dispose();
-//                    break;
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Wrong Username or password");
-//                    break;
-//                }   
-//            }
-//            } catch (IOException ex) {
-//            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    
-        File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
-        try ( BufferedReader br = new BufferedReader(new FileReader(customerinfo))) {
-            String firstLine = br.readLine();
-            String[] columnNames = firstLine.split(":"); // Assumes the file is using ":" as a delimiter
+     if (c.login()) {
+        this.dispose();
+}
 
-            List<String[]> dataRows = new ArrayList<>();
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] dataRow = line.split(":"); // Assumes the file is using ":" as a delimiter
-                dataRows.add(dataRow);
-            }
-
-            for (String[] dataRow : dataRows) {
-                if (CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])) {
-                    JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
-                    CustomerInterface csinterface = new CustomerInterface();
-                    csinterface.setVisible(true);
-                    this.dispose();
-                    break;
-                }
-            }
-
-//            JOptionPane.showMessageDialog(null, "Wrong Username or password");
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         
     }//GEN-LAST:event_loginActionPerformed
@@ -329,11 +269,11 @@ public class CustomerLogin extends javax.swing.JFrame {
         password.setText("");
     }//GEN-LAST:event_clearallActionPerformed
 
-    private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         CustomerRegister cr = new CustomerRegister();
         cr.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_back1ActionPerformed
+    }//GEN-LAST:event_registerActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         WelcomePage wp = new WelcomePage();
@@ -409,7 +349,6 @@ public class CustomerLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back1;
     private javax.swing.JButton back2;
     private javax.swing.JButton clearall;
     private javax.swing.JLabel jLabel1;
@@ -421,6 +360,7 @@ public class CustomerLogin extends javax.swing.JFrame {
     private javax.swing.JButton login;
     public static javax.swing.JTextField password;
     private javax.swing.JLabel passwordlabel;
+    private javax.swing.JButton register;
     public static javax.swing.JTextField username;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables
