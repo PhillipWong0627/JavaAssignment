@@ -1,0 +1,7 @@
+Username:Password:Email:DOB:PhoneNumber:Address:
+Kenny:kenny:Kenny@gmail.com:02/02/2002:0163543712:29,jalan sinsari:
+Huan Jen Ning:123:JenNing@gmail.com:02/02/2002:0123549654:48,jalan tambun:
+JunKit:junkit:JunKit@gmail.com:01/01/2001:0163543315:58,jalan mambus:
+Eejoe:eejoeisme:Eejoe@gmail.com:03/02/2002:01656382020:30, jalan perkasa:
+JyeShan:jyeshanisme:jyeshan@gmail.com:02/02/2002:0125467896:98,jalan johor:
+JunMing:junmingisme:JunMing@gmail.com:01/01/2000:01589657412:86,jalan kinra:
