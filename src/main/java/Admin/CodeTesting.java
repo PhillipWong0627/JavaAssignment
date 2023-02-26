@@ -12,13 +12,12 @@ import java.io.FileNotFoundException;
  * @author user
  */
 public class CodeTesting {
-    
+     
     public static void main(String[] args) throws FileNotFoundException{
         Administrator ad = new Administrator();
         //DeliveryStaff ds = new DeliveryStaff();
         
-        
-        
+
         ad.ModifyAdmin();
 
         

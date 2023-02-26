@@ -5,23 +5,19 @@
 package Admin;
 
 
-import Customer.*;
 import Entity.Administrator;
-import Entity.Customer;
 import Main.WelcomePage;
-import core.AdminSource;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
  *
  * @author Kenny
  */
-public class AdminRegister1 extends javax.swing.JFrame {
+public class addItem extends javax.swing.JFrame {
 
     int ln;
     private String filename;   
@@ -29,7 +25,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
     /**
      * Creates new form RegisterPage
      */
-    public AdminRegister1() {
+    public addItem() {
         initComponents();
     } 
 
@@ -48,20 +44,16 @@ public class AdminRegister1 extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jPanel40 = new javax.swing.JPanel();
         usernamelabel33 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        foodPrice = new javax.swing.JTextField();
         jPanel42 = new javax.swing.JPanel();
         usernamelabel35 = new javax.swing.JLabel();
-        adminName = new javax.swing.JTextField();
-        jPanel44 = new javax.swing.JPanel();
-        usernamelabel37 = new javax.swing.JLabel();
-        phonenumber = new javax.swing.JTextField();
+        foodName = new javax.swing.JTextField();
         jPanel46 = new javax.swing.JPanel();
         usernamelabel39 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
+        category = new javax.swing.JTextField();
         register = new javax.swing.JButton();
         backtomainmenu = new javax.swing.JButton();
         clear = new javax.swing.JButton();
-        login = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,15 +61,16 @@ public class AdminRegister1 extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setText("Registration Form");
+        jLabel3.setText("ADD ITEM");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,12 +78,12 @@ public class AdminRegister1 extends javax.swing.JFrame {
         );
 
         usernamelabel33.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        usernamelabel33.setText("Password:");
+        usernamelabel33.setText("Food Price:");
 
-        password.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        password.addActionListener(new java.awt.event.ActionListener() {
+        foodPrice.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        foodPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
+                foodPriceActionPerformed(evt);
             }
         });
 
@@ -102,7 +95,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(usernamelabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel40Layout.setVerticalGroup(
@@ -111,16 +104,16 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addGap(0, 24, Short.MAX_VALUE)
                 .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernamelabel33)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         usernamelabel35.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        usernamelabel35.setText("Admin Name:");
+        usernamelabel35.setText("Food Name:");
 
-        adminName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        adminName.addActionListener(new java.awt.event.ActionListener() {
+        foodName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        foodName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminNameActionPerformed(evt);
+                foodNameActionPerformed(evt);
             }
         });
 
@@ -132,7 +125,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(usernamelabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(adminName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel42Layout.setVerticalGroup(
@@ -141,46 +134,16 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernamelabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        usernamelabel37.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        usernamelabel37.setText("Phone Number:");
-
-        phonenumber.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        phonenumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phonenumberActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
-        jPanel44.setLayout(jPanel44Layout);
-        jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel44Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(usernamelabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel44Layout.createSequentialGroup()
-                .addGap(0, 24, Short.MAX_VALUE)
-                .addGroup(jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernamelabel37)
-                    .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         usernamelabel39.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        usernamelabel39.setText("Email:");
+        usernamelabel39.setText("Category:");
 
-        email.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        email.addActionListener(new java.awt.event.ActionListener() {
+        category.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                categoryActionPerformed(evt);
             }
         });
 
@@ -192,7 +155,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(usernamelabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel46Layout.setVerticalGroup(
@@ -201,7 +164,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addGap(0, 24, Short.MAX_VALUE)
                 .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernamelabel39)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -213,8 +176,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -226,13 +188,11 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         register.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        register.setText("Register Me Now!");
+        register.setText("Add To Item");
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerActionPerformed(evt);
@@ -255,38 +215,25 @@ public class AdminRegister1 extends javax.swing.JFrame {
             }
         });
 
-        login.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        login.setText("Already a user? Press here proceed login");
-        login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(backtomainmenu)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(login)
-                        .addGap(62, 62, 62))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(register)
-                                .addGap(106, 106, 106)
-                                .addComponent(clear))
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(100, Short.MAX_VALUE))))
+                        .addComponent(register)
+                        .addGap(86, 86, 86)
+                        .addComponent(clear))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 100, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(236, 236, 236))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,15 +242,12 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register)
-                    .addComponent(clear))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(login)
+                    .addComponent(clear)
                     .addComponent(backtomainmenu))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -316,7 +260,7 @@ public class AdminRegister1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 112, Short.MAX_VALUE))
         );
 
         pack();
@@ -325,71 +269,81 @@ public class AdminRegister1 extends javax.swing.JFrame {
     
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
 //        Called AddAdmin Method From Admin Entity
-          Administrator administrator = new Administrator();
-          AdminLogin adLogin = new AdminLogin();
-          
-//           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
-        try {
-            if(adminName.getText().isEmpty() && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()){
-                System.out.println("Pls Enter Require Blank!!!");
-            }else if((adminName.getText() != null) && (password.getText() !=null )){
-                administrator.addAdmin(adminName.getText(), password.getText(), email.getText(),phonenumber.getText());
-                
-                dispose();
-                adLogin.setVisible(true);
-                
-                //System.out.println(adminName.getText() != null && password.getText() !=null);
-                //System.out.println(password.getText());
+          String foodID = "";
 
-            }else{
-                System.out.println("Blank Erorr");
+          Administrator administrator = new Administrator();
+          AdminHomePage adminHomePage = new AdminHomePage();
+          
+        try {
+            if(foodName.getText().equals("") || foodPrice.getText().equals("") || category.getText().equals(""))
+                JOptionPane.showMessageDialog(rootPane, "Please Enter Required Blank Text Field");
+
+            else{   
+                administrator.addItem(foodID, foodName.getText(), Float.parseFloat(foodPrice.getText()), category.getText());
+                
+                JOptionPane.showMessageDialog(rootPane, "Category Have Been Successfully Added");
+
+                
+                this.dispose();
+                adminHomePage.setVisible(true);
+
             }
             
         } catch (IOException ex) {
-            Logger.getLogger(AdminRegister1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(addItem.class.getName()).log(Level.SEVERE, null, ex);
         }
+          
+          
+//           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
+//        if (foodName.getText().isEmpty() && foodPrice.getText().isEmpty() && category.getText().isEmpty()) {
+//            System.out.println("Pls Enter Require Blank!!!");
+//        } else if((foodName.getText() != null) && (foodPrice.getText() !=null )){
+//            //administrator.addAdmin(foodName.getText(), foodPrice.getText(), category.getText());
+//            
+//
+//        }else{
+//            System.out.println("Blank Erorr");
+//        }
+          
+          
+//           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
+//        if (foodName.getText().isEmpty() && foodPrice.getText().isEmpty() && category.getText().isEmpty()) {
+//            System.out.println("Pls Enter Require Blank!!!");
+//        } else if((foodName.getText() != null) && (foodPrice.getText() !=null )){
+//            //administrator.addAdmin(foodName.getText(), foodPrice.getText(), category.getText());
+//            
+//
+//        }else{
+//            System.out.println("Blank Erorr");
+//        }
 
-        
-        
-        
     }//GEN-LAST:event_registerActionPerformed
 
     private void backtomainmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backtomainmenuActionPerformed
-        WelcomePage wp = new WelcomePage();
-        wp.setVisible(true);
-        this.setVisible(false);
+       AdminHomePage adminHomePage = new AdminHomePage();
+       this.dispose();
+       adminHomePage.setVisible(true);
         
     }//GEN-LAST:event_backtomainmenuActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        adminName.setText("");
-        password.setText("");
-        email.setText("");
-        phonenumber.setText("");
+        foodName.setText("");
+        foodPrice.setText("");
+        category.setText("");
 
     }//GEN-LAST:event_clearActionPerformed
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        AdminLogin adminLogin = new AdminLogin();
-        adminLogin.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_loginActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_categoryActionPerformed
 
-    private void phonenumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phonenumberActionPerformed
+    private void foodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_phonenumberActionPerformed
+    }//GEN-LAST:event_foodNameActionPerformed
 
-    private void adminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminNameActionPerformed
+    private void foodPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminNameActionPerformed
-
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_foodPriceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -408,14 +362,142 @@ public class AdminRegister1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminRegister1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminRegister1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminRegister1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminRegister1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addItem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -548,31 +630,27 @@ public class AdminRegister1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminRegister1().setVisible(true);
+                new addItem().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adminName;
     private javax.swing.JButton backtomainmenu;
+    private javax.swing.JTextField category;
     private javax.swing.JButton clear;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField foodName;
+    private javax.swing.JTextField foodPrice;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JButton login;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField phonenumber;
     private javax.swing.JButton register;
     private javax.swing.JLabel usernamelabel33;
     private javax.swing.JLabel usernamelabel35;
-    private javax.swing.JLabel usernamelabel37;
     private javax.swing.JLabel usernamelabel39;
     // End of variables declaration//GEN-END:variables
 }

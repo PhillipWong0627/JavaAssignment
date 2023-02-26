@@ -4,6 +4,8 @@
  */
 package CodeTesterr;
 
+import Entity.Administrator;
+
 /**
  *
  * @author user
@@ -11,7 +13,9 @@ package CodeTesterr;
 public class Testing {
     
     public static void main(String [] args){
-        System.out.println("Hello Worlds");
+  
+        Administrator a = new Administrator();
+        a.displayItem1();
     }
     
 }

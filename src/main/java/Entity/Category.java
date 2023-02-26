@@ -10,12 +10,31 @@ package Entity;
  */
 class Category {
     
-    private String CategoryName;
     private String CategoryType;
-    
-    public void Category(String catName, String catType){
-        this.CategoryName = catName;
-        this.CategoryType = catType;
-        
+
+    public Category(String CategoryType) {
+        this.CategoryType = CategoryType;
     }
+    
+    
+    
+    
+    public String getCategoryType() {
+        return CategoryType;
+    }
+
+    public void setCategoryType(String CategoryType) {
+        this.CategoryType = CategoryType;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" + "CategoryType=" + CategoryType + '}';
+    }
+    
+    
+
+    
+ 
+    
 }
