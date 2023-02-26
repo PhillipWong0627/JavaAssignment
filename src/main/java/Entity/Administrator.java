@@ -198,12 +198,12 @@ public class Administrator {
         
 //        System.out.println(f.getFoodID());
         
-        File file = new File("itemFile.txt");
+        File file = new File("fooddata.txt");
         FileWriter FW;
        
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
-            String record = foodId + ":"+ f.getName()+":"+ f.getFoodPrice() + ":"+ f.getCategory().getCategoryType()+ "\n";
+            String record = foodId + ","+ f.getName()+","+ f.getFoodPrice() + ","+ f.getCategory().getCategoryType()+ "\n";
             
             BW.write(record);
             System.out.println("Food Item Have Been Successfully Added");

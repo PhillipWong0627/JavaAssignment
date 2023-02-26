@@ -52,7 +52,6 @@ public class AdminLogin extends javax.swing.JFrame {
         password = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         clearall = new javax.swing.JButton();
-        back1 = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,15 +156,6 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
 
-        back1.setBackground(new java.awt.Color(204, 204, 204));
-        back1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        back1.setText("Click Here to Register");
-        back1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back1ActionPerformed(evt);
-            }
-        });
-
         back2.setBackground(new java.awt.Color(204, 204, 204));
         back2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         back2.setText("Back to MainMenu");
@@ -180,7 +170,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,14 +179,11 @@ public class AdminLogin extends javax.swing.JFrame {
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(back2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(login)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(login)
-                                .addGap(18, 18, 18)
-                                .addComponent(clearall))
-                            .addComponent(back1))
-                        .addGap(30, 30, 30))))
+                        .addComponent(clearall)
+                        .addGap(36, 36, 36))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,12 +195,9 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearall)
-                    .addComponent(login))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(back2)
-                    .addComponent(back1))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(login)
+                    .addComponent(back2))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -293,16 +277,6 @@ public class AdminLogin extends javax.swing.JFrame {
         password.setText("");
     }//GEN-LAST:event_clearallActionPerformed
 
-    private void back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back1ActionPerformed
-       //Link to AdminRegister
-       
-       AdminRegister adminRegister = new AdminRegister();
-       dispose();
-       adminRegister.setVisible(true);
-
-       
-    }//GEN-LAST:event_back1ActionPerformed
-
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         
 //        Back to Welcome Page
@@ -350,7 +324,6 @@ public class AdminLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adminName;
-    private javax.swing.JButton back1;
     private javax.swing.JButton back2;
     private javax.swing.JButton clearall;
     private javax.swing.JLabel jLabel2;
