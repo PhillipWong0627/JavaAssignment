@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class DisplayItemWise extends javax.swing.JFrame {
+public class DisplayCustPayment extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminManagement
      */
     
 //    Object[] AdminData = new Object[];
-    public DisplayItemWise() {
+    public DisplayCustPayment() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class DisplayItemWise extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        adminTable = new javax.swing.JTable();
+        customerTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btnFetch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -48,15 +48,15 @@ public class DisplayItemWise extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
 
-        adminTable.setModel(new javax.swing.table.DefaultTableModel(
+        customerTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "FOOD ID", "NAME", "FODD PRICE", "CAT TYPE"
+                "ORDER ID", "PayID", "CreditCardName", "CreditCardNumber", "TotalPayment"
             }
         ));
-        jScrollPane1.setViewportView(adminTable);
+        jScrollPane1.setViewportView(customerTable);
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("CLEAR");
@@ -76,7 +76,7 @@ public class DisplayItemWise extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(153, 255, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("ITEM MANAGEMENT");
+        jLabel1.setText("CUSTOMER PAYMENT DETAILS");
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("BACK");
@@ -91,26 +91,27 @@ public class DisplayItemWise extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel1)))
                 .addContainerGap(96, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(231, 231, 231))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -127,7 +128,7 @@ public class DisplayItemWise extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Clear ALL THE DATA IN TABLE        
         
-        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+        DefaultTableModel tModel = (DefaultTableModel) customerTable.getModel(); 
 
         tModel.setRowCount(0);
         
@@ -136,15 +137,15 @@ public class DisplayItemWise extends javax.swing.JFrame {
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
         // Click this button to Fetch All the existiing Data
         
-        File adfile = new File("fooddata.txt");
+        File adfile = new File("creditcarddetail.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(adfile));
             
             String strHeader = br.readLine().trim();
 //            System.out.println(colHeader);
 
-            String[] columnHeader = strHeader.split(",");
-            DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+            String[] columnHeader = strHeader.split(":");
+            DefaultTableModel tModel = (DefaultTableModel) customerTable.getModel(); 
             // set the column header
             tModel.setColumnIdentifiers(columnHeader);
             
@@ -154,16 +155,16 @@ public class DisplayItemWise extends javax.swing.JFrame {
 //                System.out.println(tableRow[i]);
                 String lines = tableRow[i].toString().trim();
                 //System.out.println(x);
-                String [] dataRows = lines.split(",");
+                String [] dataRows = lines.split(":");
                 
                 tModel.addRow(dataRows);
             }
             
             
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DisplayItemWise.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DisplayCustPayment.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(DisplayItemWise.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DisplayCustPayment.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
@@ -195,14 +196,38 @@ public class DisplayItemWise extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayItemWise.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayCustPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayItemWise.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayCustPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayItemWise.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayCustPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayItemWise.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DisplayCustPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -215,14 +240,14 @@ public class DisplayItemWise extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisplayItemWise().setVisible(true);
+                new DisplayCustPayment().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable adminTable;
     private javax.swing.JButton btnFetch;
+    private javax.swing.JTable customerTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

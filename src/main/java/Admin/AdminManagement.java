@@ -494,6 +494,9 @@ public class AdminManagement extends javax.swing.JFrame {
                         phNo.setText(splitRows[3]);
                         email.setText(splitRows[4]);
                         
+                        lblStatus.setVisible(true);
+                        lblStatus.setText("Id Found!!");
+                        
                     }
                     
                 }

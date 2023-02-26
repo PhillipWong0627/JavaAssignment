@@ -43,7 +43,7 @@ public class ItemManagement extends javax.swing.JFrame {
 
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        adminTable = new javax.swing.JTable();
+        foodTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btnFetch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -74,15 +74,15 @@ public class ItemManagement extends javax.swing.JFrame {
             }
         });
 
-        adminTable.setModel(new javax.swing.table.DefaultTableModel(
+        foodTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "FOOD ID", "NAME", "FODD PRICE", "CAT TYPE"
+                "FOOD ID", "FOOD", "PRICE", "CATEGORY"
             }
         ));
-        jScrollPane1.setViewportView(adminTable);
+        jScrollPane1.setViewportView(foodTable);
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("CLEAR");
@@ -138,6 +138,12 @@ public class ItemManagement extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        foodName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodNameActionPerformed(evt);
             }
         });
 
@@ -293,7 +299,7 @@ public class ItemManagement extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Clear ALL THE DATA IN TABLE        
         
-        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
 
         tModel.setRowCount(0);
         
@@ -302,15 +308,15 @@ public class ItemManagement extends javax.swing.JFrame {
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
         // Click this button to Fetch All the existiing Data
         
-        File adfile = new File("itemFile.txt");
+        File adfile = new File("fooddata.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(adfile));
             
             String strHeader = br.readLine().trim();
 //            System.out.println(colHeader);
 
-            String[] columnHeader = strHeader.split(":");
-            DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+            String[] columnHeader = strHeader.split(",");
+            DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
             // set the column header
             tModel.setColumnIdentifiers(columnHeader);
             
@@ -320,7 +326,7 @@ public class ItemManagement extends javax.swing.JFrame {
 //                System.out.println(tableRow[i]);
                 String lines = tableRow[i].toString().trim();
                 //System.out.println(x);
-                String [] dataRows = lines.split(":");
+                String [] dataRows = lines.split(",");
                 
                 tModel.addRow(dataRows);
             }
@@ -346,22 +352,22 @@ public class ItemManagement extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
         
-        int SelRow = adminTable.getSelectedRow();
+        int SelRow = foodTable.getSelectedRow();
         System.out.println(SelRow);
         tModel.removeRow(SelRow);
         
-        File itemFile = new File("itemFile.txt");
+        File itemFile = new File("fooddata.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(itemFile));
             
-            DefaultTableModel jTable = (DefaultTableModel) adminTable.getModel();
+            DefaultTableModel jTable = (DefaultTableModel) foodTable.getModel();
 //            System.out.println(jTable.getColumnName(1));
             String recHeader= "";
             
             for (int i = 0; i < jTable.getColumnCount();i++){
-                recHeader = recHeader+jTable.getColumnName(i)+":";
+                recHeader = recHeader+jTable.getColumnName(i)+",";
                 
             }
 //            System.out.println(recHeader);
@@ -369,7 +375,7 @@ public class ItemManagement extends javax.swing.JFrame {
             
             for (int i = 0; i< jTable.getRowCount();i++){
                 for(int j = 0; j < jTable.getColumnCount();j++){
-                    bw.write(adminTable.getValueAt(i,j) + ":");
+                    bw.write(foodTable.getValueAt(i,j) + ",");
                 }
                 bw.write("\n");
             }
@@ -392,19 +398,19 @@ public class ItemManagement extends javax.swing.JFrame {
     private void btnFetch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetch1ActionPerformed
         // TODO add your handling code here:
         
-        DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
 
         
-        File adminFile = new File("itemFile.txt");
+        File adminFile = new File("fooddata.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(adminFile));
             
-            DefaultTableModel jTable = (DefaultTableModel) adminTable.getModel();
+            DefaultTableModel jTable = (DefaultTableModel) foodTable.getModel();
 //            System.out.println(jTable.getColumnName(1));
             String recHeader= "";
             
             for (int i = 0; i < jTable.getColumnCount();i++){
-                recHeader = recHeader+jTable.getColumnName(i)+":";
+                recHeader = recHeader+jTable.getColumnName(i)+",";
                 
             }
 //            System.out.println(recHeader);
@@ -412,7 +418,7 @@ public class ItemManagement extends javax.swing.JFrame {
             
             for (int i = 0; i< jTable.getRowCount();i++){
                 for(int j = 0; j < jTable.getColumnCount();j++){
-                    bw.write(adminTable.getValueAt(i,j) + ":");
+                    bw.write(foodTable.getValueAt(i,j) + ",");
                 }
                 bw.write("\n");
             }
@@ -441,11 +447,12 @@ public class ItemManagement extends javax.swing.JFrame {
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
                 
-                boolean valid = administrator.searchAdmin(FOODID.getText());
+                boolean valid = administrator.searchItem(FOODID.getText());
+
             
             if(valid){
                 System.out.println("HALLO WORLD");
-                File adminFile = new File("adminFile.txt");
+                File adminFile = new File("fooddata.txt");
                 
                 BufferedReader br = new BufferedReader(new FileReader(adminFile));
                 
@@ -455,14 +462,16 @@ public class ItemManagement extends javax.swing.JFrame {
                 for(int i=0; i<adminRow.length;i++){
                     String rows = adminRow[i].toString().trim();
                     //System.out.println(rows);
-                    String[] splitRows = rows.split(":");
+                    String[] splitRows = rows.split(",");
                     
                     if(splitRows[0].equals(FOODID.getText())){
                         
                         foodName.setText(splitRows[1]);
-                        foodPrice.setText(splitRows[3]);
-                        catType.setText(splitRows[4]);
+                        foodPrice.setText(splitRows[2]);
+                        catType.setText(splitRows[3]);
                         
+                        lblStatus.setVisible(true);
+                        lblStatus.setText("Id Found!!");
                     }
                     
                 }
@@ -496,6 +505,10 @@ public class ItemManagement extends javax.swing.JFrame {
     private void catTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_catTypeActionPerformed
+
+    private void foodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -537,12 +550,12 @@ public class ItemManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField FOODID;
-    private javax.swing.JTable adminTable;
     private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnFetch1;
     private javax.swing.JTextField catType;
     private javax.swing.JTextField foodName;
     private javax.swing.JTextField foodPrice;
+    private javax.swing.JTable foodTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

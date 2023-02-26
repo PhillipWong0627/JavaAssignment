@@ -406,7 +406,7 @@ public class CategoryManagement extends javax.swing.JFrame {
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
 
-                boolean valid = administrator.searchAdmin(CatID.getText());
+                boolean valid = administrator.searchCategory(CatID.getText());
 
                 if(valid){
                     System.out.println("HALLO WORLD");
@@ -425,7 +425,8 @@ public class CategoryManagement extends javax.swing.JFrame {
                         if(splitRows[0].equals(CatID.getText())){
 
                             CatType.setText(splitRows[1]);
-                  
+                            lblStatus.setVisible(true);
+                            lblStatus.setText("Id Found!!");
 
                         }
 

@@ -4,6 +4,17 @@
  */
 package Admin;
 
+import Entity.Administrator;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -15,6 +26,7 @@ public class SearchRecordPage extends javax.swing.JFrame {
      */
     public SearchRecordPage() {
         initComponents();
+        lblStatus.setVisible(false);
     }
 
     /**
@@ -27,12 +39,14 @@ public class SearchRecordPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        ORDERID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        custPaymentTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        custOrderTable = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,66 +57,83 @@ public class SearchRecordPage extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        ORDERID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ORDERIDActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("SOMGTHING ID");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("ORDER ID: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        custPaymentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "OrderID", "PayID", "CreditCardName", "CreditCardNumber", "Total"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(custPaymentTable);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        custOrderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "OrderID", "DAY", "DATE", "TIME", "ORDERTAILS"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(custOrderTable);
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("SEARCH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lblStatus.setText("lblStatus");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton1)
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1)
-                .addGap(67, 67, 67)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31)
+                        .addComponent(ORDERID, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblStatus)
+                            .addComponent(jButton2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ORDERID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(lblStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,9 +154,123 @@ public class SearchRecordPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void ORDERIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ORDERIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_ORDERIDActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        Administrator administrator = new Administrator();
+            
+            if("".equals(ORDERID.getText())){
+                System.out.println("Empty");
+                
+                lblStatus.setVisible(true);
+                lblStatus.setText("Pls Enter Require Blank!!!!");
+            }else{
+                
+            try {
+                
+                boolean valid = administrator.searchCustPayment(ORDERID.getText());
+                
+                if(valid){
+                    System.out.println("HALLO WORLD");
+                    File FoodFile = new File("creditcarddetail.txt");
+                    
+                    
+                    
+                    BufferedReader br = new BufferedReader(new FileReader(FoodFile));
+                    
+                    String strHeader = br.readLine().trim();
+                    
+                    String[] columnHeader = strHeader.split(":");
+                    DefaultTableModel tModel = (DefaultTableModel) custPaymentTable.getModel();
+                    
+                    tModel.setColumnIdentifiers(columnHeader);
+                    
+                    //Save Each line of data into adminRow Arrayin x;x;x
+                    Object[] tableRow = br.lines().toArray();
+                    
+                    
+                    for(int i=0; i<tableRow.length;i++){
+                        String rows = tableRow[i].toString().trim();
+                        //System.out.println(rows);
+                        String[] splitRows = rows.split(":");
+                        
+                        
+                        if(splitRows[0].equals(ORDERID.getText())){
+                            
+                            tModel.addRow(splitRows);
+
+                            lblStatus.setVisible(true);
+                            lblStatus.setText("Id Found!!");
+                        }
+                        
+                    }
+                    System.out.println("HALLO WORLD");
+
+                    
+                    File orderDetailFile = new File("orderdetail.txt");
+                    
+                    
+                    
+                    BufferedReader br1 = new BufferedReader(new FileReader(orderDetailFile));
+                    
+                    String strHeader1 = br1.readLine().trim();
+                    
+                    String[] columnHeader1 = strHeader1.split(",");
+                    DefaultTableModel tModel2 = (DefaultTableModel) custOrderTable.getModel();
+                    
+                    tModel2.setColumnIdentifiers(columnHeader1);
+                    
+                    //Save Each line of data into adminRow Arrayin x;x;x
+                    Object[] tableRow1 = br1.lines().toArray();
+                    
+                    
+                    for(int i=0; i<tableRow1.length;i++){
+                        String rows = tableRow1[i].toString().trim();
+                        //System.out.println(rows);
+                        String[] splitRows1 = rows.split(",");
+                        System.out.println(splitRows1[0]);
+                        System.out.println(splitRows1[1]);
+                        System.out.println(splitRows1[2]);
+                        System.out.println(splitRows1[3]);
+                        System.out.println(splitRows1[4]);
+
+                        
+                        if(splitRows1[0].equals(ORDERID.getText())){
+                            
+                            tModel2.addRow(splitRows1);
+                            
+                            System.out.println(Arrays.toString(splitRows1));
+
+                            lblStatus.setVisible(true);
+                            lblStatus.setText("Id Found!!");
+                        }
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                }else{
+                    
+                    lblStatus.setVisible(true);
+                    lblStatus.setText("Id Not Exist!!");
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SearchRecordPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SearchRecordPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                
+            }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,12 +308,14 @@ public class SearchRecordPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ORDERID;
+    private javax.swing.JTable custOrderTable;
+    private javax.swing.JTable custPaymentTable;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblStatus;
     // End of variables declaration//GEN-END:variables
 }
