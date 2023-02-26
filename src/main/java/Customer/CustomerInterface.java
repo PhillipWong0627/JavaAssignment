@@ -189,7 +189,18 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_updateprofileActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            
+            CheckOrderID  checkOrderID = new CheckOrderID();
+            
+            this.dispose();
+            checkOrderID.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

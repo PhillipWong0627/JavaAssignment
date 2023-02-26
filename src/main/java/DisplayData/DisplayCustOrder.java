@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -53,7 +54,7 @@ public class DisplayCustOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ORDER ID", "DAY", "TIME", "OrderDetails"
+                "ORDER ID", "DAY&DATE", "TIME", "OrderDetails"
             }
         ));
         jScrollPane1.setViewportView(customerTable);
@@ -135,37 +136,40 @@ public class DisplayCustOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
-        // Click this button to Fetch All the existiing Data
         
-        File adfile = new File("fooddata.txt");
+        BufferedReader br1 = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(adfile));
+            // Click this button to Fetch All the existiing Data
             
-            String strHeader = br.readLine().trim();
-//            System.out.println(colHeader);
+            File orderDetailFile = new File("orderdetail.txt");
+            br1 = new BufferedReader(new FileReader(orderDetailFile));
+            String strHeader1 = br1.readLine().trim();
+            String[] columnHeader1 = strHeader1.split("/");
+            DefaultTableModel tModel2 = (DefaultTableModel) customerTable.getModel();
+            tModel2.setColumnIdentifiers(columnHeader1);
+            //Save Each line of data into adminRow Arrayin x;x;x
+            Object[] tableRow1 = br1.lines().toArray();
+            tModel2.setRowCount(0);
+            for(int i=0; i<tableRow1.length;i++){
+                String rows = tableRow1[i].toString().trim();
+                //System.out.println(rows);
+                String[] splitRows1 = rows.split("/");
+//                System.out.println(splitRows1[0]);
+//                System.out.println(splitRows1[1]);
+//                System.out.println(splitRows1[2]);
+//                System.out.println(splitRows1[3]);
+                tModel2.addRow(splitRows1);
 
-            String[] columnHeader = strHeader.split(",");
-            DefaultTableModel tModel = (DefaultTableModel) customerTable.getModel(); 
-            // set the column header
-            tModel.setColumnIdentifiers(columnHeader);
-            
-            Object[] tableRow = br.lines().toArray();
-            
-            for(int i = 0; i<tableRow.length;i++){
-//                System.out.println(tableRow[i]);
-                String lines = tableRow[i].toString().trim();
-                //System.out.println(x);
-                String [] dataRows = lines.split(",");
                 
-                tModel.addRow(dataRows);
+                
             }
             
-            
+            br1.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DisplayCustOrder.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(DisplayCustOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
 
         

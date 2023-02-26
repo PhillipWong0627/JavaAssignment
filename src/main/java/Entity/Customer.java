@@ -186,6 +186,13 @@ public class Customer extends Payment{
             JOptionPane.showMessageDialog(null, "Please fill up ALL details!");
         }
     }
+    
+    
+    
+    
+    
+    
+    
 }
 
 
