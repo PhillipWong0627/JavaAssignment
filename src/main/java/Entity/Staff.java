@@ -128,7 +128,7 @@ public class Staff {
                 Logger.getLogger(DeliveryInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            JOptionPane.showMessageDialog(null, "Account Updated SUCCESSFULLY!");
+            JOptionPane.showMessageDialog(null, "Updated SUCCESSFULLY!");
         } else {
             JOptionPane.showMessageDialog(null, "Please fill up ALL details!");
         }
