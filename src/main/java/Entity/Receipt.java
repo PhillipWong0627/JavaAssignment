@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class Receipt {
      public void SaveReceipt() throws IOException{
-        FileWriter Writer = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\receipt\\receipt.txt", false);
+        FileWriter Writer = new FileWriter("receipt.txt", false);
         Writer.write(receipt.getText());
         Writer.close();                   
 }

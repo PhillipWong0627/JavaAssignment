@@ -37,7 +37,7 @@ public class Customer extends Payment{
     
     public boolean register() throws IOException{
         
-        File customerdetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+        File customerdetail = new File("customerdetail.txt");
         FileWriter FW;
         FW = new FileWriter(customerdetail,true);
         BufferedWriter BW = new BufferedWriter(FW);
@@ -56,7 +56,7 @@ public class Customer extends Payment{
     
     public boolean login(){
         try {
-            File customerinfo = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            File customerinfo = new File("customerdetail.txt");
             FileReader tr = new FileReader(customerinfo);
             BufferedReader br = new BufferedReader(new FileReader(customerinfo));
             String firstLine = br.readLine().trim();
@@ -84,7 +84,7 @@ public class Customer extends Payment{
     
     public void CustomerUpdateProfile() {
         try {
-            File customerprofile = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            File customerprofile = new File("customerdetail.txt");
             FileReader tr = new FileReader(customerprofile);
             BufferedReader br = new BufferedReader(new FileReader(customerprofile));
             String firstLine = br.readLine().trim();
@@ -110,7 +110,7 @@ public class Customer extends Payment{
     public void search(){
         DefaultTableModel model = (DefaultTableModel) profile.getModel();
         try {
-            File f = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt");
+            File f = new File("customerdetail.txt");
             String SearchUsername = search.getText();
             if (SearchUsername.isEmpty()){
                 return;
@@ -158,7 +158,7 @@ public class Customer extends Payment{
             model.setValueAt(CustomerUpdateProfile.phonenumber.getText(), item, 4);
             model.setValueAt(CustomerUpdateProfile.address.getText(), item, 5);
 
-            String filePath = "C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\customerdetail\\customerdetail.txt";
+            String filePath = "customerdetail.txt";
             File file = new File(filePath);
             try {
                 FileWriter fw = new FileWriter(file);

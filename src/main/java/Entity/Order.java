@@ -72,7 +72,7 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
             JOptionPane.showMessageDialog(null, "You are not adding anything ");
         } else {
             try {
-                File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+                File fooddata = new File("fooddata.txt");
                 FileReader tr = new FileReader(fooddata);
                 BufferedReader br = new BufferedReader(new FileReader(fooddata));
                 Object[] tableLines = br.lines().toArray();

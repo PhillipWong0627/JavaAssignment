@@ -81,10 +81,7 @@ public class Food{
         this.Category = Category;
     }
     
-    public void setFood(){
-        
-        
-    }
+    
     
     
     
@@ -97,7 +94,7 @@ public class Food{
     
     public void SearchAllFood(){
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+            File fooddata = new File("fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
@@ -128,7 +125,7 @@ public class Food{
     public void SearchbyCategory() {
         DefaultTableModel model = (DefaultTableModel) OrderPage.jTable2.getModel();
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+            File fooddata = new File("fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();

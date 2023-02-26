@@ -41,7 +41,7 @@ public class Payment{
 //        this.PaymentAmount = paymentAmount;
 //    }
     public void ReadUsertoPayment() throws IOException{
-        FileWriter Writeruser = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\currentuser\\currentuser.txt", false);
+        FileWriter Writeruser = new FileWriter("currentuser.txt", false);
         Writeruser.write("Current User"+"\n");
         Writeruser.write(username.getText());
         Writeruser.close();
@@ -74,7 +74,7 @@ public class Payment{
                 int num=0;
 //                int num1=0;
 //                int num2=0;
-                File cart = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt");
+                File cart = new File("cart.txt");
                 FileReader fr = new FileReader(cart);
                 BufferedReader brr = new BufferedReader(new FileReader(cart));
                 String firstLine = brr.readLine().trim();
@@ -84,7 +84,7 @@ public class Payment{
                     System.out.println(line1);
                
                
-                        File orderdetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\orderdetail\\orderdetail.txt");
+                        File orderdetail = new File("orderdetail.txt");
                         FileReader tr = new FileReader(orderdetail);
                         BufferedReader br = new BufferedReader(new FileReader(orderdetail));
                         Object[] tableLines = br.lines().toArray();
@@ -93,7 +93,7 @@ public class Payment{
                             num++;
                         }
                         
-                        File deliverydetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt");
+                        File deliverydetail = new File("deliverydetail.txt");
                             FileReader mr = new FileReader(deliverydetail);
                             BufferedReader nr = new BufferedReader(new FileReader(deliverydetail));
 //                            Object[] tableLinesdelivery = nr.lines().toArray();
@@ -103,7 +103,7 @@ public class Payment{
 //                                
 //                        }
                             
-                        File creditcard = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\creditcarddetail\\creditcarddetail.txt");
+                        File creditcard = new File("creditcarddetail.txt");
                             FileReader frr = new FileReader(creditcard);
                             BufferedReader bread = new BufferedReader(new FileReader(creditcard));
 //                            Object[] tableLinescreditcard = nr.lines().toArray();
@@ -151,7 +151,7 @@ public class Payment{
 }
     public void ReadPrice(){
         try {
-            File price = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\lastpayment\\lastpay.txt");
+            File price = new File("lastpay.txt");
             FileReader tr = new FileReader(price);
             BufferedReader br = new BufferedReader(new FileReader(price));
             String firstLine = br.readLine().trim();
@@ -169,7 +169,7 @@ public class Payment{
     
      public void ReadReceipt(){
         try {
-        File price = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\receipt\\receipt.txt");
+        File price = new File("receipt.txt");
         BufferedReader br = new BufferedReader(new FileReader(price));
         
         String line;
@@ -186,7 +186,7 @@ public class Payment{
     }
      public void ReadCurrentUser(){
         try {
-            File price = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\currentuser\\currentuser.txt");
+            File price = new File("currentuser.txt");
             FileReader tr = new FileReader(price);
             BufferedReader br = new BufferedReader(new FileReader(price));
             String firstLine = br.readLine().trim();

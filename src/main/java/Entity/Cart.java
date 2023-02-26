@@ -28,8 +28,8 @@ public class Cart extends Receipt {
     
     public void cart (){
     try{
-        FileWriter Writercart = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\cartinfo\\cart.txt", false);
-        FileWriter Writerlastpayment = new FileWriter("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\lastpayment\\lastpay.txt", false);
+        FileWriter Writercart = new FileWriter("cart.txt", false);
+        FileWriter Writerlastpayment = new FileWriter("lastpay.txt", false);
         Writercart.write("Food Cart"+"\n");
         Writercart.write(backend.getText());
         Writercart.close();

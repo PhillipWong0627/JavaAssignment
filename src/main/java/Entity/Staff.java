@@ -26,7 +26,7 @@ public class Staff {
     
     public boolean login(){
         try {
-            File deliverystaff = new File("C:\\Users\\Kenny\\Documents\\GitHub\\JavaAssignment\\staffFile.txt");
+            File deliverystaff = new File("staffFile.txt");
             FileReader tr = new FileReader(deliverystaff);
             BufferedReader br = new BufferedReader(new FileReader(deliverystaff));
             String firstLine = br.readLine().trim();
@@ -54,7 +54,7 @@ public class Staff {
     
     public void DeliveryDetailsTable() {
         try {
-            File deliverydetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt");
+            File deliverydetail = new File("deliverydetail.txt");
             FileReader tr = new FileReader(deliverydetail);
             BufferedReader br = new BufferedReader(new FileReader(deliverydetail));
             String firstLine = br.readLine().trim();
@@ -103,7 +103,7 @@ public class Staff {
             model.setValueAt(DeliveryInterface.status.getText(), item, 5);
             model.setValueAt(DeliveryInterface.feedback.getText(), item, 6);
 
-            String filePath = "C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt";
+            String filePath = "deliverydetail.txt";
             File file = new File(filePath);
             try {
 

@@ -29,7 +29,7 @@ public class OrderDetails {
         public void deliverychecking(){
 //        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
         try {
-            File f = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt");
+            File f = new File("deliverydetail.txt");
             String SearchOrder = CheckOrderID.search.getText();
             if (SearchOrder.isEmpty()){
                 return;
@@ -68,7 +68,7 @@ public class OrderDetails {
     
         public void paymentchecking(){
         try {
-            File g = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\creditcarddetail\\creditcarddetail.txt");
+            File g = new File("creditcarddetail.txt");
             String SearchOrder = CheckOrderID.search.getText();
             if (SearchOrder.isEmpty()){
                 return;

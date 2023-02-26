@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class NonRegistered {
     public void SearchAllFood(){
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+            File fooddata = new File("fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
@@ -53,7 +53,7 @@ public class NonRegistered {
     public void SearchbyCategory() {
         DefaultTableModel model = (DefaultTableModel) NonROrderPage.jTable2.getModel();
         try {
-            File fooddata = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\fooddata\\fooddata.txt");
+            File fooddata = new File("fooddata.txt");
             FileReader tr = new FileReader(fooddata);
             BufferedReader br = new BufferedReader(new FileReader(fooddata));
             String firstLine = br.readLine().trim();
