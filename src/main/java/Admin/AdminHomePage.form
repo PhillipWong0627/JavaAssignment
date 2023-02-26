@@ -57,8 +57,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="108" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="adminBtn" min="-2" pref="240" max="-2" attributes="0"/>
                       <Component id="adminBtn2" min="-2" pref="277" max="-2" attributes="0"/>
+                      <Component id="adminBtn" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="staffBtn" min="-2" pref="325" max="-2" attributes="0"/>
@@ -66,11 +66,14 @@
                           </Group>
                           <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="adminBtn3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                                  <Component id="adminBtn4" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="adminBtn5" max="32767" attributes="0"/>
+                                      <Component id="adminBtn4" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="adminBtn3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -97,7 +100,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="adminBtn" min="-2" pref="111" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="adminBtn" min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="adminBtn5" min="-2" pref="111" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="adminBtn2" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
@@ -182,6 +188,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminBtn4ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="adminBtn5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="GENERATE REPORT"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminBtn5ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
