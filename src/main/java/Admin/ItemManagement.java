@@ -141,6 +141,12 @@ public class ItemManagement extends javax.swing.JFrame {
             }
         });
 
+        foodName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodNameActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("NAME : ");
 
         jLabel5.setText("FOOD PRICE : ");
@@ -441,11 +447,12 @@ public class ItemManagement extends javax.swing.JFrame {
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
                 
-                boolean valid = administrator.searchAdmin(FOODID.getText());
+                boolean valid = administrator.searchItem(FOODID.getText());
+
             
             if(valid){
                 System.out.println("HALLO WORLD");
-                File adminFile = new File("adminFile.txt");
+                File adminFile = new File("fooddata.txt");
                 
                 BufferedReader br = new BufferedReader(new FileReader(adminFile));
                 
@@ -455,14 +462,16 @@ public class ItemManagement extends javax.swing.JFrame {
                 for(int i=0; i<adminRow.length;i++){
                     String rows = adminRow[i].toString().trim();
                     //System.out.println(rows);
-                    String[] splitRows = rows.split(":");
+                    String[] splitRows = rows.split(",");
                     
                     if(splitRows[0].equals(FOODID.getText())){
                         
                         foodName.setText(splitRows[1]);
-                        foodPrice.setText(splitRows[3]);
-                        catType.setText(splitRows[4]);
+                        foodPrice.setText(splitRows[2]);
+                        catType.setText(splitRows[3]);
                         
+                        lblStatus.setVisible(true);
+                        lblStatus.setText("Id Found!!");
                     }
                     
                 }
@@ -496,6 +505,10 @@ public class ItemManagement extends javax.swing.JFrame {
     private void catTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_catTypeActionPerformed
+
+    private void foodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foodNameActionPerformed
 
     /**
      * @param args the command line arguments

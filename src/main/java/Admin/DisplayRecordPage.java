@@ -4,6 +4,11 @@
  */
 package Admin;
 
+import DisplayData.DisplayCategory;
+import DisplayData.DisplayCustOrder;
+import DisplayData.DisplayCustPayment;
+import DisplayData.DisplayItemWise;
+
 /**
  *
  * @author user
@@ -36,10 +41,25 @@ public class DisplayRecordPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText(" ITEM CATEGORY");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("CUSTOMER ORDER");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("ITEMS, CATEGORY-WISE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("CUSTOMER PAYMENT");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +119,11 @@ public class DisplayRecordPage extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        DisplayCustPayment displayCustPayment = new DisplayCustPayment();
+        
+        this.dispose();
+        
+        displayCustPayment.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -109,6 +134,33 @@ public class DisplayRecordPage extends javax.swing.JFrame {
         adminHomePage.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        DisplayCategory displayCategory = new DisplayCategory();
+        
+        this.dispose();
+        displayCategory.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DisplayItemWise displayItemWise = new DisplayItemWise();
+        
+        this.dispose();
+        displayItemWise.setVisible(true);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        DisplayCustOrder custOrder = new DisplayCustOrder();
+        this.dispose();
+        
+        custOrder.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -17,7 +17,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,7 +88,7 @@ public class Administrator {
         
     }
     
-    
+    //Maybe need to enhace Xia NOT NECESSARY
     public ArrayList<String> displayItem1(){
         File adfile = new File("itemFile.txt");
         try {
@@ -126,10 +125,6 @@ public class Administrator {
 //            System.out.println(ListItem.size());
             return ListItem;
 
-
-            
-
-            
             
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DisplayItemWise.class.getName()).log(Level.SEVERE, null, ex);
@@ -302,6 +297,87 @@ public class Administrator {
         
         
     }
+    
+    public boolean searchCategory(String catID) throws FileNotFoundException{
+        File CatFile = new File("Category.txt");
+        
+        
+        String CatToFind = catID;
+        Scanner scanner = new Scanner(CatFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(CatToFind)){
+
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+        }
+        if(Status ==0){
+            System.out.println("Category Not found");
+        }
+        return false;
+        
+        
+    }
+    
+    public boolean searchItem(String foodID) throws FileNotFoundException{
+        File FoodFile = new File("fooddata.txt");
+        
+        
+        String ItemToFind = foodID;
+        Scanner scanner = new Scanner(FoodFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(ItemToFind)){
+
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+        }
+        if(Status ==0){
+            System.out.println("Item Not found");
+        }
+        return false;
+        
+        
+    }
+    
+    
+    public boolean searchCustPayment(String OrderID) throws FileNotFoundException{
+        File FoodFile = new File("creditcarddetail.txt");
+        
+        
+        String CustPayToFind = OrderID;
+        Scanner scanner = new Scanner(FoodFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(CustPayToFind)){
+
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+        }
+        if(Status ==0){
+            System.out.println("Item Not found");
+        }
+        return false;
+        
+        
+    }
+    
+    
     
         public void ModifyAdmin() throws FileNotFoundException{    
         
