@@ -7,6 +7,8 @@ package Admin;
 import Delivery.*;
 import Main.*;
 import Customer.*;
+import Entity.Administrator;
+import Entity.Staff;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -30,34 +32,11 @@ public class AdminAssign extends javax.swing.JFrame {
      */
     public AdminAssign() throws IOException {
         initComponents();
-        DeliveryDetailsTable();
+        admin.DeliveryDetailsTable();
 
     }
 
-    public void DeliveryDetailsTable() {
-        try {
-            File deliverydetail = new File("C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt");
-            FileReader tr = new FileReader(deliverydetail);
-            BufferedReader br = new BufferedReader(new FileReader(deliverydetail));
-            String firstLine = br.readLine().trim();
-            String[] columnName = firstLine.split(":");
-            DefaultTableModel model = (DefaultTableModel) delivery.getModel();
-            model.setRowCount(0);
-            model.setColumnIdentifiers(columnName);
-
-            Object[] tableLines = br.lines().toArray();
-
-            for (int z = 0; z < tableLines.length; z++) {
-                String line = tableLines[z].toString().trim();
-                String[] dataRow = line.split(":");
-                model.addRow(dataRow);
-
-            }
-
-        } catch (IOException ex) {
-            Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    Administrator admin = new Administrator();
     
     
     /**
@@ -76,20 +55,22 @@ public class AdminAssign extends javax.swing.JFrame {
         delivery = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jtextfield = new javax.swing.JLabel();
-        orderid = new javax.swing.JTextField();
         orderid1 = new javax.swing.JLabel();
-        paymentid = new javax.swing.JTextField();
         orderid2 = new javax.swing.JLabel();
-        deliverystaff = new javax.swing.JTextField();
         orderid3 = new javax.swing.JLabel();
         orderid4 = new javax.swing.JLabel();
-        status = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        address = new javax.swing.JTextArea();
+        delivery2 = new javax.swing.JTextField();
         orderid5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         feedback = new javax.swing.JTextArea();
         update = new javax.swing.JButton();
+        address = new javax.swing.JLabel();
+        order = new javax.swing.JLabel();
+        payment = new javax.swing.JLabel();
+        userlabel = new javax.swing.JLabel();
+        user1 = new javax.swing.JLabel();
+        status1 = new javax.swing.JTextField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,10 +98,10 @@ public class AdminAssign extends javax.swing.JFrame {
 
         delivery.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "OrderID", "PaymentID", "Address", "DeliveryStaff", "Status", "Feedback"
+                "OrderID", "PaymentID", "Username", "Address", "DeliveryStaff", "Status", "Feedback"
             }
         ));
         delivery.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,21 +110,20 @@ public class AdminAssign extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(delivery);
+        if (delivery.getColumnModel().getColumnCount() > 0) {
+            delivery.getColumnModel().getColumn(1).setResizable(false);
+            delivery.getColumnModel().getColumn(2).setResizable(false);
+            delivery.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         jtextfield.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jtextfield.setText("OrderID:");
 
-        orderid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
         orderid1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid1.setText("PaymentID:");
 
-        paymentid.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
         orderid2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid2.setText("DeliveryStaff:");
-
-        deliverystaff.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         orderid3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid3.setText("Address:");
@@ -151,12 +131,7 @@ public class AdminAssign extends javax.swing.JFrame {
         orderid4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid4.setText("Status:");
 
-        status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
-        address.setColumns(20);
-        address.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        address.setRows(5);
-        jScrollPane2.setViewportView(address);
+        delivery2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         orderid5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid5.setText("Feedback:");
@@ -175,73 +150,114 @@ public class AdminAssign extends javax.swing.JFrame {
             }
         });
 
+        address.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        address.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        order.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        order.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        payment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        payment.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        userlabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        userlabel.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
+        user1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        user1.setText("Username:");
+
+        status1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        back.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        back.setText("Back to Main Menu");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(orderid))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(paymentid))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(status))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(status1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deliverystaff)))
-                .addContainerGap())
+                        .addComponent(delivery2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jScrollPane3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(user1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(userlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(order, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(back)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(16, 16, 16))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtextfield, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(order, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paymentid, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(user1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deliverystaff, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(delivery2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(status1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -256,7 +272,7 @@ public class AdminAssign extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +283,7 @@ public class AdminAssign extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,62 +303,19 @@ public class AdminAssign extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deliveryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliveryMouseClicked
-        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
-        int selectedInfo = delivery.getSelectedRow();
-
-        orderid.setText(model.getValueAt(selectedInfo, 0).toString());
-        paymentid.setText(model.getValueAt(selectedInfo, 1).toString());
-        address.setText(model.getValueAt(selectedInfo, 2).toString());
-        deliverystaff.setText(model.getValueAt(selectedInfo, 3).toString());
-        status.setText(model.getValueAt(selectedInfo, 4).toString());
-        feedback.setText(model.getValueAt(selectedInfo, 5).toString());
+        admin.am();
     }//GEN-LAST:event_deliveryMouseClicked
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        int item = delivery.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
-
-        if (item >= 0) {
-            model.setValueAt(orderid.getText(), item, 0);
-            model.setValueAt(paymentid.getText(), item, 1);
-            model.setValueAt(address.getText(), item, 2);
-            model.setValueAt(deliverystaff.getText(), item, 3);
-            model.setValueAt(status.getText(), item, 4);
-            model.setValueAt(feedback.getText(), item, 5);
-
-            String filePath = "C:\\Users\\Kenny\\OneDrive\\Documents\\NetBeansProjects\\Online Order and Delivery System\\txtfile\\deliverydetail\\deliverydetail.txt";
-            File file = new File(filePath);
-            try {
-
-                FileWriter fw = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fw);
-                String colHeadings = "";
-                for (int i = 0; i < model.getColumnCount();i++){
-                    colHeadings = colHeadings + model.getColumnName(i) + ",";
-                }
-                bw.write(colHeadings + "\n");
-
-                for (int i = 0; i < delivery.getRowCount(); i++) {
-                    for (int j = 0; j < delivery.getColumnCount(); j++) {
-                        bw.write(delivery.getValueAt(i, j).toString() + ",");
-                    }
-                    bw.newLine();
-                }
-
-                bw.close();
-                fw.close();
-            } catch (IOException ex) {
-                Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            JOptionPane.showMessageDialog(this, "Account Updated SUCCESSFULLY!");
-//            bum.setVisible(true);
-//            this.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Please fill up ALL details!");
-        }
+        admin.adminupdate();
     
     }//GEN-LAST:event_updateActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        AdminHomePage ahp = new AdminHomePage();
+        ahp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,26 +388,28 @@ public class AdminAssign extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea address;
-    private javax.swing.JTable delivery;
-    private javax.swing.JTextField deliverystaff;
-    private javax.swing.JTextArea feedback;
+    public static javax.swing.JLabel address;
+    private javax.swing.JButton back;
+    public static javax.swing.JTable delivery;
+    public static javax.swing.JTextField delivery2;
+    public static javax.swing.JTextArea feedback;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel jtextfield;
-    private javax.swing.JTextField orderid;
+    public static javax.swing.JLabel order;
     private javax.swing.JLabel orderid1;
     private javax.swing.JLabel orderid2;
     private javax.swing.JLabel orderid3;
     private javax.swing.JLabel orderid4;
     private javax.swing.JLabel orderid5;
-    private javax.swing.JTextField paymentid;
-    private javax.swing.JTextField status;
+    public static javax.swing.JLabel payment;
+    public static javax.swing.JTextField status1;
     private javax.swing.JButton update;
+    private javax.swing.JLabel user1;
+    public static javax.swing.JLabel userlabel;
     // End of variables declaration//GEN-END:variables
 }

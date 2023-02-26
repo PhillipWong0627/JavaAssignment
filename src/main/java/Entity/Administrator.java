@@ -4,7 +4,11 @@
  */
 package Entity;
 
+import Admin.AdminAssign;
 import Admin.AdminLogin;
+import Delivery.DeliveryInterface;
+import static Delivery.DeliveryInterface.delivery;
+import Delivery.DeliveryStaffLogin;
 import DisplayData.DisplayItemWise;
 import core.AdminSource;
 import core.CurrentUserSource;
@@ -21,6 +25,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -331,8 +337,88 @@ public class Administrator {
                 }
               
             } 
+       
+    }
+        public void am(){
+            DefaultTableModel model = (DefaultTableModel) AdminAssign.delivery.getModel();
+        int selectedInfo = AdminAssign.delivery.getSelectedRow();
+
+        AdminAssign.order.setText(model.getValueAt(selectedInfo, 0).toString());
+        AdminAssign.payment.setText(model.getValueAt(selectedInfo, 1).toString());
+        AdminAssign.userlabel.setText(model.getValueAt(selectedInfo, 2).toString());
+        AdminAssign.address.setText(model.getValueAt(selectedInfo, 3).toString());
+        AdminAssign.delivery2.setText(model.getValueAt(selectedInfo, 4).toString());
+        AdminAssign.status1.setText(model.getValueAt(selectedInfo, 5).toString());
+        AdminAssign.feedback.setText(model.getValueAt(selectedInfo, 6).toString());
+        }
         
-        
+        public void adminupdate(){
+            int item = delivery.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
+
+        if (item >= 0) {
+            model.setValueAt(AdminAssign.order.getText(), item, 0);
+            model.setValueAt(AdminAssign.payment.getText(), item, 1);
+            model.setValueAt(AdminAssign.userlabel.getText(), item, 2);
+            model.setValueAt(AdminAssign.address.getText(), item, 3);
+            model.setValueAt(AdminAssign.delivery2.getText(), item, 4);
+            model.setValueAt(AdminAssign.status1.getText(), item, 5);
+            model.setValueAt(AdminAssign.feedback.getText(), item, 6);
+
+            String filePath = "deliverydetail.txt";
+            File file = new File(filePath);
+            try {
+
+                FileWriter fw = new FileWriter(file);
+                BufferedWriter bw = new BufferedWriter(fw);
+                String colHeadings = "";
+                for (int i = 0; i < model.getColumnCount();i++){
+                    colHeadings = colHeadings + model.getColumnName(i) + ":";
+                }
+                bw.write(colHeadings + "\n");
+
+                for (int i = 0; i < AdminAssign.delivery.getRowCount(); i++) {
+                    for (int j = 0; j < AdminAssign.delivery.getColumnCount(); j++) {
+                        bw.write(AdminAssign.delivery.getValueAt(i, j).toString() + ":");
+                    }
+                    bw.newLine();
+                }
+
+                bw.close();
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            JOptionPane.showMessageDialog(null, "Updated SUCCESSFULLY!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please fill up ALL details!");
+        }
+    
+    }
+        public void DeliveryDetailsTable() {
+        try {
+            File deliverydetail = new File("deliverydetail.txt");
+            FileReader tr = new FileReader(deliverydetail);
+            BufferedReader br = new BufferedReader(new FileReader(deliverydetail));
+            String firstLine = br.readLine().trim();
+            String[] columnName = firstLine.split(":");
+            DefaultTableModel model = (DefaultTableModel) AdminAssign.delivery.getModel();
+            model.setRowCount(0);
+            model.setColumnIdentifiers(columnName);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                model.addRow(dataRow);
+
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 
