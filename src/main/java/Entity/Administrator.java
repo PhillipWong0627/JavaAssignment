@@ -5,6 +5,7 @@
 package Entity;
 
 import Admin.AdminLogin;
+import DisplayData.DisplayItemWise;
 import core.AdminSource;
 import core.CurrentUserSource;
 import core.StaffSource;
@@ -15,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +31,8 @@ public class Administrator {
     private String adminId;
     private String adminName;
     private String Email;
+    private final ArrayList<String> myItemList = new ArrayList<>();
+
 
     public String getAdminId() {
         return adminId;
@@ -41,8 +46,8 @@ public class Administrator {
         return Email;
     }
     
+    public Administrator(){}
     
-
    
     public boolean login(String adminName, String password){
       
@@ -83,6 +88,61 @@ public class Administrator {
         return false;
         
     }
+    
+    
+    public ArrayList<String> displayItem1(){
+        File adfile = new File("itemFile.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(adfile));
+            
+            String strHeader = br.readLine().trim();
+//            System.out.println(colHeader);
+
+            String[] columnHeader = strHeader.split(":");
+//            DefaultTableModel tModel = (DefaultTableModel) adminTable.getModel(); 
+            // set the column header
+//            tModel.setColumnIdentifiers(columnHeader);
+
+//            System.out.println(Arrays.toString(columnHeader));
+            
+            Object[] tableRow = br.lines().toArray();
+            ArrayList<String> ListItem = new ArrayList <>();
+
+            
+            for(int i = 0; i<tableRow.length;i++){
+//                System.out.println(tableRow[i]);
+                String lines = tableRow[i].toString().trim();
+//                System.out.println(lines);
+                String [] dataRows = lines.split(":");
+                
+                myItemList.add(lines);
+                
+                ListItem = myItemList;
+                
+                
+
+            }
+            
+//            System.out.println(ListItem.size());
+            return ListItem;
+
+
+            
+
+            
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DisplayItemWise.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DisplayItemWise.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return myItemList;
+        
+    }
+    
+    
+    
+    
     
     public void addAdmin(String adminName, String password, String email, String phNo) throws IOException{
         //Take name, password, email, phone
@@ -183,41 +243,7 @@ public class Administrator {
         
     
     }
-    
-    
-    
-    
-    public void ModifyAdmin() throws FileNotFoundException{    
-        
-        Scanner sc = new Scanner(System.in);
-        File adminFile = new File("adminFile.txt");
-                
-            BufferedReader br = new BufferedReader(new FileReader(adminFile));
-
-            
-            Object[] fileRow = br.lines().toArray();
-//            System.out.println(fileRow);
-            String checkName = sc.nextLine();
-
-
-            for(int i=0; i < fileRow.length;i++){
-                String rows = fileRow[i].toString().trim();
-                String [] dataRows = rows.split(":");
-                
-                
-                //System.out.println(rows);
-                System.out.println(dataRows[0]);
-                
-                if(dataRows[0].equals(checkName)){
-                    System.out.println("SMTG");
-                }else{
-                    System.out.println("Failed");
-                }
-              
-            } 
-        
-        
-    }
+   
     
     public boolean searchAdmin(String adminID) throws FileNotFoundException{
         File adminFile = new File("adminFile.txt");
@@ -273,6 +299,38 @@ public class Administrator {
             System.out.println("Admin Not found");
         }
         return false;
+        
+        
+    }
+    
+        public void ModifyAdmin() throws FileNotFoundException{    
+        
+        Scanner sc = new Scanner(System.in);
+        File adminFile = new File("adminFile.txt");
+                
+            BufferedReader br = new BufferedReader(new FileReader(adminFile));
+
+            
+            Object[] fileRow = br.lines().toArray();
+//            System.out.println(fileRow);
+            String checkName = sc.nextLine();
+
+
+            for(int i=0; i < fileRow.length;i++){
+                String rows = fileRow[i].toString().trim();
+                String [] dataRows = rows.split(":");
+                
+                
+                //System.out.println(rows);
+                System.out.println(dataRows[0]);
+                
+                if(dataRows[0].equals(checkName)){
+                    System.out.println("SMTG");
+                }else{
+                    System.out.println("Failed");
+                }
+              
+            } 
         
         
     }
