@@ -17,8 +17,6 @@ class Category {
     }
     
     
-    
-    
     public String getCategoryType() {
         return CategoryType;
     }

@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package DisplayData;
+package Admin;
 
-import Admin.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class DisplayCustOrder extends javax.swing.JFrame {
+public class GenerateReport extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminManagement
      */
     
 //    Object[] AdminData = new Object[];
-    public DisplayCustOrder() {
+    public GenerateReport() {
         initComponents();
     }
 
@@ -45,6 +44,11 @@ public class DisplayCustOrder extends javax.swing.JFrame {
         btnFetch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        ad = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        TotalCount = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        TotalEarn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -54,7 +58,7 @@ public class DisplayCustOrder extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ORDER ID", "DAY&DATE", "TIME", "OrderDetails"
+                "ORDER ID", "PayID", "CreditCardName", "CreditCardNumber", "TotalPayment"
             }
         ));
         jScrollPane1.setViewportView(customerTable);
@@ -77,7 +81,7 @@ public class DisplayCustOrder extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(153, 255, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("CUSTOMER MANAGEMENT");
+        jLabel1.setText("Kenny & Phillip Analysed Report");
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setText("BACK");
@@ -86,6 +90,43 @@ public class DisplayCustOrder extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Total Count: ");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Total Earn: ");
+
+        javax.swing.GroupLayout adLayout = new javax.swing.GroupLayout(ad);
+        ad.setLayout(adLayout);
+        adLayout.setHorizontalGroup(
+            adLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(adLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(adLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(47, 47, 47)
+                        .addComponent(TotalEarn))
+                    .addGroup(adLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(37, 37, 37)
+                        .addComponent(TotalCount, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        adLayout.setVerticalGroup(
+            adLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(adLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(adLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalEarn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,19 +142,24 @@ public class DisplayCustOrder extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(ad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
+                        .addGap(167, 167, 167)
                         .addComponent(jLabel1)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,40 +182,52 @@ public class DisplayCustOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
+        // Click this button to Fetch All the existiing Data
+        Integer count = 0;
+        Double totalEarn =0.0;
         
-        BufferedReader br1 = null;
+        
+        File adfile = new File("creditcarddetail.txt");
         try {
-            // Click this button to Fetch All the existiing Data
+            BufferedReader br = new BufferedReader(new FileReader(adfile));
             
-            File orderDetailFile = new File("orderdetail.txt");
-            br1 = new BufferedReader(new FileReader(orderDetailFile));
-            String strHeader1 = br1.readLine().trim();
-            String[] columnHeader1 = strHeader1.split("/");
-            DefaultTableModel tModel2 = (DefaultTableModel) customerTable.getModel();
-            tModel2.setColumnIdentifiers(columnHeader1);
-            //Save Each line of data into adminRow Arrayin x;x;x
-            Object[] tableRow1 = br1.lines().toArray();
-            tModel2.setRowCount(0);
-            for(int i=0; i<tableRow1.length;i++){
-                String rows = tableRow1[i].toString().trim();
-                //System.out.println(rows);
-                String[] splitRows1 = rows.split("/");
-//                System.out.println(splitRows1[0]);
-//                System.out.println(splitRows1[1]);
-//                System.out.println(splitRows1[2]);
-//                System.out.println(splitRows1[3]);
-                tModel2.addRow(splitRows1);
+            String strHeader = br.readLine().trim();
+//            System.out.println(colHeader);
 
+            String[] columnHeader = strHeader.split(":");
+            DefaultTableModel tModel = (DefaultTableModel) customerTable.getModel(); 
+            // set the column header
+            tModel.setColumnIdentifiers(columnHeader);
+            
+            tModel.setRowCount(0);
+            System.out.println("Data Clear and Fetched..");
+            
+            Object[] tableRow = br.lines().toArray();
+            
+            for(int i = 0; i<tableRow.length;i++){
+//                System.out.println(tableRow[i]);
+                String lines = tableRow[i].toString().trim();
+                //System.out.println(x);
+                String [] dataRows = lines.split(":");
                 
+                String [] splitRM = dataRows[4].split("RM");
                 
+                totalEarn = totalEarn + Double.parseDouble(splitRM[1]);
+
+                tModel.addRow(dataRows);
+                count++;
             }
             
-            br1.close();
+            TotalCount.setText(""+count);
+            TotalEarn.setText(""+totalEarn);
+            
+            
+            
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DisplayCustOrder.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenerateReport.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(DisplayCustOrder.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            Logger.getLogger(GenerateReport.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
 
         
@@ -200,14 +258,62 @@ public class DisplayCustOrder extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GenerateReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GenerateReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GenerateReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayCustOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GenerateReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -228,17 +334,22 @@ public class DisplayCustOrder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DisplayCustOrder().setVisible(true);
+                new GenerateReport().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TotalCount;
+    private javax.swing.JTextField TotalEarn;
+    private javax.swing.JPanel ad;
     private javax.swing.JButton btnFetch;
     private javax.swing.JTable customerTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,9 +6,7 @@ package Entity;
 
 import Admin.AdminAssign;
 import Admin.AdminLogin;
-import Delivery.DeliveryInterface;
 import static Delivery.DeliveryInterface.delivery;
-import Delivery.DeliveryStaffLogin;
 import DisplayData.DisplayItemWise;
 import core.AdminSource;
 import core.CurrentUserSource;
@@ -384,37 +382,61 @@ public class Administrator {
     }
     
     
-    
-        public void ModifyAdmin() throws FileNotFoundException{    
+    public boolean searchOrder(String OrderID) throws FileNotFoundException{
+        File OrderFile = new File("orderdetail.txt");
         
-        Scanner sc = new Scanner(System.in);
-        File adminFile = new File("adminFile.txt");
-                
-            BufferedReader br = new BufferedReader(new FileReader(adminFile));
+        String OrderToFind = OrderID;
+        Scanner scanner = new Scanner(OrderFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(OrderToFind)){
 
+                System.out.println("Success Search");
+                return true;
+            }
             
-            Object[] fileRow = br.lines().toArray();
-//            System.out.println(fileRow);
-            String checkName = sc.nextLine();
-
-
-            for(int i=0; i < fileRow.length;i++){
-                String rows = fileRow[i].toString().trim();
-                String [] dataRows = rows.split(":");
-                
-                
-                //System.out.println(rows);
-                System.out.println(dataRows[0]);
-                
-                if(dataRows[0].equals(checkName)){
-                    System.out.println("SMTG");
-                }else{
-                    System.out.println("Failed");
-                }
-              
-            } 
-       
+        }
+        if(Status ==0){
+            System.out.println("Item Not found");
+        }
+        return false;
+        
+        
     }
+    
+    
+//    public void ModifyAdmin() throws FileNotFoundException{    
+//
+//    Scanner sc = new Scanner(System.in);
+//    File adminFile = new File("adminFile.txt");
+//
+//        BufferedReader br = new BufferedReader(new FileReader(adminFile));
+//
+//
+//        Object[] fileRow = br.lines().toArray();
+////            System.out.println(fileRow);
+//        String checkName = sc.nextLine();
+//
+//
+//        for(int i=0; i < fileRow.length;i++){
+//            String rows = fileRow[i].toString().trim();
+//            String [] dataRows = rows.split(":");
+//
+//
+//            //System.out.println(rows);
+//            System.out.println(dataRows[0]);
+//
+//            if(dataRows[0].equals(checkName)){
+//                System.out.println("SMTG");
+//            }else{
+//                System.out.println("Failed");
+//            }
+//
+//        } 
+//       
+//    }
         public void am(){
             DefaultTableModel model = (DefaultTableModel) AdminAssign.delivery.getModel();
         int selectedInfo = AdminAssign.delivery.getSelectedRow();
@@ -496,37 +518,6 @@ public class Administrator {
             Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-
-    public void updateUser(){
-        
-        
-    }
-    
-    public void updateCategory(){
-        
-        
-    }
-    
-    public void searchPayment(){
-        
-    }
-    
-    public void searchOrder(){
-        
-    }
-    
-    public void assignOrder(){
-        
-    }
-    
-    public void updateCategoryWise(){
-        
-        
-    }
-
-
-    
     
     
 }

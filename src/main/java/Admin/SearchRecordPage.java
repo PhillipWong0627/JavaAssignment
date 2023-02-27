@@ -47,6 +47,7 @@ public class SearchRecordPage extends javax.swing.JFrame {
         custOrderTable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +82,7 @@ public class SearchRecordPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "OrderID", "DAY", "DATE", "TIME", "ORDERTAILS"
+                "ORDERID", "DAY&DATE", "TIME", "ORDERTAILS"
             }
         ));
         jScrollPane2.setViewportView(custOrderTable);
@@ -95,6 +96,14 @@ public class SearchRecordPage extends javax.swing.JFrame {
         });
 
         lblStatus.setText("lblStatus");
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("CLEAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,16 +120,19 @@ public class SearchRecordPage extends javax.swing.JFrame {
                         .addComponent(ORDERID, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblStatus)
-                            .addComponent(jButton2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +142,8 @@ public class SearchRecordPage extends javax.swing.JFrame {
                     .addComponent(ORDERID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(lblStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
@@ -201,6 +214,8 @@ public class SearchRecordPage extends javax.swing.JFrame {
                         
                         if(splitRows[0].equals(ORDERID.getText())){
                             
+                            tModel.setRowCount(0);
+
                             tModel.addRow(splitRows);
 
                             lblStatus.setVisible(true);
@@ -219,7 +234,7 @@ public class SearchRecordPage extends javax.swing.JFrame {
                     
                     String strHeader1 = br1.readLine().trim();
                     
-                    String[] columnHeader1 = strHeader1.split(",");
+                    String[] columnHeader1 = strHeader1.split("/");
                     DefaultTableModel tModel2 = (DefaultTableModel) custOrderTable.getModel();
                     
                     tModel2.setColumnIdentifiers(columnHeader1);
@@ -231,16 +246,16 @@ public class SearchRecordPage extends javax.swing.JFrame {
                     for(int i=0; i<tableRow1.length;i++){
                         String rows = tableRow1[i].toString().trim();
                         //System.out.println(rows);
-                        String[] splitRows1 = rows.split(",");
+                        String[] splitRows1 = rows.split("/");
                         System.out.println(splitRows1[0]);
                         System.out.println(splitRows1[1]);
                         System.out.println(splitRows1[2]);
                         System.out.println(splitRows1[3]);
-                        System.out.println(splitRows1[4]);
 
                         
                         if(splitRows1[0].equals(ORDERID.getText())){
                             
+                            tModel2.setRowCount(0);
                             tModel2.addRow(splitRows1);
                             
                             System.out.println(Arrays.toString(splitRows1));
@@ -271,6 +286,19 @@ public class SearchRecordPage extends javax.swing.JFrame {
             }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        DefaultTableModel tModel = (DefaultTableModel) custOrderTable.getModel(); 
+        DefaultTableModel tMode2 = (DefaultTableModel) custPaymentTable.getModel(); 
+
+
+        tModel.setRowCount(0);
+        tMode2.setRowCount(0);
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,6 +341,7 @@ public class SearchRecordPage extends javax.swing.JFrame {
     private javax.swing.JTable custPaymentTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

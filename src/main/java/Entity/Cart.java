@@ -16,15 +16,13 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class Cart extends Receipt {
-//    private Integer cartID;
-//    private Food food;
-//    private Integer quantity;
-//    
-//    public void Cart(Integer cartId, Food food, Integer qty){
-//        this.cartID = cartId;
-//        this.food = food;
-//        this.quantity = qty;
-//    }
+    private Integer cartID;
+    private Food food;
+    
+    public void Cart(Integer cartId, Food food){
+        this.cartID = cartId;   
+        this.food = food;
+    }
     
     public void cart (){
     try{

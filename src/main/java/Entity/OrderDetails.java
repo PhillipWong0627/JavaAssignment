@@ -14,18 +14,16 @@ import Customer.CheckOrderID;
  * @author user
  */
 public class OrderDetails {
-//    private Integer OrderId;
-//    private Food Food;
-//    private String Quantity;
-//    private String OrderStatus;
+    private Integer OrderId;
+    private Food Food;
+    private String OrderStatus;
 //    
-//    public void OrderDetails(Integer orderId, Food food, String quantity, String orderStatus){
-//        this.OrderId = orderId;
-//        this.Food = food;
-//        this.Quantity = quantity;
-//        this.OrderStatus = orderStatus;
-//        
-//    }
+    public void OrderDetails(Integer orderId, Food food, String orderStatus){
+        this.OrderId = orderId;
+        this.Food = food;
+        this.OrderStatus = orderStatus;
+        
+    }
         public void deliverychecking(){
 //        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
         try {

@@ -256,7 +256,6 @@ public class AdminLogin extends javax.swing.JFrame {
         
         
         boolean valid = administrator.login(adminName.getText(), password.getText());
-         
                 if(valid){
                 System.out.println("==== Welcome On Board Mr/Ms " + adminName.getText() + " ====" +
                         "\nYou Have Sucessfully Login"
