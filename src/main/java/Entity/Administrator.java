@@ -429,8 +429,8 @@ public class Administrator {
         }
         
         public void adminupdate(){
-            int item = delivery.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
+            int item = AdminAssign.delivery.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) AdminAssign.delivery.getModel();
 
         if (item >= 0) {
             model.setValueAt(AdminAssign.order.getText(), item, 0);

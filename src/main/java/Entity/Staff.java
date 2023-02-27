@@ -97,7 +97,7 @@ public class Staff {
         if (item >= 0) {
             model.setValueAt(DeliveryInterface.order.getText(), item, 0);
             model.setValueAt(DeliveryInterface.payment.getText(), item, 1);
-            model.setValueAt(DeliveryInterface.payment.getText(), item, 2);
+            model.setValueAt(DeliveryInterface.userlabel.getText(), item, 2);
             model.setValueAt(DeliveryInterface.address.getText(), item, 3);
             model.setValueAt(DeliveryInterface.delivery2.getText(), item, 4);
             model.setValueAt(DeliveryInterface.status.getText(), item, 5);
