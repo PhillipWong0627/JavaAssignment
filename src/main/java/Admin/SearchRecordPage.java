@@ -173,7 +173,6 @@ public class SearchRecordPage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
         Administrator administrator = new Administrator();
             
             if("".equals(ORDERID.getText())){
@@ -182,21 +181,16 @@ public class SearchRecordPage extends javax.swing.JFrame {
                 lblStatus.setVisible(true);
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
-                
             try {
-                
                 boolean valid = administrator.searchCustPayment(ORDERID.getText());
                 
                 if(valid){
                     System.out.println("HALLO WORLD");
                     File FoodFile = new File("creditcarddetail.txt");
                     
-                    
-                    
                     BufferedReader br = new BufferedReader(new FileReader(FoodFile));
                     
                     String strHeader = br.readLine().trim();
-                    
                     String[] columnHeader = strHeader.split(":");
                     DefaultTableModel tModel = (DefaultTableModel) custPaymentTable.getModel();
                     
@@ -204,18 +198,13 @@ public class SearchRecordPage extends javax.swing.JFrame {
                     
                     //Save Each line of data into adminRow Arrayin x;x;x
                     Object[] tableRow = br.lines().toArray();
-                    
-                    
                     for(int i=0; i<tableRow.length;i++){
                         String rows = tableRow[i].toString().trim();
                         //System.out.println(rows);
                         String[] splitRows = rows.split(":");
                         
-                        
                         if(splitRows[0].equals(ORDERID.getText())){
-                            
                             tModel.setRowCount(0);
-
                             tModel.addRow(splitRows);
 
                             lblStatus.setVisible(true);
@@ -224,16 +213,11 @@ public class SearchRecordPage extends javax.swing.JFrame {
                         
                     }
                     System.out.println("HALLO WORLD");
-
                     
                     File orderDetailFile = new File("orderdetail.txt");
-                    
-                    
-                    
                     BufferedReader br1 = new BufferedReader(new FileReader(orderDetailFile));
                     
                     String strHeader1 = br1.readLine().trim();
-                    
                     String[] columnHeader1 = strHeader1.split("/");
                     DefaultTableModel tModel2 = (DefaultTableModel) custOrderTable.getModel();
                     
