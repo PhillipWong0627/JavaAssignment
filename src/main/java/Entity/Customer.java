@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,11 +29,6 @@ import javax.swing.table.DefaultTableModel;
  * @author user
  */
 public class Customer extends Payment{
-    private String customerName;
-    private String customerAddress;
-    private String Email;
-    private Integer creditCardNo;
-    private ArrayList<Cart> carList;
     
     public boolean register() throws IOException{
         
