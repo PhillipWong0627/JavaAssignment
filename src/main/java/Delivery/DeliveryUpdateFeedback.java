@@ -2,41 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Admin;
+package Delivery;
 
-import Delivery.*;
-import Main.*;
-import Customer.*;
-import Entity.Administrator;
 import Entity.Staff;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Kenny
  */
-public class AdminAssign extends javax.swing.JFrame {
+public class DeliveryUpdateFeedback extends javax.swing.JFrame {
 
     /**
      * Creates new form RegisterPage
      */
-    public AdminAssign() throws IOException {
+    public DeliveryUpdateFeedback() throws IOException {
         initComponents();
-        admin.DeliveryDetailsTable();
+        st.DeliveryDetailsTable();
 
     }
 
-    Administrator admin = new Administrator();
+    Staff st = new Staff();
     
     
     /**
@@ -59,17 +48,17 @@ public class AdminAssign extends javax.swing.JFrame {
         orderid2 = new javax.swing.JLabel();
         orderid3 = new javax.swing.JLabel();
         orderid4 = new javax.swing.JLabel();
-        delivery2 = new javax.swing.JTextField();
+        status = new javax.swing.JTextField();
         orderid5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         feedback = new javax.swing.JTextArea();
         update = new javax.swing.JButton();
+        delivery2 = new javax.swing.JLabel();
         address = new javax.swing.JLabel();
         order = new javax.swing.JLabel();
         payment = new javax.swing.JLabel();
         userlabel = new javax.swing.JLabel();
         user1 = new javax.swing.JLabel();
-        status1 = new javax.swing.JTextField();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +67,7 @@ public class AdminAssign extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel2.setText("Admin Assign");
+        jLabel2.setText("Delivery Staff");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,7 +120,7 @@ public class AdminAssign extends javax.swing.JFrame {
         orderid4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid4.setText("Status:");
 
-        delivery2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        status.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         orderid5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         orderid5.setText("Feedback:");
@@ -150,6 +139,9 @@ public class AdminAssign extends javax.swing.JFrame {
             }
         });
 
+        delivery2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        delivery2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+
         address.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         address.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
 
@@ -165,10 +157,8 @@ public class AdminAssign extends javax.swing.JFrame {
         user1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         user1.setText("Username:");
 
-        status1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
         back.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        back.setText("Back to Main Menu");
+        back.setText("Back");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backActionPerformed(evt);
@@ -180,15 +170,15 @@ public class AdminAssign extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(status1))
+                        .addComponent(status))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(delivery2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(delivery2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -214,7 +204,7 @@ public class AdminAssign extends javax.swing.JFrame {
                                 .addComponent(payment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addComponent(back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,13 +232,13 @@ public class AdminAssign extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addComponent(orderid3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(orderid2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(delivery2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(orderid2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(delivery2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(orderid4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(status1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(orderid5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +246,7 @@ public class AdminAssign extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(back))
                 .addGap(25, 25, 25))
         );
 
@@ -303,22 +293,22 @@ public class AdminAssign extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deliveryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deliveryMouseClicked
-        admin.am();
+        st.cli();
     }//GEN-LAST:event_deliveryMouseClicked
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        if(delivery2.getText().isEmpty() && status1.getText().isEmpty() && feedback.getText().isEmpty()){
+        if(status.getText().isEmpty() || feedback.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Something is empty");
         }else{
-            admin.adminupdate();
+           st.update(); 
         }
         
     
     }//GEN-LAST:event_updateActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        AdminHomePage ahp = new AdminHomePage();
-        ahp.setVisible(true);
+        DeliveryInterface di = new DeliveryInterface();
+        di.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
@@ -339,13 +329,13 @@ public class AdminAssign extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminAssign.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -384,9 +374,9 @@ public class AdminAssign extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new AdminAssign().setVisible(true);
+                    new DeliveryUpdateFeedback().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(AdminAssign.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -396,7 +386,7 @@ public class AdminAssign extends javax.swing.JFrame {
     public static javax.swing.JLabel address;
     private javax.swing.JButton back;
     public static javax.swing.JTable delivery;
-    public static javax.swing.JTextField delivery2;
+    public static javax.swing.JLabel delivery2;
     public static javax.swing.JTextArea feedback;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -412,7 +402,7 @@ public class AdminAssign extends javax.swing.JFrame {
     private javax.swing.JLabel orderid4;
     private javax.swing.JLabel orderid5;
     public static javax.swing.JLabel payment;
-    public static javax.swing.JTextField status1;
+    public static javax.swing.JTextField status;
     private javax.swing.JButton update;
     private javax.swing.JLabel user1;
     public static javax.swing.JLabel userlabel;

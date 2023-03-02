@@ -4,6 +4,7 @@
  */
 package Customer;
 
+import NonRegisteredCustomer.CustomerRegister;
 import Entity.Customer;
 import Main.WelcomePage;
 

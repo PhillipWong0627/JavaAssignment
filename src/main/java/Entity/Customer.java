@@ -6,7 +6,7 @@ package Entity;
 
 import Customer.CustomerInterface;
 import Customer.CustomerLogin;
-import Customer.CustomerRegister;
+import NonRegisteredCustomer.CustomerRegister;
 import Customer.OrderPage;
 import Customer.CustomerUpdateProfile;
 import static Customer.CustomerUpdateProfile.profile;
@@ -31,20 +31,36 @@ import javax.swing.table.DefaultTableModel;
 public class Customer extends Payment{
     
     public boolean register() throws IOException{
-        
-        File customerdetail = new File("customerdetail.txt");
-        FileWriter FW;
-        FW = new FileWriter(customerdetail,true);
-        BufferedWriter BW = new BufferedWriter(FW);
-        String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.passfield.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
-        BW.write(record);
-        BW.close();
-        FW.close();
-        
-        JOptionPane.showMessageDialog(null, "Successfully register, "+CustomerRegister.usernamere.getText());
-        CustomerLogin cslogin = new CustomerLogin();
-        cslogin.setVisible(true);
-        return true;
+        File customerinfo = new File("customerdetail.txt");
+            FileReader tr = new FileReader(customerinfo);
+            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
+            String firstLine = br.readLine().trim();
+//            String[] columnName = firstLine.split(",");
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                if(CustomerRegister.usernamere.getText().equals(dataRow[0])){
+                    JOptionPane.showMessageDialog(null, "Register Fail, username exist");
+                    break;
+                }else{
+                    File customerdetail = new File("customerdetail.txt");
+                    FileWriter FW;
+                    FW = new FileWriter(customerdetail,true);
+                    BufferedWriter BW = new BufferedWriter(FW);
+                    String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.passfield.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
+                    BW.write(record);
+                    BW.close();
+                    FW.close();
+
+                    JOptionPane.showMessageDialog(null, "Successfully register, "+CustomerRegister.usernamere.getText());
+                    CustomerLogin cslogin = new CustomerLogin();
+                    cslogin.setVisible(true);
+                    return true;
+                }
+            }
+        return false;              
     }
     
     

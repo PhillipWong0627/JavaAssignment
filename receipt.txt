@@ -1,12 +1,12 @@
 **********************Philip & Kenny Food Centre**********************
-              Time: 6:22:33 pm          Date: Saturday, 25-02-2023
+              Time: 1:04:13 pm          Date: Thursday, 02-03-2023
 **************************************************************************
 FoodID:	Item Name:		Price($)
+T001	Kao Pad		8.00
+D003	Water		0.80
+W001	Chicken Chop		13.50
 W004	Burger		12.50
-C002	Sweet and Sour Chicken Rice		11.00
-D001	Milo Iced		4.00
-T003	Tom Yum Fried Rice		9.00
 **********************Thank you for purchasing**********************
-              Delivery Fees:		RM36.5
-              Subtotal:		RM1.83
-              Total Price:		RM38.33
+              Delivery Fees:		RM34.8
+              Subtotal:		RM1.74
+              Total Price:		RM36.54
