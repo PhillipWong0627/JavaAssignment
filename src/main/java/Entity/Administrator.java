@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class Administrator {
+public class Administrator  {
     private String adminId;
     private String adminName;
     private String Email;
@@ -50,8 +50,6 @@ public class Administrator {
     }
     
     public Administrator(){}
-    
-   
     public boolean login(String adminName, String password){
       
         File adFile = new File("adminFile.txt");
@@ -60,18 +58,13 @@ public class Administrator {
             BufferedReader br = new BufferedReader(new FileReader(adFile));
             
             Object[] fileRow = br.lines().toArray();
-            //System.out.println(fileRow);
             boolean flag = true;
 
             for(int i=0; i < fileRow.length;i++){
                 String rows = fileRow[i].toString().trim();
                 String [] dataRows = rows.split(":");
                 
-                //System.out.println(rows);
-                //System.out.println(dataRows[1]);
-                
                 if(dataRows[1].equals(adminName.trim()) && dataRows[2].equals(password)){
-                    
                     CurrentUserSource.currenctUserId = dataRows[0];
                     CurrentUserSource.currenctUserName = adminName;
                     CurrentUserSource.currenctUserRole = "ADMIN";
@@ -81,15 +74,11 @@ public class Administrator {
                     
                     return true;
                 }
-            }           
-
-            
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return false;
-        
     }
     
     //Maybe need to enhace Xia NOT NECESSARY

@@ -1,3 +1,3 @@
 ADMIN ID:ADMIN NAME:PASSWORD:EMAIL:PHONE NUMBER:
 A001:Kenny:123:kenny020603@gmail.com:012-2504088:
-A002:Phillip:123:phillipwong0627@gmail.com:012-2504088:
+A002:PhillipWong:123:phillipwong0627@gmail.com:012-2504088:

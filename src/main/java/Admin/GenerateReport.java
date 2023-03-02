@@ -178,6 +178,8 @@ public class GenerateReport extends javax.swing.JFrame {
         DefaultTableModel tModel = (DefaultTableModel) customerTable.getModel(); 
 
         tModel.setRowCount(0);
+        TotalCount.setText("");
+        TotalEarn.setText("");
         
     }//GEN-LAST:event_jButton3ActionPerformed
 

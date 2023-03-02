@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -404,6 +405,7 @@ public class AdminManagement extends javax.swing.JFrame {
                 }
                 bw.write("\n");
             }
+            JOptionPane.showMessageDialog(rootPane, "Data Have been remove.");
             System.out.println("Inventory Update Sucessfully!!");
             bw.close();
             
@@ -447,6 +449,8 @@ public class AdminManagement extends javax.swing.JFrame {
                 }
                 bw.write("\n");
             }
+            JOptionPane.showMessageDialog(rootPane, "Data Have been updated.");
+
             System.out.println("Inventory Update Sucessfully!!");
             bw.close();
             
