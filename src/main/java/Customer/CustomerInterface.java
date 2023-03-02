@@ -76,7 +76,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         });
 
         orderstatus.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        orderstatus.setText("Check Order Status");
+        orderstatus.setText("Check Order Status ");
         orderstatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderstatusActionPerformed(evt);
@@ -167,13 +167,10 @@ public class CustomerInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_orderfoodActionPerformed
 
     private void orderstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderstatusActionPerformed
-        try {
-            CheckOrderID check = new CheckOrderID();
-            check.setVisible(true);
-            this.setVisible(false);
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    CheckOrderStatus status = new CheckOrderStatus();
+    status.setVisible(true);
+    this.setVisible(false);
+        
     }//GEN-LAST:event_orderstatusActionPerformed
 
     private void updateprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateprofileActionPerformed
@@ -188,26 +185,21 @@ public class CustomerInterface extends javax.swing.JFrame {
 //        
     }//GEN-LAST:event_updateprofileActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            // TODO add your handling code here:
-            
-            CheckOrderID  checkOrderID = new CheckOrderID();
-            
-            this.dispose();
-            checkOrderID.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(CustomerInterface.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         WelcomePage wp = new WelcomePage();
         wp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            CheckOrderID check = new CheckOrderID();
+            check.setVisible(true);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(CustomerInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
