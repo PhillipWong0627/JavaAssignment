@@ -36,7 +36,7 @@ public class Customer extends Payment{
         FileWriter FW;
         FW = new FileWriter(customerdetail,true);
         BufferedWriter BW = new BufferedWriter(FW);
-        String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.password.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
+        String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.passfield.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
         BW.write(record);
         BW.close();
         FW.close();
@@ -62,7 +62,7 @@ public class Customer extends Payment{
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(":");
                 System.out.println(dataRow[0]);
-                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.passwordfield.getText().equals(dataRow[1])){
                     ReadUsertoPayment();
                     JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
                     CustomerInterface csinterface = new CustomerInterface();

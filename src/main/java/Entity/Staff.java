@@ -37,7 +37,7 @@ public class Staff {
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(":");
                 System.out.println(dataRow[0]);
-                if(DeliveryStaffLogin.username.getText().equals(dataRow[1]) && DeliveryStaffLogin.password.getText().equals(dataRow[2])){
+                if(DeliveryStaffLogin.username.getText().equals(dataRow[1]) && DeliveryStaffLogin.passf.getText().equals(dataRow[2])){
                     JOptionPane.showMessageDialog(null, "Welcome, " +DeliveryStaffLogin.username.getText());
                     DeliveryInterface di = new DeliveryInterface();
                     di.setVisible(true);
