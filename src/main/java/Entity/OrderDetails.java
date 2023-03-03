@@ -21,6 +21,7 @@ public class OrderDetails {
     
     
         public void paymentchecking(){
+        boolean notfound = true;
         try {
             File g = new File("creditcarddetail.txt");
             String SearchOrder = CheckOrderID.search.getText();
@@ -38,7 +39,11 @@ public class OrderDetails {
                     CheckOrderID.ccname.setText(myArr[2]);
                     CheckOrderID.ccnumber.setText(myArr[3]);
                     CheckOrderID.total.setText(myArr[4]);
+                    notfound=false;
                 }
+            }
+            if (notfound){
+                JOptionPane.showMessageDialog(null, "No such orderID");
             }
             
         } catch (IOException Ex) {
@@ -46,6 +51,7 @@ public class OrderDetails {
         }
     }
     public void deliverycheckingcustomer(){
+        boolean notfound = true;
         try {
             File f = new File("deliverydetail.txt");
             String SearchOrder = CheckOrderStatus.search.getText();
@@ -67,9 +73,10 @@ public class OrderDetails {
                     CheckOrderStatus.delivery2.setText(myArr[4]);
                     CheckOrderStatus.status.setText(myArr[5]);
                     CheckOrderStatus.fedback.setText(myArr[6]);
+                    notfound=false;
                 }
             }
-            if (Status == 0) {
+            if (notfound) {
                  JOptionPane.showMessageDialog(null, "No such orderID");   
             }
         } catch (IOException Ex) {

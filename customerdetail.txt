@@ -6,5 +6,6 @@ Eejoe:eejoeisme:Eejoe@gmail.com:03/02/2002:01656382020:30, jalan perkasa:
 JyeShan:jyeshanisme:jyeshan@gmail.com:02/02/2002:0125467896:98,jalan johor:
 JunMing:junmingisme:JunMing@gmail.com:01/01/2000:01589657412:86,jalan kinra:
 Kelvin:kelvin:Kelvin@gmail.com:01/05/2004:01285469325:28,jalan maldived:
-LiongHin:123:LiongHin@gmail.com:02/03/2001:01185496325:29,jalan sambal
-EvaTham:123:Eva@gmail.com:31/2/2023:0182311234:BSD
+LiongHin:123:LiongHin@gmail.com:02/03/2001:01185496325:29,jalan sambal:
+EvaTham:123:Eva@gmail.com:31/2/2023:0182311234:BSD:
+ChiJian:chijianisnotme:ChiJian@gmail.com:01/02/03:0129654783:28, jalan marvelour:

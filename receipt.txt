@@ -1,9 +1,10 @@
 **********************Philip & Kenny Food Centre**********************
-              Time: 9:03:25 pm          Date: Friday, 03-03-2023
+              Time: 11:01:34 pm          Date: Friday, 03-03-2023
 **************************************************************************
 FoodID:	Item Name:		Price($)
-T002	Pad Thai		9.50
+C002	Sweet and Sour Chicken Rice		11.00
+W004	Burger		12.50
 **********************Thank you for purchasing**********************
-              Delivery Fees:		RM9.5
-              Subtotal:		RM0.95
-              Total Price:		RM10.45
+              Delivery Fees:		RM23.5
+              Subtotal:		RM2.35
+              Total Price:		RM25.85
