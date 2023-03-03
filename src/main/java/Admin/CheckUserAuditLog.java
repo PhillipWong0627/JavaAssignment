@@ -12,8 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,48 +43,31 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        foodTable = new javax.swing.JTable();
+        auditTable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         btnFetch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        btnFetch1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        FOODID = new javax.swing.JTextField();
+        USERROLE = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        foodName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        foodPrice = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        catType = new javax.swing.JTextField();
         lblStatus = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setText("ADD ITEM");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        foodTable.setModel(new javax.swing.table.DefaultTableModel(
+        auditTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "USER", "FOOD", "PRICE"
+                "USERROLE", "USERNAME", "DAY&DATE", "TIME"
             }
         ));
-        jScrollPane1.setViewportView(foodTable);
+        jScrollPane1.setViewportView(auditTable);
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("CLEAR");
@@ -112,56 +97,22 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setText("DELETE");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        btnFetch1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnFetch1.setText("Update/Save Data to Text File");
-        btnFetch1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFetch1ActionPerformed(evt);
-            }
-        });
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
-        jLabel3.setText("FOOD ID : ");
+        jLabel3.setText("User Role:");
+
+        USERROLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                USERROLEActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("SEARCH");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        foodName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foodNameActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("NAME : ");
-
-        jLabel5.setText("FOOD PRICE : ");
-
-        foodPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foodPriceActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("CATEGORY \nTYPE:");
-
-        catType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                catTypeActionPerformed(evt);
             }
         });
 
@@ -173,25 +124,16 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(FOODID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(USERROLE, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(catType, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblStatus)
                         .addGap(28, 28, 28))))
         );
@@ -201,21 +143,10 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(FOODID, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(USERROLE, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(foodName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(foodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(catType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatus))
+                .addGap(118, 118, 118)
+                .addComponent(lblStatus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -238,18 +169,13 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnFetch1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(126, 126, 126)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -261,9 +187,7 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
+                        .addGap(60, 60, 60)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -273,33 +197,19 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFetch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFetch1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-       addItem c = new addItem();
-        
-       this.dispose();
-       c.setVisible(true);
-        
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Clear ALL THE DATA IN TABLE        
         
-        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
+        DefaultTableModel tModel = (DefaultTableModel) auditTable.getModel(); 
 
         tModel.setRowCount(0);
         
@@ -308,15 +218,15 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
     private void btnFetchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetchActionPerformed
         // Click this button to Fetch All the existiing Data
         
-        File adfile = new File("fooddata.txt");
+        File adfile = new File("loginactivity.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(adfile));
             
             String strHeader = br.readLine().trim();
 //            System.out.println(colHeader);
 
-            String[] columnHeader = strHeader.split(",");
-            DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
+            String[] columnHeader = strHeader.split("/");
+            DefaultTableModel tModel = (DefaultTableModel) auditTable.getModel(); 
             // set the column header
             tModel.setColumnIdentifiers(columnHeader);
             
@@ -328,7 +238,7 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
 //                System.out.println(tableRow[i]);
                 String lines = tableRow[i].toString().trim();
                 //System.out.println(x);
-                String [] dataRows = lines.split(",");
+                String [] dataRows = lines.split("/");
                 
                 tModel.addRow(dataRows);
             }
@@ -352,147 +262,69 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
         adminHomePage.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
-        
-        int SelRow = foodTable.getSelectedRow();
-        System.out.println(SelRow);
-        tModel.removeRow(SelRow);
-        
-        File itemFile = new File("fooddata.txt");
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(itemFile));
-            
-            DefaultTableModel jTable = (DefaultTableModel) foodTable.getModel();
-//            System.out.println(jTable.getColumnName(1));
-            String recHeader= "";
-            
-            for (int i = 0; i < jTable.getColumnCount();i++){
-                recHeader = recHeader+jTable.getColumnName(i)+",";
-                
-            }
-//            System.out.println(recHeader);
-            bw.write(recHeader+"\n");
-            
-            for (int i = 0; i< jTable.getRowCount();i++){
-                for(int j = 0; j < jTable.getColumnCount();j++){
-                    bw.write(foodTable.getValueAt(i,j) + ",");
-                }
-                bw.write("\n");
-            }
-            System.out.println("Inventory Update Sucessfully!!");
-            bw.close();
-            
-            tModel.setRowCount(0);
-            
-            
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(CheckUserAuditLog.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void btnFetch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFetch1ActionPerformed
-        // TODO add your handling code here:
-        
-        DefaultTableModel tModel = (DefaultTableModel) foodTable.getModel(); 
-
-        
-        File adminFile = new File("fooddata.txt");
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(adminFile));
-            
-            DefaultTableModel jTable = (DefaultTableModel) foodTable.getModel();
-//            System.out.println(jTable.getColumnName(1));
-            String recHeader= "";
-            
-            for (int i = 0; i < jTable.getColumnCount();i++){
-                recHeader = recHeader+jTable.getColumnName(i)+",";
-                
-            }
-//            System.out.println(recHeader);
-            bw.write(recHeader+"\n");
-            
-            for (int i = 0; i< jTable.getRowCount();i++){
-                for(int j = 0; j < jTable.getColumnCount();j++){
-                    bw.write(foodTable.getValueAt(i,j) + ",");
-                }
-                bw.write("\n");
-            }
-            System.out.println("Inventory Update Sucessfully!!");
-            bw.close();
-            
-            
-            
-        } catch (IOException ex) {
-            Logger.getLogger(CheckUserAuditLog.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        
-        
-    }//GEN-LAST:event_btnFetch1ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {                                         
             // TODO add your handling code here:
             Administrator administrator = new Administrator();
             
-            if("".equals(FOODID.getText())){
-                System.out.println("Empty");
+            if("".equals(USERROLE.getText())){
+                JOptionPane.showMessageDialog(null, "Empty");
+
                 
                 lblStatus.setVisible(true);
                 lblStatus.setText("Pls Enter Require Blank!!!!");
             }else{
                 
-                boolean valid = administrator.searchItem(FOODID.getText());
+                boolean valid = administrator.checkUserRole(USERROLE.getText());
 
             
             if(valid){
-                System.out.println("HALLO WORLD");
-                File adminFile = new File("fooddata.txt");
                 
-                BufferedReader br = new BufferedReader(new FileReader(adminFile));
+                File adfile = new File("loginactivity.txt");
+                BufferedReader br = new BufferedReader(new FileReader(adfile));
+
+                String strHeader = br.readLine().trim();
+    //            System.out.println(colHeader);
+
+                String[] columnHeader = strHeader.split("/");
+                DefaultTableModel tModel = (DefaultTableModel) auditTable.getModel(); 
+                // set the column header
+                tModel.setColumnIdentifiers(columnHeader);
+
+                Object[] tableRow = br.lines().toArray();
+
+                tModel.setRowCount(0);
                 
-                //Save Each line of data into adminRow Arrayin x;x;x
-                Object[] adminRow = br.lines().toArray();
-                
-                for(int i=0; i<adminRow.length;i++){
-                    String rows = adminRow[i].toString().trim();
-                    //System.out.println(rows);
-                    String[] splitRows = rows.split(",");
+                for(int i = 0; i<tableRow.length;i++){
+    //                System.out.println(tableRow[i]);
+                    String lines = tableRow[i].toString().trim();
+                    //System.out.println(x);
+                    String [] dataRows = lines.split("/");
                     
-                    if(splitRows[0].equals(FOODID.getText())){
+                    if(dataRows[0].equals(USERROLE.getText())){
                         
-                        foodName.setText(splitRows[1]);
-                        foodPrice.setText(splitRows[2]);
-                        catType.setText(splitRows[3]);
+                        tModel.addRow(dataRows);
                         
                         lblStatus.setVisible(true);
-                        lblStatus.setText("Id Found!!");
+                        lblStatus.setText("User Found!!");
+
                     }
-                    
+
                 }
-                
+
             }else{
-                foodName.setText("");
-                foodPrice.setText("");
-                catType.setText("");
-                
+
                 lblStatus.setVisible(true);
-                lblStatus.setText("Id Not Exist!!");
+                lblStatus.setText("User Not Exist!!");
             }
                 
                 
             }
             
              
-            
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(CheckUserAuditLog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(CheckUserAuditLog.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -500,17 +332,9 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void foodPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodPriceActionPerformed
+    private void USERROLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_USERROLEActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_foodPriceActionPerformed
-
-    private void catTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_catTypeActionPerformed
-
-    private void foodNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foodNameActionPerformed
+    }//GEN-LAST:event_USERROLEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,24 +379,15 @@ public class CheckUserAuditLog extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField FOODID;
+    private javax.swing.JTextField USERROLE;
+    private javax.swing.JTable auditTable;
     private javax.swing.JButton btnFetch;
-    private javax.swing.JButton btnFetch1;
-    private javax.swing.JTextField catType;
-    private javax.swing.JTextField foodName;
-    private javax.swing.JTextField foodPrice;
-    private javax.swing.JTable foodTable;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblStatus;

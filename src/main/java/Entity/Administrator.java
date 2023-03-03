@@ -179,6 +179,25 @@ public class Administrator  {
         
         int foodId = 1;
         
+        File Cat = new File("fooddata.txt");
+        FileReader fr = new FileReader(Cat);
+        FileWriter FW;
+
+        
+        BufferedReader brr = new BufferedReader(new FileReader(Cat));
+        String firstLine = brr.readLine().trim();
+        Object[] tableLines = brr.lines().toArray();
+
+//        System.out.println(tableLines.length);
+        for (int i = 0; i < tableLines.length ; i++) {
+            String line1 = tableLines[i].toString().trim();
+            System.out.println(line1);
+            
+            
+            foodId++;
+
+        }
+        
         Category c = new Category(CatType);
         Food f = new Food(foodID,Name,foodPrice,c);
         
@@ -187,7 +206,6 @@ public class Administrator  {
 //        System.out.println(f.getFoodID());
         
         File file = new File("fooddata.txt");
-        FileWriter FW;
        
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
@@ -196,7 +214,6 @@ public class Administrator  {
             BW.write(record);
             System.out.println("Food Item Have Been Successfully Added");
 
-            foodId++;
             
         }
         FW.close();
@@ -205,31 +222,78 @@ public class Administrator  {
     }
     
     public void addCategory(String CategoryID, String CategoryType ) throws IOException{
-        
         int CatId = 1;
         
         Category c = new Category(CategoryType);
         
-        System.out.println(c.toString());
+//        System.out.println(c.toString());
+
+        File Cat = new File("Category.txt");
+        FileReader fr = new FileReader(Cat);
+        FileWriter FW;
+
         
+        BufferedReader brr = new BufferedReader(new FileReader(Cat));
+        String firstLine = brr.readLine().trim();
+        Object[] tableLines = brr.lines().toArray();
+
+//        System.out.println(tableLines.length);
+        for (int i = 0; i < tableLines.length ; i++) {
+            String line1 = tableLines[i].toString().trim();
+            System.out.println(line1);
+            
+            
+            
+            CatId++;
+
+        }
         
          
         File file = new File("Category.txt");
-        FileWriter FW;
        
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
             String record = CatId + ":"+ c.getCategoryType()+ "\n";
-            
+
             BW.write(record);
             System.out.println("Category Have Been Successfully Added");
 
-            CatId++;
             
         }
         FW.close();
         
     
+    }
+    public boolean checkUserRole(String UserName) throws FileNotFoundException{
+        File AuditLogFile = new File("loginactivity.txt");
+        
+        
+        String admintoFind = UserName;
+        Scanner scanner = new Scanner(AuditLogFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(admintoFind)){
+//                Status = 1;
+//                String[] myArr = Line.split(":");
+                
+                JOptionPane.showMessageDialog(null, "Success Search");
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+            
+        }
+        if(Status ==0){
+            JOptionPane.showMessageDialog(null, "UserRole Not found");
+
+            System.out.println("Admin Not found");
+        }
+        return false;
+        
+        
     }
    
     

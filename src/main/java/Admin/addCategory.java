@@ -196,6 +196,7 @@ public class addCategory extends javax.swing.JFrame {
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
 //        Called AddAdmin Method From Admin Entity
           String CategoryID = "";
+//          Integer counter = 0;
 
           Administrator administrator = new Administrator();
           AdminHomePage adminHomePage = new AdminHomePage();
@@ -206,7 +207,7 @@ public class addCategory extends javax.swing.JFrame {
 
             else{   
                 administrator.addCategory(CategoryID, CategoryType.getText());
-                
+//                counter++;
                 JOptionPane.showMessageDialog(rootPane, "Category Have Been Successfully Added");
 
                 
