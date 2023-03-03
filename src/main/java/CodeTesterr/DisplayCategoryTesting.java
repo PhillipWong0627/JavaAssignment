@@ -30,16 +30,11 @@ public class DisplayCategoryTesting extends javax.swing.JFrame {
         DefaultTableModel dm = (DefaultTableModel) adminTable.getModel();
         
         Administrator a = new Administrator();
-        
-//        for(int i = 0; i< a.displayItem1().size();i++){
-////            dm.addRow(new Object[]{a.displayItem1().get(i)});
-//            
-//
-//        }
+ 
         
 
-        System.out.println(a.displayItem1());
-        System.out.println(a.displayItem1().subList(0, 2));
+//        System.out.println(a.displayItem1());
+        System.out.println("HAlo"+a.displayItem1());
         
         
         
@@ -52,7 +47,7 @@ public class DisplayCategoryTesting extends javax.swing.JFrame {
         for(Object Fker: blablabla){
             String fkerToString = Fker.toString();
             
-            String [] dataRows = fkerToString.split(":");
+            String [] dataRows = fkerToString.split(",");
             
             System.out.println(dataRows[0]);
             System.out.println(dataRows[1]);

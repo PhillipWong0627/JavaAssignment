@@ -29,14 +29,6 @@ public class Food{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
-//    public void Food(String foodId, String name, Float foodPrice, Category category){
-//        this.FoodID = foodId;
-//        this.Name = name;
-//        this.FoodPrice = foodPrice;
-//        this.Category = category;
-//    }
-
     public String getFoodID() {
         return FoodID;
     }
