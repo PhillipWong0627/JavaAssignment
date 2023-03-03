@@ -281,6 +281,8 @@ public class CategoryManagement extends javax.swing.JFrame {
             
             Object[] tableRow = br.lines().toArray();
             
+            tModel.setRowCount(0);
+            
             for(int i = 0; i<tableRow.length;i++){
 //                System.out.println(tableRow[i]);
                 String lines = tableRow[i].toString().trim();
