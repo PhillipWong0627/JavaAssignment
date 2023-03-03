@@ -220,11 +220,11 @@ public class Administrator  {
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
             String record = CatId + ":"+ c.getCategoryType()+ "\n";
-            
+            CatId++;
+
             BW.write(record);
             System.out.println("Category Have Been Successfully Added");
 
-            CatId++;
             
         }
         FW.close();
