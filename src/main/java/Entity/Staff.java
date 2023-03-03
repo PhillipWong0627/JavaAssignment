@@ -4,6 +4,8 @@
  */
 package Entity;
 
+import Customer.CustomerLogin;
+import Customer.OrderPage;
 import Delivery.DeliveryUpdateFeedback;
 import static Delivery.DeliveryUpdateFeedback.delivery;
 import java.io.BufferedReader;
@@ -16,6 +18,8 @@ import javax.swing.JOptionPane;
 import Delivery.DeliveryStaffLogin;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -41,6 +45,9 @@ public class Staff {
                     JOptionPane.showMessageDialog(null, "Welcome, " +DeliveryStaffLogin.username.getText());
                     DeliveryUpdateFeedback di = new DeliveryUpdateFeedback();
                     di.setVisible(true);
+                    FileWriter Writer = new FileWriter("loginactivity.txt", true);
+                    Writer.write("DeliveryStaff"+"/"+DeliveryStaffLogin.username.getText()+"/"+DeliveryStaffLogin.datetxt.getText()+"/"+DeliveryStaffLogin.timetxt.getText()+"\n");
+                    Writer.close();
                     return true;
                 } else {
                     JOptionPane.showMessageDialog(null, "Wrong username or password");
@@ -132,5 +139,26 @@ public class Staff {
         } else {
             JOptionPane.showMessageDialog(null, "Please fill up ALL details!");
         }
+    }
+    
+    public void setTime() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Date date = new Date();
+                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+                    String time = tf.format(date);
+                    DeliveryStaffLogin.timetxt.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+                    DeliveryStaffLogin.datetxt.setText(df.format(date));
+                }
+            }
+        }).start();
     }
 }

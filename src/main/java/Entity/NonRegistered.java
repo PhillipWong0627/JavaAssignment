@@ -66,13 +66,13 @@ public class NonRegistered {
             for (int z = 0; z < tableLines.length; z++) {
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(",");
-                if (dataRow[3].equals(OrderPage.category.getText())) {
+                if (dataRow[3].equals(NonROrderPage.category.getText())) {
                     NonROrderPage.jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
                     NonROrderPage.jTable2.getColumnModel().getColumn(1).setPreferredWidth(150);
                     NonROrderPage.jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
                     NonROrderPage.jTable2.getColumnModel().getColumn(3).setPreferredWidth(100);
                     model.addRow(dataRow);
-                    NonROrderPage.searchfood.setText(OrderPage.category.getText());
+                    NonROrderPage.searchfood.setText(NonROrderPage.category.getText());
                 }
 
             }

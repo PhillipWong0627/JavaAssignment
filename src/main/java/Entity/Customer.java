@@ -86,6 +86,9 @@ public class Customer extends Payment{
                     JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
                     CustomerInterface csinterface = new CustomerInterface();
                     csinterface.setVisible(true);
+                    FileWriter Writer = new FileWriter("loginactivity.txt", true);
+                    Writer.write("Customer"+"/"+CustomerLogin.username.getText()+"/"+CustomerLogin.datetxt.getText()+"/"+CustomerLogin.timetxt.getText()+"\n");
+                    Writer.close();
                     return true;
                 } 
             }

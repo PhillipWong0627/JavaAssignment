@@ -4,10 +4,7 @@
  */
 package NonRegisteredCustomer;
 
-import Entity.Cart;
-import Entity.Food;
 import Entity.NonRegistered;
-import NonRegisteredCustomer.NonROrderPage;
 
 /**
  *

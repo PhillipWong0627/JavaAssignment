@@ -4,6 +4,7 @@
  */
 package Admin;
 
+import Customer.CustomerLogin;
 import Entity.Administrator;
 import Main.WelcomePage;
 import java.io.BufferedWriter;
@@ -21,13 +22,14 @@ import javax.swing.JOptionPane;
  */
 public class AdminLogin extends javax.swing.JFrame {
     
-
+Administrator amd = new Administrator();
 
     /**
      * Creates new form AdminLogin
      */
     public AdminLogin() {
         initComponents();
+        amd.setTime();
     }
     
 
@@ -53,6 +55,8 @@ public class AdminLogin extends javax.swing.JFrame {
         login = new javax.swing.JButton();
         clearall = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
+        datetxt = new javax.swing.JLabel();
+        timetxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 153));
@@ -200,6 +204,12 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
+        datetxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        datetxt.setText("Date");
+
+        timetxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        timetxt.setText("Time");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,13 +221,22 @@ public class AdminLogin extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(datetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(timetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(datetxt)
+                    .addComponent(timetxt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +253,7 @@ public class AdminLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -257,14 +276,27 @@ public class AdminLogin extends javax.swing.JFrame {
         
         boolean valid = administrator.login(adminName.getText(), password.getText());
                 if(valid){
+                JOptionPane.showMessageDialog(null, "Welcome back, " + adminName.getText());
+                FileWriter Writer = null;
+                    try {
+                        Writer = new FileWriter("loginactivity.txt", true);
+                        Writer.write("Admin"+"/"+adminName.getText()+"/"+datetxt.getText()+"/"+timetxt.getText()+"\n");
+                        Writer.close();
                 System.out.println("==== Welcome On Board Mr/Ms " + adminName.getText() + " ====" +
                         "\nYou Have Sucessfully Login"
-                        );
-                
-                
+                );
                 AdminHomePage adminHomePage = new AdminHomePage();
                 dispose();
                 adminHomePage.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    Writer.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             }else{
                 System.out.println("Invalid adminname/password");
             }
@@ -325,6 +357,7 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JTextField adminName;
     private javax.swing.JButton back2;
     private javax.swing.JButton clearall;
+    public static javax.swing.JLabel datetxt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -334,6 +367,7 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JButton login;
     private javax.swing.JTextField password;
     private javax.swing.JLabel passwordlabel;
+    public static javax.swing.JLabel timetxt;
     private javax.swing.JLabel usernamelabel;
     // End of variables declaration//GEN-END:variables
 }

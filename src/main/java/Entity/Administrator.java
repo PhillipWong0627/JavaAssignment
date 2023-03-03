@@ -6,6 +6,8 @@ package Entity;
 
 import Admin.AdminAssign;
 import Admin.AdminLogin;
+import Customer.CustomerLogin;
+import Customer.OrderPage;
 import static Delivery.DeliveryUpdateFeedback.delivery;
 import DisplayData.DisplayItemWise;
 import core.AdminSource;
@@ -18,7 +20,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -396,36 +400,7 @@ public class Administrator  {
     }
     
     
-//    public void ModifyAdmin() throws FileNotFoundException{    
-//
-//    Scanner sc = new Scanner(System.in);
-//    File adminFile = new File("adminFile.txt");
-//
-//        BufferedReader br = new BufferedReader(new FileReader(adminFile));
-//
-//
-//        Object[] fileRow = br.lines().toArray();
-////            System.out.println(fileRow);
-//        String checkName = sc.nextLine();
-//
-//
-//        for(int i=0; i < fileRow.length;i++){
-//            String rows = fileRow[i].toString().trim();
-//            String [] dataRows = rows.split(":");
-//
-//
-//            //System.out.println(rows);
-//            System.out.println(dataRows[0]);
-//
-//            if(dataRows[0].equals(checkName)){
-//                System.out.println("SMTG");
-//            }else{
-//                System.out.println("Failed");
-//            }
-//
-//        } 
-//       
-//    }
+
         public void am(){
             DefaultTableModel model = (DefaultTableModel) AdminAssign.delivery.getModel();
         int selectedInfo = AdminAssign.delivery.getSelectedRow();
@@ -508,5 +483,24 @@ public class Administrator  {
         }
     }
     
-    
+    public void setTime() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Date date = new Date();
+                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+                    String time = tf.format(date);
+                    AdminLogin.timetxt.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+                    AdminLogin.datetxt.setText(df.format(date));
+                }
+            }
+        }).start();
+    }
 }
