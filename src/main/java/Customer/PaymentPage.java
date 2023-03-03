@@ -344,6 +344,10 @@ public class PaymentPage extends javax.swing.JFrame {
                 } catch (PrinterException ex) {
                 Logger.getLogger(PaymentPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }else{
+                CustomerInterface ci = new CustomerInterface();
+                    ci.setVisible(true);
+                    this.dispose();
             }
         }
         

@@ -195,7 +195,6 @@ public class WelcomePage extends javax.swing.JFrame {
     private void guestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestActionPerformed
         // TODO add your handling code here:
         NonROrderPage nonROrderPage = new NonROrderPage();
-        
         this.dispose();
         nonROrderPage.setVisible(true);
         

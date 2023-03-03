@@ -6,6 +6,7 @@ package Entity;
 
 import Customer.CustomerLogin;
 import Customer.OrderPage;
+import Delivery.DeliveryInterface;
 import Delivery.DeliveryUpdateFeedback;
 import static Delivery.DeliveryUpdateFeedback.delivery;
 import java.io.BufferedReader;
@@ -43,7 +44,7 @@ public class Staff {
                 System.out.println(dataRow[0]);
                 if(DeliveryStaffLogin.username.getText().equals(dataRow[1]) && DeliveryStaffLogin.passf.getText().equals(dataRow[2])){
                     JOptionPane.showMessageDialog(null, "Welcome, " +DeliveryStaffLogin.username.getText());
-                    DeliveryUpdateFeedback di = new DeliveryUpdateFeedback();
+                    DeliveryInterface di = new DeliveryInterface();
                     di.setVisible(true);
                     FileWriter Writer = new FileWriter("loginactivity.txt", true);
                     Writer.write("DeliveryStaff"+"/"+DeliveryStaffLogin.username.getText()+"/"+DeliveryStaffLogin.datetxt.getText()+"/"+DeliveryStaffLogin.timetxt.getText()+"\n");
