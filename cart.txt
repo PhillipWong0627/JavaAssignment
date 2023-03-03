@@ -1,2 +1,2 @@
 Food Cart
-T001,Kao Pad,8.00;D003,Water,0.80;W001,Chicken Chop,13.50;W004,Burger,12.50;
+W001,Chicken Chop,13.50;W002,Lamb Chop,16.50;D003,Water,0.80;

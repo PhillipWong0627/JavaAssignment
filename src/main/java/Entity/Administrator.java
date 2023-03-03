@@ -54,15 +54,12 @@ public class Administrator  {
     }
     
     public Administrator(){}
+    
     public boolean login(String adminName, String password){
-      
         File adFile = new File("adminFile.txt");
-        
         try {
             BufferedReader br = new BufferedReader(new FileReader(adFile));
-            
             Object[] fileRow = br.lines().toArray();
-            boolean flag = true;
 
             for(int i=0; i < fileRow.length;i++){
                 String rows = fileRow[i].toString().trim();
@@ -75,7 +72,6 @@ public class Administrator  {
                     
                     AdminLogin adlogin = new AdminLogin();
                     adlogin.dispose();
-                    
                     return true;
                 }
             }
@@ -87,7 +83,7 @@ public class Administrator  {
     
     //Maybe need to enhace Xia NOT NECESSARY
     public ArrayList<String> displayItem1(){
-        File adfile = new File("itemFile.txt");
+        File adfile = new File("fooddata.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(adfile));
             

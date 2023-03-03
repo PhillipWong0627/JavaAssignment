@@ -5,6 +5,7 @@
 package CodeTesterr;
 
 import Entity.Administrator;
+import java.io.IOException;
 
 /**
  *
@@ -12,10 +13,15 @@ import Entity.Administrator;
  */
 public class Testing {
     
-    public static void main(String [] args){
+    public static void main(String [] args) throws IOException{
   
         Administrator a = new Administrator();
-        a.displayItem1();
+//        a.displayItem1();
+
+        String id = "AA";
+        a.addCategory(id, "HaloBinJeK");
+        a.toString();
+
     }
     
 }
