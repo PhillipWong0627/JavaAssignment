@@ -82,10 +82,6 @@ public class Food{
     }
     
     
-    
-    
-    
-
     @Override
     public String toString() {
         return "Food{" + "FoodID=" + FoodID + ", Name=" + Name + ", FoodPrice=" + FoodPrice + ", Category=" + Category + '}';

@@ -17,6 +17,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +95,30 @@ public class Customer extends Payment{
             JOptionPane.showMessageDialog(null, "Wrong Username or password"); 
         return false;
     }
+    
+    private static final DecimalFormat decformat =new DecimalFormat("0.00");
+
+    public void setTime() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Date date = new Date();
+                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+                    String time = tf.format(date);
+                    CustomerLogin.timetxt.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+                    CustomerLogin.datetxt.setText(df.format(date));
+                }
+            }
+        }).start();
+    }
+    
     
     public void CustomerUpdateProfile() {
         try {

@@ -126,7 +126,7 @@ public class Payment{
                     FileWriter FW;
                     FW = new FileWriter(orderdetail,true);
                     BufferedWriter BW = new BufferedWriter(FW);
-                    String record = "L"+(num+1)+"?"+datetxt.getText()+"?"+timetxt.getText()+"?"+line1+"\n";
+                    String record = "L"+(num+1)+"/"+datetxt.getText()+"/"+timetxt.getText()+"/"+line1+"\n";
                      
                      
                     

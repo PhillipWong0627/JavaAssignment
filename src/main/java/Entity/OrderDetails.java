@@ -16,16 +16,9 @@ import Customer.CheckOrderStatus;
  * @author user
  */
 public class OrderDetails {
-    private Integer OrderId;
-    private Food Food;
-    private String OrderStatus;
+    
 //    
-    public void OrderDetails(Integer orderId, Food food, String orderStatus){
-        this.OrderId = orderId;
-        this.Food = food;
-        this.OrderStatus = orderStatus;
-        
-    }
+    
     
         public void paymentchecking(){
         try {
