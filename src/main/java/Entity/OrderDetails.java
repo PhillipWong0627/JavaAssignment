@@ -46,7 +46,6 @@ public class OrderDetails {
         }
     }
     public void deliverycheckingcustomer(){
-//        DefaultTableModel model = (DefaultTableModel) delivery.getModel();
         try {
             File f = new File("deliverydetail.txt");
             String SearchOrder = CheckOrderStatus.search.getText();
@@ -68,13 +67,6 @@ public class OrderDetails {
                     CheckOrderStatus.delivery2.setText(myArr[4]);
                     CheckOrderStatus.status.setText(myArr[5]);
                     CheckOrderStatus.fedback.setText(myArr[6]);
-//                    for(int i=0;i<model.getRowCount();i++){
-//                        String tempusername = (String)model.getValueAt(i,0);
-//                        if (tempusername.equals(myArr[0])){
-//                            delivery.setRowSelectionInterval(i, i);
-//                            break;
-//                        }
-//                    }
                 }
             }
             if (Status == 0) {
