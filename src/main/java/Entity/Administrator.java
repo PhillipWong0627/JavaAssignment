@@ -205,22 +205,38 @@ public class Administrator  {
     }
     
     public void addCategory(String CategoryID, String CategoryType ) throws IOException{
-        
         int CatId = 1;
         
         Category c = new Category(CategoryType);
         
-        System.out.println(c.toString());
+//        System.out.println(c.toString());
+
+        File Cat = new File("Category.txt");
+        FileReader fr = new FileReader(Cat);
+        FileWriter FW;
+
         
+        BufferedReader brr = new BufferedReader(new FileReader(Cat));
+        String firstLine = brr.readLine().trim();
+        Object[] tableLines = brr.lines().toArray();
+
+//        System.out.println(tableLines.length);
+        for (int i = 0; i < tableLines.length ; i++) {
+            String line1 = tableLines[i].toString().trim();
+            System.out.println(line1);
+            
+            
+            
+            CatId++;
+
+        }
         
          
         File file = new File("Category.txt");
-        FileWriter FW;
        
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
             String record = CatId + ":"+ c.getCategoryType()+ "\n";
-            CatId++;
 
             BW.write(record);
             System.out.println("Category Have Been Successfully Added");

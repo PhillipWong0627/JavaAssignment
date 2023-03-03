@@ -327,6 +327,7 @@ public class AdminRegister extends javax.swing.JFrame {
 //        Called AddAdmin Method From Admin Entity
           Administrator administrator = new Administrator();
           AdminLogin adLogin = new AdminLogin();
+          AdminHomePage adminHomePage = new AdminHomePage();
           
 //           && password.getText().isEmpty() && email.getText().isEmpty() && phonenumber.getText().isEmpty()
         try {
@@ -336,7 +337,7 @@ public class AdminRegister extends javax.swing.JFrame {
                 administrator.addAdmin(adminName.getText(), password.getText(), email.getText(),phonenumber.getText());
                 
                 dispose();
-                adLogin.setVisible(true);
+                adminHomePage.setVisible(true);
                 
                 //System.out.println(adminName.getText() != null && password.getText() !=null);
                 //System.out.println(password.getText());
