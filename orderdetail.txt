@@ -12,3 +12,4 @@ L11/Friday, 03-03-2023/8:34:17 pm/W004,Burger,12.50;W001,Chicken Chop,13.50;
 L12/Friday, 03-03-2023/8:36:09 pm/W004,Burger,12.50;
 L13/Friday, 03-03-2023/8:43:08 pm/T003,Tom Yum Fried Rice,9.00;C002,Sweet and Sour Chicken Rice,11.00;
 L14/Friday, 03-03-2023/9:03:42 pm/T002,Pad Thai,9.50;
+L15/Friday, 03-03-2023/11:02:04 pm/C002,Sweet and Sour Chicken Rice,11.00;W004,Burger,12.50;
