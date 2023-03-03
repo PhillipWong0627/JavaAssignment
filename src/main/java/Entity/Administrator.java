@@ -179,6 +179,25 @@ public class Administrator  {
         
         int foodId = 1;
         
+        File Cat = new File("fooddata.txt");
+        FileReader fr = new FileReader(Cat);
+        FileWriter FW;
+
+        
+        BufferedReader brr = new BufferedReader(new FileReader(Cat));
+        String firstLine = brr.readLine().trim();
+        Object[] tableLines = brr.lines().toArray();
+
+//        System.out.println(tableLines.length);
+        for (int i = 0; i < tableLines.length ; i++) {
+            String line1 = tableLines[i].toString().trim();
+            System.out.println(line1);
+            
+            
+            foodId++;
+
+        }
+        
         Category c = new Category(CatType);
         Food f = new Food(foodID,Name,foodPrice,c);
         
@@ -187,7 +206,6 @@ public class Administrator  {
 //        System.out.println(f.getFoodID());
         
         File file = new File("fooddata.txt");
-        FileWriter FW;
        
         FW = new FileWriter(file,true);
         try (BufferedWriter BW = new BufferedWriter(FW)) {
@@ -196,7 +214,6 @@ public class Administrator  {
             BW.write(record);
             System.out.println("Food Item Have Been Successfully Added");
 
-            foodId++;
             
         }
         FW.close();
