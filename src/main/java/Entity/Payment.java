@@ -27,19 +27,7 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class Payment{
-//    private String PaymentId;
-//    private String PaymentType;
-//    private String PaymentDate;
-//    private String PaymentTime;
-//    private Float PaymentAmount;
-    
-//    public void Payment(String paymetnId, String paymentType, String paymentDate, String paymentTime, Float paymentAmount){
-//        this.PaymentId = paymetnId;
-//        this.PaymentType = paymentType;
-//        this.PaymentDate = paymentDate;
-//        this.PaymentTime = paymentTime;
-//        this.PaymentAmount = paymentAmount;
-//    }
+
     public void ReadUsertoPayment() throws IOException{
         FileWriter Writeruser = new FileWriter("currentuser.txt", false);
         Writeruser.write("Current User"+"\n");
@@ -72,8 +60,6 @@ public class Payment{
     public void Savemethod(){
             try {
                 int num=0;
-//                int num1=0;
-//                int num2=0;
                 File cart = new File("cart.txt");
                 FileReader fr = new FileReader(cart);
                 BufferedReader brr = new BufferedReader(new FileReader(cart));
@@ -96,21 +82,10 @@ public class Payment{
                         File deliverydetail = new File("deliverydetail.txt");
                             FileReader mr = new FileReader(deliverydetail);
                             BufferedReader nr = new BufferedReader(new FileReader(deliverydetail));
-//                            Object[] tableLinesdelivery = nr.lines().toArray();
-//                            for (int n = 0; n < tableLinesdelivery.length; n++) {
-//                            String line2 = tableLines[n].toString().trim();
-//                            num1++;
-//                                
-//                        }
                             
                         File creditcard = new File("creditcarddetail.txt");
                             FileReader frr = new FileReader(creditcard);
                             BufferedReader bread = new BufferedReader(new FileReader(creditcard));
-//                            Object[] tableLinescreditcard = nr.lines().toArray();
-//                            for (int p = 0; p < tableLinescreditcard.length; p++) {
-//                            String line2 = tableLines[p].toString().trim();
-//                            num2++;
-//                            }
                             
                     FileWriter fww;
                     fww = new FileWriter(creditcard,true);
