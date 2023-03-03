@@ -6,7 +6,7 @@ package Entity;
 
 import Customer.CustomerInterface;
 import Customer.CustomerLogin;
-import Customer.CustomerRegister;
+import NonRegisteredCustomer.CustomerRegister;
 import Customer.OrderPage;
 import Customer.CustomerUpdateProfile;
 import static Customer.CustomerUpdateProfile.profile;
@@ -17,6 +17,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,20 +34,36 @@ import javax.swing.table.DefaultTableModel;
 public class Customer extends Payment{
     
     public boolean register() throws IOException{
-        
-        File customerdetail = new File("customerdetail.txt");
-        FileWriter FW;
-        FW = new FileWriter(customerdetail,true);
-        BufferedWriter BW = new BufferedWriter(FW);
-        String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.password.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
-        BW.write(record);
-        BW.close();
-        FW.close();
-        
-        JOptionPane.showMessageDialog(null, "Successfully register, "+CustomerRegister.usernamere.getText());
-        CustomerLogin cslogin = new CustomerLogin();
-        cslogin.setVisible(true);
-        return true;
+        File customerinfo = new File("customerdetail.txt");
+            FileReader tr = new FileReader(customerinfo);
+            BufferedReader br = new BufferedReader(new FileReader(customerinfo));
+            String firstLine = br.readLine().trim();
+//            String[] columnName = firstLine.split(",");
+            Object[] tableLines = br.lines().toArray();
+
+            for (int z = 0; z < tableLines.length; z++) {
+                String line = tableLines[z].toString().trim();
+                String[] dataRow = line.split(":");
+                if(CustomerRegister.usernamere.getText().equals(dataRow[0])){
+                    JOptionPane.showMessageDialog(null, "Register Fail, username exist");
+                    break;
+                }else{
+                    File customerdetail = new File("customerdetail.txt");
+                    FileWriter FW;
+                    FW = new FileWriter(customerdetail,true);
+                    BufferedWriter BW = new BufferedWriter(FW);
+                    String record = CustomerRegister.usernamere.getText()+":"+CustomerRegister.passfield.getText()+":"+CustomerRegister.email.getText()+":"+CustomerRegister.dateofbirth.getText()+":"+CustomerRegister.phonenumber.getText()+":"+CustomerRegister.address.getText()+"\r\n";
+                    BW.write(record);
+                    BW.close();
+                    FW.close();
+
+                    JOptionPane.showMessageDialog(null, "Successfully register, "+CustomerRegister.usernamere.getText());
+                    CustomerLogin cslogin = new CustomerLogin();
+                    cslogin.setVisible(true);
+                    return true;
+                }
+            }
+        return false;              
     }
     
     
@@ -62,7 +81,7 @@ public class Customer extends Payment{
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(":");
                 System.out.println(dataRow[0]);
-                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.password.getText().equals(dataRow[1])){
+                if(CustomerLogin.username.getText().equals(dataRow[0]) && CustomerLogin.passwordfield.getText().equals(dataRow[1])){
                     ReadUsertoPayment();
                     JOptionPane.showMessageDialog(null, "Welcome back, " + CustomerLogin.username.getText());
                     CustomerInterface csinterface = new CustomerInterface();
@@ -76,6 +95,30 @@ public class Customer extends Payment{
             JOptionPane.showMessageDialog(null, "Wrong Username or password"); 
         return false;
     }
+    
+    private static final DecimalFormat decformat =new DecimalFormat("0.00");
+
+    public void setTime() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Date date = new Date();
+                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+                    String time = tf.format(date);
+                    CustomerLogin.timetxt.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+                    CustomerLogin.datetxt.setText(df.format(date));
+                }
+            }
+        }).start();
+    }
+    
     
     public void CustomerUpdateProfile() {
         try {

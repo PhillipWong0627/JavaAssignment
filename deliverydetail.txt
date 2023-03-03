@@ -1,5 +1,5 @@
 OrderID:PaymentID:User:Address:StaffAssign:Status:Feedback:
-L1:P1:JunKit:47,jalan lapan:PendingAssign:PendingAssign:-:
+L1:P1:JunKit:47,jalan lapan:BinJie:Delivering:-:
 L2:P2:JunKit:40,jalan sama:PendingAssign:PendingAssign:-:
 L3:P3:JunKit:28,jalan sembilan:JunKit:Delivering:-:
 L4:P4:JunKit:90,jalan cempaka:PendingAssign:PendingAssign:-:

@@ -109,9 +109,8 @@ private static final DecimalFormat decformat =new DecimalFormat("0.00");
                 Logger.getLogger(OrderPage.class.getName()).log(Level.SEVERE, null, ex);
             }
             JOptionPane.showMessageDialog(null, "Code not found");
-            
+         
         }
-
     }
     
 

@@ -4,7 +4,6 @@
  */
 package NonRegisteredCustomer;
 
-import Customer.CustomerRegister;
 import Entity.Cart;
 import Entity.Food;
 import Entity.NonRegistered;

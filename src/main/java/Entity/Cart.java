@@ -16,13 +16,6 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class Cart extends Receipt {
-    private Integer cartID;
-    private Food food;
-    
-    public void Cart(Integer cartId, Food food){
-        this.cartID = cartId;   
-        this.food = food;
-    }
     
     public void cart (){
     try{

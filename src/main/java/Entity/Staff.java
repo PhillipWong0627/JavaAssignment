@@ -4,8 +4,8 @@
  */
 package Entity;
 
-import Delivery.DeliveryInterface;
-import static Delivery.DeliveryInterface.delivery;
+import Delivery.DeliveryUpdateFeedback;
+import static Delivery.DeliveryUpdateFeedback.delivery;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -37,9 +37,9 @@ public class Staff {
                 String line = tableLines[z].toString().trim();
                 String[] dataRow = line.split(":");
                 System.out.println(dataRow[0]);
-                if(DeliveryStaffLogin.username.getText().equals(dataRow[1]) && DeliveryStaffLogin.password.getText().equals(dataRow[2])){
+                if(DeliveryStaffLogin.username.getText().equals(dataRow[1]) && DeliveryStaffLogin.passf.getText().equals(dataRow[2])){
                     JOptionPane.showMessageDialog(null, "Welcome, " +DeliveryStaffLogin.username.getText());
-                    DeliveryInterface di = new DeliveryInterface();
+                    DeliveryUpdateFeedback di = new DeliveryUpdateFeedback();
                     di.setVisible(true);
                     return true;
                 } else {
@@ -59,7 +59,7 @@ public class Staff {
             BufferedReader br = new BufferedReader(new FileReader(deliverydetail));
             String firstLine = br.readLine().trim();
             String[] columnName = firstLine.split(":");
-            DefaultTableModel model = (DefaultTableModel) DeliveryInterface.delivery.getModel();
+            DefaultTableModel model = (DefaultTableModel) DeliveryUpdateFeedback.delivery.getModel();
             model.setRowCount(0);
             model.setColumnIdentifiers(columnName);
 
@@ -78,16 +78,16 @@ public class Staff {
     }
     
     public void cli(){
-        DefaultTableModel model = (DefaultTableModel) DeliveryInterface.delivery.getModel();
-        int selectedInfo = DeliveryInterface.delivery.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) DeliveryUpdateFeedback.delivery.getModel();
+        int selectedInfo = DeliveryUpdateFeedback.delivery.getSelectedRow();
 
-        DeliveryInterface.order.setText(model.getValueAt(selectedInfo, 0).toString());
-        DeliveryInterface.payment.setText(model.getValueAt(selectedInfo, 1).toString());
-        DeliveryInterface.userlabel.setText(model.getValueAt(selectedInfo, 2).toString());
-        DeliveryInterface.address.setText(model.getValueAt(selectedInfo, 3).toString());
-        DeliveryInterface.delivery2.setText(model.getValueAt(selectedInfo, 4).toString());
-        DeliveryInterface.status.setText(model.getValueAt(selectedInfo, 5).toString());
-        DeliveryInterface.feedback.setText(model.getValueAt(selectedInfo, 6).toString());
+        DeliveryUpdateFeedback.order.setText(model.getValueAt(selectedInfo, 0).toString());
+        DeliveryUpdateFeedback.payment.setText(model.getValueAt(selectedInfo, 1).toString());
+        DeliveryUpdateFeedback.userlabel.setText(model.getValueAt(selectedInfo, 2).toString());
+        DeliveryUpdateFeedback.address.setText(model.getValueAt(selectedInfo, 3).toString());
+        DeliveryUpdateFeedback.delivery2.setText(model.getValueAt(selectedInfo, 4).toString());
+        DeliveryUpdateFeedback.status.setText(model.getValueAt(selectedInfo, 5).toString());
+        DeliveryUpdateFeedback.feedback.setText(model.getValueAt(selectedInfo, 6).toString());
     }
     
     public void update(){
@@ -95,13 +95,13 @@ public class Staff {
         DefaultTableModel model = (DefaultTableModel) delivery.getModel();
 
         if (item >= 0) {
-            model.setValueAt(DeliveryInterface.order.getText(), item, 0);
-            model.setValueAt(DeliveryInterface.payment.getText(), item, 1);
-            model.setValueAt(DeliveryInterface.userlabel.getText(), item, 2);
-            model.setValueAt(DeliveryInterface.address.getText(), item, 3);
-            model.setValueAt(DeliveryInterface.delivery2.getText(), item, 4);
-            model.setValueAt(DeliveryInterface.status.getText(), item, 5);
-            model.setValueAt(DeliveryInterface.feedback.getText(), item, 6);
+            model.setValueAt(DeliveryUpdateFeedback.order.getText(), item, 0);
+            model.setValueAt(DeliveryUpdateFeedback.payment.getText(), item, 1);
+            model.setValueAt(DeliveryUpdateFeedback.userlabel.getText(), item, 2);
+            model.setValueAt(DeliveryUpdateFeedback.address.getText(), item, 3);
+            model.setValueAt(DeliveryUpdateFeedback.delivery2.getText(), item, 4);
+            model.setValueAt(DeliveryUpdateFeedback.status.getText(), item, 5);
+            model.setValueAt(DeliveryUpdateFeedback.feedback.getText(), item, 6);
 
             String filePath = "deliverydetail.txt";
             File file = new File(filePath);
@@ -115,9 +115,9 @@ public class Staff {
                 }
                 bw.write(colHeadings + "\n");
 
-                for (int i = 0; i < DeliveryInterface.delivery.getRowCount(); i++) {
-                    for (int j = 0; j < DeliveryInterface.delivery.getColumnCount(); j++) {
-                        bw.write(DeliveryInterface.delivery.getValueAt(i, j).toString() + ":");
+                for (int i = 0; i < DeliveryUpdateFeedback.delivery.getRowCount(); i++) {
+                    for (int j = 0; j < DeliveryUpdateFeedback.delivery.getColumnCount(); j++) {
+                        bw.write(DeliveryUpdateFeedback.delivery.getValueAt(i, j).toString() + ":");
                     }
                     bw.newLine();
                 }
@@ -125,7 +125,7 @@ public class Staff {
                 bw.close();
                 fw.close();
             } catch (IOException ex) {
-                Logger.getLogger(DeliveryInterface.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DeliveryUpdateFeedback.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             JOptionPane.showMessageDialog(null, "Updated SUCCESSFULLY!");

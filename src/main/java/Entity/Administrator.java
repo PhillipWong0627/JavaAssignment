@@ -6,7 +6,7 @@ package Entity;
 
 import Admin.AdminAssign;
 import Admin.AdminLogin;
-import static Delivery.DeliveryInterface.delivery;
+import static Delivery.DeliveryUpdateFeedback.delivery;
 import DisplayData.DisplayItemWise;
 import core.AdminSource;
 import core.CurrentUserSource;
