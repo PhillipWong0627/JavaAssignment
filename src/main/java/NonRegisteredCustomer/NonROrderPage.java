@@ -57,6 +57,7 @@ public class NonROrderPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
+        register1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +215,15 @@ public class NonROrderPage extends javax.swing.JFrame {
             }
         });
 
+        register1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        register1.setForeground(new java.awt.Color(0, 0, 255));
+        register1.setText("Back");
+        register1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                register1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -223,11 +233,16 @@ public class NonROrderPage extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(register)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(register1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(register)))
+                        .addGap(0, 13, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -238,8 +253,10 @@ public class NonROrderPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(register)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register)
+                    .addComponent(register1))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -300,11 +317,22 @@ public class NonROrderPage extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_registerActionPerformed
 
+<<<<<<< HEAD
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         WelcomePage wp = new WelcomePage();
         this.dispose();
         wp.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+=======
+    private void register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register1ActionPerformed
+        // TODO add your handling code here:
+        WelcomePage welcomePage = new WelcomePage();
+        
+        this.dispose();
+        
+        welcomePage.setVisible(true);
+    }//GEN-LAST:event_register1ActionPerformed
+>>>>>>> cb692b3cbd711ff531682c2d602b652c2388b0aa
 
     /**
      * @param args the command line arguments
@@ -374,6 +402,7 @@ public class NonROrderPage extends javax.swing.JFrame {
     public static javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton register;
+    private javax.swing.JButton register1;
     private javax.swing.JButton search;
     public static javax.swing.JLabel searchfood;
     // End of variables declaration//GEN-END:variables
