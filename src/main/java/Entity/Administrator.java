@@ -231,6 +231,37 @@ public class Administrator  {
         
     
     }
+    public boolean checkUserRole(String UserName) throws FileNotFoundException{
+        File AuditLogFile = new File("loginactivity.txt");
+        
+        
+        String admintoFind = UserName;
+        Scanner scanner = new Scanner(AuditLogFile);
+        
+        int Status = 0;
+        while(scanner.hasNextLine()){
+            String Line = scanner.nextLine();
+            if(Line.contains(admintoFind)){
+//                Status = 1;
+//                String[] myArr = Line.split(":");
+                
+                JOptionPane.showMessageDialog(null, "Success Search");
+                System.out.println("Success Search");
+                return true;
+                
+            }
+            
+            
+        }
+        if(Status ==0){
+            JOptionPane.showMessageDialog(null, "UserRole Not found");
+
+            System.out.println("Admin Not found");
+        }
+        return false;
+        
+        
+    }
    
     
     public boolean searchAdmin(String adminID) throws FileNotFoundException{
