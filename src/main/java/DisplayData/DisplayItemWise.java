@@ -149,6 +149,8 @@ public class DisplayItemWise extends javax.swing.JFrame {
             tModel.setColumnIdentifiers(columnHeader);
             
             Object[] tableRow = br.lines().toArray();
+            tModel.setRowCount(0);
+
             
             for(int i = 0; i<tableRow.length;i++){
 //                System.out.println(tableRow[i]);
