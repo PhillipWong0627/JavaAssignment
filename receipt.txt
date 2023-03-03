@@ -1,11 +1,11 @@
 **********************Philip & Kenny Food Centre**********************
-              Time: 12:25:35 am          Date: Friday, 03-03-2023
+              Time: 7:43:16 pm          Date: Friday, 03-03-2023
 **************************************************************************
 FoodID:	Item Name:		Price($)
 W001	Chicken Chop		13.50
-W001	Chicken Chop		13.50
-W001	Chicken Chop		13.50
+W002	Lamb Chop		16.50
+D003	Water		0.80
 **********************Thank you for purchasing**********************
-              Delivery Fees:		RM40.5
-              Subtotal:		RM2.02
-              Total Price:		RM42.52
+              Delivery Fees:		RM30.8
+              Subtotal:		RM1.54
+              Total Price:		RM32.34

@@ -1,2 +1,2 @@
 Food Cart
-W001,Chicken Chop,13.50;W001,Chicken Chop,13.50;W001,Chicken Chop,13.50;
+W001,Chicken Chop,13.50;W002,Lamb Chop,16.50;D003,Water,0.80;

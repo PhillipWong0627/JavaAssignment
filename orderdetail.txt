@@ -7,5 +7,4 @@ L5/Friday, 24-02-2023/11:40:19 pm/D004,Teh Iced,3.50;D002,Coffee Iced,3.20;C003,
 L6/Friday, 24-02-2023/11:42:49 pm/W004,Burger,12.50;C004,Salted Egg Chicken Rice,11.50;
 L7/Friday, 24-02-2023/11:45:06 pm/W004,Burger,12.50;W001,Chicken Chop,13.50;D004,Teh Iced,3.50;
 L8/Saturday, 25-02-2023/6:23:27 pm/W004,Burger,12.50;C002,Sweet and Sour Chicken Rice,11.00;D001,Milo Iced,4.00;T003,Tom Yum Fried Rice,9.00;
-L10?Friday, 03-03-2023?12:25:04 am?W001,Chicken Chop,13.50;W002,Lamb Chop,16.50;
-L11?Friday, 03-03-2023?12:26:22 am?W001,Chicken Chop,13.50;W001,Chicken Chop,13.50;W001,Chicken Chop,13.50;
+L10/Friday, 03-03-2023/7:43:33 pm/W001,Chicken Chop,13.50;W002,Lamb Chop,16.50;D003,Water,0.80;

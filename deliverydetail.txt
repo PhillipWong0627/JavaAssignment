@@ -7,5 +7,4 @@ L5:P5:Kenny:28,jalan simpati:JunKit:Delivering:-:
 L6:P6:JunKit:86,jalan knnn:PendingAssign:PendingAssign:-:
 L7:P7:Kenny:98,jalan simpat:PendingAssign:PendingAssign:-:
 L8:P8:Kenny:29, jalan ape:PendingAssign:PendingAssign:-:
-L10:P10:Kenny:no bsd 9/10:PendingAssign:PendingAssign:-
-L11:P11:Kenny:hhh:PendingAssign:PendingAssign:-
+L10:P10:Kelvin:NoJohor:PendingAssign:PendingAssign:-
